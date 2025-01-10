@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class UsersService {
+export class UserService {
     getUsers(): Array<String> {
         return ["hih", "hh", "ooo"];
     }
