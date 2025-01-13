@@ -1,7 +1,7 @@
 export type GetUsersResponseDto = {
-    users: Array<UserDto>;
-}
+  users: UserDto[];
+};
 
 export type UserDto = {
-    name: String
-}
+  name: String;
+};
