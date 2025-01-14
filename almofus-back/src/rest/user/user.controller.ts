@@ -1,10 +1,10 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from 'src/db/model/user.entity';
 
 @Controller('/users')
 export class UserController {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   @Get('/all')
   getUsers(): Promise<User[]> {
@@ -14,5 +14,9 @@ export class UserController {
   @Get('/:id')
   getUserById(@Param('id') id: number): Promise<User> {
     return this.userService.getUserById(id);
+  }
+
+  @Post()
+  createUser() {
   }
 }

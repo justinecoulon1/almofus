@@ -1,5 +1,6 @@
 import { IsEmail, Length } from 'class-validator';
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Character } from './character.entity';
 
 @Entity('almofus_user')
 export class User {
@@ -16,4 +17,7 @@ export class User {
   @Column()
   @IsEmail()
   email: string;
+
+  @OneToMany(type => Character, character => character.user)
+  characters: Character[];
 }
