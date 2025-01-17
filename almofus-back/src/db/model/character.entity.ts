@@ -1,11 +1,12 @@
 import { Length } from "class-validator";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { User } from "./user.entity";
+import { AlmanaxDay } from "./almanax-day.entity";
 
 @Entity()
 export class Character {
     @PrimaryColumn({
-        name: 'id',
+        name: 'character_id',
         generated: 'identity',
     })
     id: number;
@@ -17,4 +18,7 @@ export class Character {
     @ManyToOne(type => User, user => user.characters)
     @JoinColumn({ name: 'user_id' })
     user: User;
+
+    @OneToMany(type => AlmanaxDay, almanaxDay => almanaxDay.character)
+    almanaxDays: AlmanaxDay[];
 }
