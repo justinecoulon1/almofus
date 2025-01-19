@@ -13,4 +13,11 @@ export class UserService {
   getUserById(id: number): Promise<User> {
     return this.userRepository.findById(id);
   }
+
+  createUser(name: string): Promise<User> {
+    const newUser = new User();
+    newUser.name = name;
+    newUser.email = `${name}@gmail.com`;
+    return this.userRepository.create(newUser);
+  }
 }

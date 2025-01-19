@@ -1,24 +1,28 @@
-import { Length } from "class-validator";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
-import { User } from "./user.entity";
-import { AlmanaxDay } from "./almanax-day.entity";
+import { Length } from 'class-validator';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { User } from './user.entity';
+import { AlmanaxDay } from './almanax-day.entity';
 
-@Entity()
+@Entity('character')
 export class Character {
-    @PrimaryColumn({
-        name: 'character_id',
-        generated: 'identity',
-    })
-    id: number;
+  @PrimaryGeneratedColumn({ name: 'character_id' })
+  id: number;
 
-    @Column({ length: 50 })
-    @Length(3, 50)
-    name: string;
+  @Column({ length: 50 })
+  @Length(3, 50)
+  name: string;
 
-    @ManyToOne(type => User, user => user.characters)
-    @JoinColumn({ name: 'user_id' })
-    user: User;
+  @ManyToOne(() => User, (user) => user.characters)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
-    @OneToMany(type => AlmanaxDay, almanaxDay => almanaxDay.character)
-    almanaxDays: AlmanaxDay[];
+  @OneToMany(() => AlmanaxDay, (almanaxDay) => almanaxDay.character)
+  almanaxDays: Promise<AlmanaxDay[]>;
 }

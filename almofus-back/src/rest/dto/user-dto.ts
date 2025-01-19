@@ -1,13 +1,15 @@
-export type GetUsersResponseDto = {
-  users: UserDto[];
-};
+import { Character } from 'src/db/model/character.entity';
 
 export type CreateUserRequestDto = {
-  email: String,
-  name: String,
-
-}
+  email: string;
+  name: string;
+};
 
 export type UserDto = {
-  name: String;
+  id: number;
+  name: string;
+};
+
+export type CompleteUserDto = UserDto & {
+  characters: Character[];
 };

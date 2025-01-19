@@ -1,31 +1,29 @@
-import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
-import { AlmanaxDay } from "./almanax-day.entity";
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { AlmanaxDay } from './almanax-day.entity';
 
-@Entity()
+@Entity('almanax_quest')
 export class AlmanaxQuest {
-    @PrimaryColumn({
-        name: 'almanax_quest_id',
-        generated: 'identity',
-    })
-    id: number;
+  @PrimaryColumn({
+    name: 'almanax_quest_id',
+    generated: 'identity',
+  })
+  id: number;
 
-    @Column()
-    date: Date;
+  @Column()
+  date: Date;
 
-    @Column()
-    itemQuantity: number;
+  @Column()
+  itemQuantity: number;
 
-    @Column()
-    dofusNpcId: number;
+  @Column()
+  dofusNpcId: number;
 
-    @Column()
-    kamaReward: number;
+  @Column()
+  kamaReward: number;
 
-    @ManyToOne(type => AlmanaxDay, almanaxDay => almanaxDay.almanaxQuest)
-    almanaxDay: AlmanaxDay;
+  @ManyToOne(() => AlmanaxDay, (almanaxDay) => almanaxDay.almanaxQuest)
+  almanaxDay: AlmanaxDay;
 
-
-    // sur item : itemId
-    // sur label : nameLabelId, npcNameLabelId, bonusEffectDescriptionLabelId
-
+  // sur item : itemId
+  // sur label : nameLabelId, npcNameLabelId, bonusEffectDescriptionLabelId
 }

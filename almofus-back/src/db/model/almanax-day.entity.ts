@@ -1,24 +1,30 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
-import { Character } from "./character.entity";
-import { AlmanaxQuest as AlmanaxQuest } from "./almanax-quest.entity";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
+import { Character } from './character.entity';
+import { AlmanaxQuest as AlmanaxQuest } from './almanax-quest.entity';
 
-@Entity()
+@Entity('almanax_day')
 export class AlmanaxDay {
-    @PrimaryColumn({
-        name: 'almanax_day_id',
-        generated: 'identity',
-    })
-    id: number;
+  @PrimaryColumn({
+    name: 'almanax_day_id',
+    generated: 'identity',
+  })
+  id: number;
 
-    @Column()
-    isValidated: boolean;
+  @Column({ name: 'is_validated' })
+  isValidated: boolean;
 
-    @ManyToOne(type => Character, character => character.almanaxDays)
-    @JoinColumn({ name: 'character_id' })
-    character: Character;
+  @ManyToOne(() => Character, (character) => character.almanaxDays)
+  @JoinColumn({ name: 'character_id' })
+  character: Character;
 
-    @OneToMany(type => AlmanaxQuest, almanaxQuest => almanaxQuest.almanaxDay)
-    @JoinColumn({ name: 'almanax_quest_id' })
-    almanaxQuest: AlmanaxQuest;
-
+  @OneToMany(() => AlmanaxQuest, (almanaxQuest) => almanaxQuest.almanaxDay)
+  @JoinColumn({ name: 'almanax_quest_id' })
+  almanaxQuest: AlmanaxQuest;
 }

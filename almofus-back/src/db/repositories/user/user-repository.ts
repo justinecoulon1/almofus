@@ -13,13 +13,17 @@ export class UserRepository {
     this.repository = dataSource.getRepository(User);
   }
 
-  async findAll(): Promise<User[]> {
+  findAll(): Promise<User[]> {
     return this.repository.find();
   }
 
-  async findById(id: number): Promise<User> {
+  findById(id: number): Promise<User> {
     return this.repository.findOneBy({
       id,
     });
+  }
+
+  create(user: User): Promise<User> {
+    return this.repository.save(user);
   }
 }
