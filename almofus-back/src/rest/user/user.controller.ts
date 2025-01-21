@@ -1,15 +1,15 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from 'src/db/model/user.entity';
-import { UserMapper } from './user-mapper';
-import { UserDto } from '../dto/user-dto';
+import { UserMapper } from './user.mapper';
+import { UserDto } from '../dto/user.dto';
 
 @Controller('/users')
 export class UserController {
   constructor(
     private readonly userService: UserService,
     private readonly userMapper: UserMapper,
-  ) {}
+  ) { }
 
   @Get('/all')
   async getUsers(): Promise<UserDto[]> {
