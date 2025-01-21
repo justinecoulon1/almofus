@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from 'src/db/database.module';
-import { AlmanaxQuestRepository } from './almanax-quest-repository';
+import { AlmanaxQuestRepository } from './almanax-quest.repository';
 
 @Module({
   imports: [DatabaseModule],

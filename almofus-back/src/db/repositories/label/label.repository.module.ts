@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from 'src/db/database.module';
-import { LabelRepository } from './label-repository';
+import { LabelRepository } from './label.repository';
 
 @Module({
   imports: [DatabaseModule],
