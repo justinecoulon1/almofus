@@ -5,7 +5,9 @@ import { LabelRepository } from 'src/db/repositories/label/label.repository';
 
 @Injectable()
 export class DofusDbDataService {
-    constructor(
+    constructor(private readonly itemRepository: ItemRepository,
+        private readonly almanaxQuestRepository: AlmanaxQuestRepository,
+        private readonly labelRepository: LabelRepository
     ) {
     }
 
