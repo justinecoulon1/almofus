@@ -12,4 +12,8 @@ export class AlmanaxQuestRepository {
   ) {
     this.repository = dataSource.getRepository(AlmanaxQuest);
   }
+
+  createAlmanaxQuest(quest: AlmanaxQuest): Promise<AlmanaxQuest> {
+    return this.repository.save(quest);
+  }
 }

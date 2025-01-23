@@ -41,9 +41,9 @@ export type DofusDbQuestDto = {
     id: number;
     nameLabelDto: LabelDto;
     steps: {
-        rewards: [{ kamaRatio: number }]
+        rewards: [{ kamaRatio: number; }],
+        objectives: Objective[]
     };
-    objectives: Objective[]
 };
 
 export type SyncRequestDto = {
