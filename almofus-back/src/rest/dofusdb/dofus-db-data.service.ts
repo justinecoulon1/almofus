@@ -11,9 +11,11 @@ import {
 } from './dto/dofus-db.dto';
 import { AlmanaxQuest } from 'src/db/model/almanax-quest.entity';
 import { Item } from 'src/db/model/item.entity';
+import { Label } from 'src/db/model/label.entity';
 
 @Injectable()
 export class DofusDbDataService {
+  private isSyncStarted = false;
   private dofusDbNpcDtos: DofusDbNpcDto[] = [];
   private dofusDbItemDtos: DofusDbItemDto[] = [];
   private dofusDbAlmanaxBonusDtos: DofusDbAlmanaxBonusDto[] = [];
@@ -26,35 +28,49 @@ export class DofusDbDataService {
   ) {}
 
   mapDofusDbDataToEntities(syncRequestDto: SyncRequestDto) {
-    this.dofusDbNpcDtos = syncRequestDto.dofusDbNpcDtos;
-    this.dofusDbItemDtos = syncRequestDto.dofusDbItemDtos;
-    this.dofusDbAlmanaxBonusDtos = syncRequestDto.dofusDbAlmanaxBonusDtos;
-    this.dofusDbQuestDto = syncRequestDto.dofusDbQuestDto;
+    if (this.isSyncStarted) {
+      throw new Error('Sync already started');
+    } else {
+      try {
+        this.isSyncStarted = true;
 
-    const almanaxQuestEntities = this.dofusDbQuestDto.map((questDto) =>
-      this.mapQuestDtoToEntity(questDto),
-    );
+        this.dofusDbNpcDtos = syncRequestDto.dofusDbNpcDtos;
+        this.dofusDbItemDtos = syncRequestDto.dofusDbItemDtos;
+        this.dofusDbAlmanaxBonusDtos = syncRequestDto.dofusDbAlmanaxBonusDtos;
+        this.dofusDbQuestDto = syncRequestDto.dofusDbQuestDto;
+
+        const almanaxQuestEntities = this.dofusDbQuestDto.map((questDto) =>
+          this.mapQuestDtoToEntity(questDto),
+        );
+      } finally {
+        this.isSyncStarted = false;
+      }
+    }
   }
 
   mapQuestDtoToEntity(questDto: DofusDbQuestDto): AlmanaxQuest {
     const dofusDbItemDto: DofusDbItemDto = this.findItemById(
       questDto.steps.objectives[0].need.generated.items[0],
     );
-    const item: Item = {
-      dofusId: dofusDbItemDto.id,
-      level: dofusDbItemDto.level,
-      nameLabel: dofusDbItemDto.nameLabelDto,
-    };
+
+    const label = new Label();
+    label.fr = dofusDbItemDto.nameLabelDto.fr;
+    label.en = dofusDbItemDto.nameLabelDto.en;
+
+    const item = new Item();
+    item.dofusId = dofusDbItemDto.id;
+    item.level = dofusDbItemDto.level;
+    item.nameLabel = Promise.resolve(label);
 
     return {
       itemQuantity: questDto.steps.objectives[0].need.generated.quantities[0],
       dofusNpcId: questDto.steps.objectives[3].parameters.parameter0,
       kamaReward: questDto.steps.rewards[0].kamaRatio,
-      item: item,
+      item: Promise.resolve(item),
     };
   }
 
-  findItemById(id: number): DofusDbItemDto {
-    return this.dofusDbItemDtos.find((item) => item.id === id);
+  findItemById(dofusId: number): DofusDbItemDto {
+    return this.dofusDbItemDtos.find((item) => item.id === dofusId);
   }
 }
