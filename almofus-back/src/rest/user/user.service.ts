@@ -4,7 +4,7 @@ import { User } from 'src/db/model/user.entity';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userRepository: UserRepository) { }
+  constructor(private readonly userRepository: UserRepository) {}
 
   getUsers(): Promise<User[]> {
     return this.userRepository.findAll();
@@ -15,9 +15,7 @@ export class UserService {
   }
 
   createUser(name: string): Promise<User> {
-    const newUser = new User();
-    newUser.name = name;
-    newUser.email = `${name}@gmail.com`;
+    const newUser = new User(name, `${name}@gmail.com`);
     return this.userRepository.create(newUser);
   }
 }

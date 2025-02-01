@@ -17,4 +17,9 @@ export class User {
 
   @OneToMany(() => Character, (character) => character.user)
   characters: Promise<Character[]>;
+
+  constructor(name: string, email: string) {
+    this.name = name;
+    this.email = email;
+  }
 }

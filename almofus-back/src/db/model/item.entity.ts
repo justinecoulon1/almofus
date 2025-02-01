@@ -21,4 +21,10 @@ export class Item {
   @ManyToOne(() => Label, { eager: true })
   @JoinColumn({ name: 'label_id' })
   nameLabel: Promise<Label>;
+
+  constructor(dofusId: number, level: number, nameLabel: Label) {
+    this.dofusId = dofusId;
+    this.level = level;
+    this.nameLabel = Promise.resolve(nameLabel);
+  }
 }

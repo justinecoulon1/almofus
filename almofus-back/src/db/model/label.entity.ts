@@ -10,4 +10,9 @@ export class Label {
 
   @Column()
   en: string;
+
+  constructor(fr: string, en: string) {
+    this.fr = fr;
+    this.en = en;
+  }
 }
