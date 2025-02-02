@@ -35,7 +35,7 @@ CREATE TABLE Almanax_Quest (
 	almanax_quest_id int GENERATED ALWAYS AS IDENTITY,
 	name_label_id int,
 	date date,
-	kama_reward float,
+	kamas_reward float,
 	item_id int,
 	item_quantity int,
 	npc_id int,
