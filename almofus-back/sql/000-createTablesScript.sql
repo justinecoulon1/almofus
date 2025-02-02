@@ -35,14 +35,29 @@ CREATE TABLE Almanax_Quest (
 	almanax_quest_id int GENERATED ALWAYS AS IDENTITY,
 	name_label_id int,
 	date date,
+	kama_reward float,
 	item_id int,
 	item_quantity int,
-	dofus_npc_id int,
-	npc_name_label_id int,
-	kama_reward int,
-	bonus_effect_description_label_id int,
+	npc_id int,
+	almanax_bonus_id int,
 	
 	CONSTRAINT PK_almanax_quest PRIMARY KEY (almanax_quest_id)
+);
+
+CREATE TABLE Npc (
+	npc_id int GENERATED ALWAYS AS IDENTITY,
+	dofus_npc_id int,
+	name_label_id int,
+	
+	CONSTRAINT PK_npc PRIMARY KEY (npc_id)
+);
+
+CREATE TABLE Almanax_Bonus (
+	bonus_id int GENERATED ALWAYS AS IDENTITY,
+	name_label_id int,
+	desc_label_id int,
+	
+	CONSTRAINT PK_bonus PRIMARY KEY (bonus_id)
 );
 
 CREATE TABLE Item (
@@ -62,14 +77,22 @@ ADD CONSTRAINT FK_Almanax_Day__Almanax_Quest foreign key (almanax_quest_id) refe
 ALTER TABLE Almanax_Day
 ADD CONSTRAINT FK_Almanax_Day__Character foreign key (character_id) references Character (character_id);
 
-ALTER TABLE Almanax_Quest
-ADD CONSTRAINT FK_Almanax_Quest__Label__name foreign key (name_label_id) references Label (label_id);
-ALTER TABLE Almanax_Quest
-ADD CONSTRAINT FK_Almanax_Quest__Label__npc_name foreign key (npc_name_label_id) references Label (label_id);
-ALTER TABLE Almanax_Quest
-ADD CONSTRAINT FK_Almanax_Quest__Label__bonus foreign key (bonus_effect_description_label_id) references Label (label_id);
+
 ALTER TABLE Almanax_Quest
 ADD CONSTRAINT FK_Almanax_Quest__Item foreign key (item_id) references Item (item_id);
+ALTER TABLE Almanax_Quest
+ADD CONSTRAINT FK_Almanax_Quest__Npc foreign key (npc_id) references Npc (npc_id);
+ALTER TABLE Almanax_Quest
+ADD CONSTRAINT FK_Almanax_Quest__Almanax_Bonus foreign key (almanax_bonus_id) references Almanax_Bonus (bonus_id);
 
+
+ALTER TABLE Almanax_Quest
+ADD CONSTRAINT FK_Almanax_Quest__Label__Quest_Name foreign key (name_label_id) references Label (label_id);
 ALTER TABLE Item
-ADD CONSTRAINT FK_Item__Label__name foreign key (name_label_id) references Label (label_id);
+ADD CONSTRAINT FK_Item__Label__Item_Name foreign key (name_label_id) references Label (label_id);
+ALTER TABLE Npc
+ADD CONSTRAINT FK_Npc__Label__Npc_Name foreign key (name_label_id) references Label (label_id);
+ALTER TABLE Almanax_Bonus
+ADD CONSTRAINT FK_Almanax_Bonus__Label__Bonus_Name_Label_Id foreign key (name_label_id) references Label (label_id);
+ALTER TABLE Almanax_Bonus
+ADD CONSTRAINT FK_Almanax_Bonus__Label__Bonus_Desc_Label_Id foreign key (desc_label_id) references Label (label_id);
