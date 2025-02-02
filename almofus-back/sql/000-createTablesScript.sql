@@ -8,7 +8,7 @@ CREATE TABLE Label (
 
 CREATE TABLE Almofus_User(
 	almofus_user_id int GENERATED ALWAYS AS IDENTITY,
-	name varchar(50),
+	name varchar(50) UNIQUE NOT NULL,
 	email varchar(50),
 
 	CONSTRAINT PK_almofus_user PRIMARY KEY (almofus_user_id)
@@ -31,13 +31,15 @@ CREATE TABLE Almanax_Day (
 	CONSTRAINT PK_almanax_day PRIMARY KEY (almanax_day_id)
 );
 
+
 CREATE TABLE Almanax_Quest (
 	almanax_quest_id int GENERATED ALWAYS AS IDENTITY,
+	dofus_quest_id int UNIQUE NOT NULL,
 	name_label_id int,
-	date date,
+	date date NOT NULL,
 	kamas_reward float,
 	item_id int,
-	item_quantity int,
+	item_quantity int NOT NULL,
 	npc_id int,
 	almanax_bonus_id int,
 	
@@ -46,7 +48,7 @@ CREATE TABLE Almanax_Quest (
 
 CREATE TABLE Npc (
 	npc_id int GENERATED ALWAYS AS IDENTITY,
-	dofus_npc_id int,
+	dofus_npc_id int UNIQUE NOT NULL,
 	name_label_id int,
 	
 	CONSTRAINT PK_npc PRIMARY KEY (npc_id)
@@ -54,6 +56,7 @@ CREATE TABLE Npc (
 
 CREATE TABLE Almanax_Bonus (
 	bonus_id int GENERATED ALWAYS AS IDENTITY,
+	npc_id int,
 	name_label_id int,
 	desc_label_id int,
 	
@@ -62,7 +65,7 @@ CREATE TABLE Almanax_Bonus (
 
 CREATE TABLE Item (
 	item_id int GENERATED ALWAYS AS IDENTITY,
-	dofus_item_id int,
+	dofus_item_id int UNIQUE NOT NULL,
 	name_label_id int,
 	level int,
 	
@@ -96,3 +99,7 @@ ALTER TABLE Almanax_Bonus
 ADD CONSTRAINT FK_Almanax_Bonus__Label__Bonus_Name_Label_Id foreign key (name_label_id) references Label (label_id);
 ALTER TABLE Almanax_Bonus
 ADD CONSTRAINT FK_Almanax_Bonus__Label__Bonus_Desc_Label_Id foreign key (desc_label_id) references Label (label_id);
+
+
+ALTER TABLE Almanax_Day 
+ADD CONSTRAINT UQ_almanax_day__character_id_quest_id UNIQUE (almanax_quest_id, character_id);

@@ -1,11 +1,3 @@
-type LabelDto = {
-  id: string;
-  en: string;
-  pt: string;
-  es: string;
-  fr: string;
-};
-
 type Objective = {
   parameters: {
     parameter0: number;
@@ -19,27 +11,35 @@ type Objective = {
   className: string;
 };
 
+export type DofusDbLabelDto = {
+  id: string;
+  en: string;
+  pt: string;
+  es: string;
+  fr: string;
+};
+
 export type DofusDbNpcDto = {
   id: number;
-  name: LabelDto;
+  name: DofusDbLabelDto;
 };
 
 export type DofusDbItemDto = {
   id: number;
   level: number;
-  name: LabelDto;
+  name: DofusDbLabelDto;
 };
 
 export type DofusDbAlmanaxBonusDto = {
   npcId: number;
-  name: LabelDto;
+  name: DofusDbLabelDto;
   img: string;
-  desc: LabelDto;
+  desc: DofusDbLabelDto;
 };
 
 export type DofusDbQuestDto = {
   id: number;
-  name: LabelDto;
+  name: DofusDbLabelDto;
   steps: [
     {
       rewards: [{ kamasRatio: number }];
@@ -52,5 +52,5 @@ export type SyncRequestDto = {
   dofusDbNpcDtos: DofusDbNpcDto[];
   dofusDbItemDtos: DofusDbItemDto[];
   dofusDbAlmanaxBonusDtos: DofusDbAlmanaxBonusDto[];
-  dofusDbQuestDto: DofusDbQuestDto[];
+  dofusDbQuestDtos: DofusDbQuestDto[];
 };

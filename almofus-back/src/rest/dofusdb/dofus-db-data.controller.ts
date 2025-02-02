@@ -7,6 +7,6 @@ export class DofusDbDataController {
 
   @Post()
   async createDofusDbData() {
-    await this.dofusDbDataService.mapDofusDbDataToEntities();
+    await this.dofusDbDataService.syncDofusDbData();
   }
 }

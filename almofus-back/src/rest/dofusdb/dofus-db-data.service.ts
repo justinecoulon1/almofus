@@ -1,131 +1,90 @@
 import { Injectable } from '@nestjs/common';
 import { AlmanaxQuestRepository } from 'src/db/repositories/almanax-quest/almanax-quest.repository';
 import { ItemRepository } from 'src/db/repositories/item/item.repository';
-import { LabelRepository } from 'src/db/repositories/label/label.repository';
-import {
-  DofusDbAlmanaxBonusDto,
-  DofusDbItemDto,
-  DofusDbNpcDto,
-  DofusDbQuestDto,
-  SyncRequestDto,
-} from './dto/dofus-db.dto';
+import { DofusDbQuestDto, SyncRequestDto } from './dto/dofus-db.dto';
 import { AlmanaxQuest } from 'src/db/model/almanax-quest.entity';
 import { Item } from 'src/db/model/item.entity';
-import { Label } from 'src/db/model/label.entity';
 import { Npc } from 'src/db/model/npc.entity';
 import { AlmanaxBonus } from 'src/db/model/almanax-bonus.entity';
 import { getSyncDofusDbData } from './utils/dofus-db.utils';
+import { getItem, getItemDtoById } from './utils/dofus-db-item.utils';
+import { getNpc, getNpcDtoById } from './utils/dofus-db-npc.utils';
+import { getAlmanaxBonus, getAlmanaxBonusDtoById } from './utils/dofus-db-almanax-bonus.utils';
+import { AlmanaxBonusRepository } from 'src/db/repositories/almanax-bonus/almanax-bonus.repository';
+import { NpcRepository } from 'src/db/repositories/npc/npc.repository';
+import { getAlmanaxQuest } from './utils/dofus-db-almanax-quest.utils';
 
 @Injectable()
 export class DofusDbDataService {
   private isSyncStarted = false;
-  private dofusDbNpcDtos: DofusDbNpcDto[] = [];
-  private dofusDbItemDtos: DofusDbItemDto[] = [];
-  private dofusDbAlmanaxBonusDtos: DofusDbAlmanaxBonusDto[] = [];
-  private dofusDbQuestDto: DofusDbQuestDto[] = [];
 
   constructor(
     private readonly itemRepository: ItemRepository,
     private readonly almanaxQuestRepository: AlmanaxQuestRepository,
-    private readonly labelRepository: LabelRepository,
+    private readonly almanaxBonusRepository: AlmanaxBonusRepository,
+    private readonly npcRepository: NpcRepository,
   ) {}
 
-  async mapDofusDbDataToEntities() {
+  async syncDofusDbData() {
     if (this.isSyncStarted) {
       throw new Error('Sync already started');
     } else {
       try {
         this.isSyncStarted = true;
         const syncRequestDto = await getSyncDofusDbData();
+        const dofusDbQuestDtos = syncRequestDto.dofusDbQuestDtos;
 
-        this.dofusDbNpcDtos = syncRequestDto.dofusDbNpcDtos;
-        this.dofusDbItemDtos = syncRequestDto.dofusDbItemDtos;
-        this.dofusDbAlmanaxBonusDtos = syncRequestDto.dofusDbAlmanaxBonusDtos;
-        this.dofusDbQuestDto = syncRequestDto.dofusDbQuestDto;
+        const allItems = await this.itemRepository.findAll();
+        const allNpcs = await this.npcRepository.findAll();
+        const allAlmanaxBonuses = await this.almanaxBonusRepository.findAll();
+        const allAlmanaxQuests = await this.almanaxQuestRepository.findAll();
 
-        const almanaxQuestEntities = this.dofusDbQuestDto
+        const itemById: Record<number, Item> = {};
+        allItems.forEach((item) => (itemById[item.dofusId] = item));
+        const npcById: Record<number, Npc> = {};
+        allNpcs.forEach((npc) => (npcById[npc.dofusId] = npc));
+        const almanaxBonusByNpcId: Record<number, AlmanaxBonus> = {};
+        allAlmanaxBonuses.forEach((almanaxBonus) => (almanaxBonusByNpcId[almanaxBonus.npcId] = almanaxBonus));
+        const almanaxQuestById: Record<number, AlmanaxQuest> = {};
+        allAlmanaxQuests.forEach((almanaxQuest) => (almanaxQuestById[almanaxQuest.dofusId] = almanaxQuest));
+
+        const almanaxQuestEntities = dofusDbQuestDtos
           .filter((questDto) => questDto.name.fr.startsWith('Offrande à'))
-          .map((questDto) => this.mapQuestDtoToEntity(questDto));
+          .map((questDto) =>
+            this.getUpdatedQuest(syncRequestDto, questDto, itemById, npcById, almanaxBonusByNpcId, almanaxQuestById),
+          );
 
-        await this.almanaxQuestRepository.createAlmanaxQuests(
-          almanaxQuestEntities,
-        );
+        await this.almanaxQuestRepository.createAlmanaxQuests(almanaxQuestEntities);
       } finally {
         this.isSyncStarted = false;
       }
     }
   }
 
-  mapQuestDtoToEntity(dofusDbQuestDto: DofusDbQuestDto): AlmanaxQuest {
-    const dofusDbItemDtoId =
-      dofusDbQuestDto.steps[0].objectives[0].need.generated.items[0];
-    const dofusDbNpcDtoId =
-      dofusDbQuestDto.steps[0].objectives[2].parameters.parameter0;
+  private getUpdatedQuest(
+    syncRequestDto: SyncRequestDto,
+    dofusDbQuestDto: DofusDbQuestDto,
+    itemById: Record<number, Item>,
+    npcById: Record<number, Npc>,
+    almanaxBonusByNpcId: Record<number, AlmanaxBonus>,
+    almanaxQuestById: Record<number, AlmanaxQuest>,
+  ): AlmanaxQuest {
+    const dofusDbNpcDtos = syncRequestDto.dofusDbNpcDtos;
+    const dofusDbItemDtos = syncRequestDto.dofusDbItemDtos;
+    const dofusDbAlmanaxBonusDtos = syncRequestDto.dofusDbAlmanaxBonusDtos;
 
-    const dofusDbItemDto = this.findItemById(dofusDbItemDtoId);
-    const dofusDbNpcDto = this.findNpcById(dofusDbNpcDtoId);
-    const dofusDbAlmanaxBonusDto = this.findAlmanaxBonusById(dofusDbNpcDtoId);
+    const dofusDbItemDtoId = dofusDbQuestDto.steps[0].objectives[0].need.generated.items[0];
+    const dofusDbNpcDtoId = dofusDbQuestDto.steps[0].objectives[2].parameters.parameter0;
 
-    const itemNameLabel = new Label(
-      dofusDbItemDto.name.fr,
-      dofusDbItemDto.name.en,
-    );
+    const dofusDbItemDto = getItemDtoById(dofusDbItemDtos, dofusDbItemDtoId);
+    const dofusDbNpcDto = getNpcDtoById(dofusDbNpcDtos, dofusDbNpcDtoId);
+    const dofusDbAlmanaxBonusDto = getAlmanaxBonusDtoById(dofusDbAlmanaxBonusDtos, dofusDbNpcDtoId);
 
-    const item = new Item(
-      dofusDbItemDto.id,
-      dofusDbItemDto.level,
-      itemNameLabel,
-    );
+    const item = getItem(itemById, dofusDbItemDto);
+    const npc = getNpc(npcById, dofusDbNpcDto);
+    const almanaxBonus = getAlmanaxBonus(almanaxBonusByNpcId, dofusDbAlmanaxBonusDto);
+    const almanaxQuest = getAlmanaxQuest(almanaxQuestById, dofusDbQuestDto, npc, item, almanaxBonus);
 
-    const npcNameLabel = new Label(
-      dofusDbNpcDto.name.fr,
-      dofusDbNpcDto.name.en,
-    );
-
-    const npc = new Npc(dofusDbNpcDto.id, npcNameLabel);
-
-    const almanaxBonusNameLabel = new Label(
-      dofusDbAlmanaxBonusDto.name.fr,
-      dofusDbAlmanaxBonusDto.name.en,
-    );
-    const almanaxBonusDescLabel = new Label(
-      dofusDbAlmanaxBonusDto.desc.fr,
-      dofusDbAlmanaxBonusDto.desc.en,
-    );
-
-    const almanaxBonus = new AlmanaxBonus(
-      almanaxBonusNameLabel,
-      almanaxBonusDescLabel,
-    );
-
-    const questNameLabel = new Label(
-      dofusDbQuestDto.name.fr,
-      dofusDbQuestDto.name.en,
-    );
-
-    const almanaxQuest = new AlmanaxQuest(
-      new Date(),
-      dofusDbQuestDto.steps[0].objectives[0].need.generated.quantities[0],
-      dofusDbQuestDto.steps[0].rewards[0].kamasRatio,
-      npc,
-      item,
-      almanaxBonus,
-      questNameLabel,
-    );
     return almanaxQuest;
-  }
-
-  findItemById(dofusId: number): DofusDbItemDto {
-    return this.dofusDbItemDtos.find((item) => item.id === dofusId);
-  }
-
-  findNpcById(dofusId: number): DofusDbNpcDto {
-    return this.dofusDbNpcDtos.find((npc) => npc.id === dofusId);
-  }
-
-  findAlmanaxBonusById(dofusId: number): DofusDbAlmanaxBonusDto {
-    return this.dofusDbAlmanaxBonusDtos.find(
-      (almanaxBonus) => almanaxBonus.npcId === dofusId,
-    );
   }
 }

@@ -1,19 +1,19 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Item } from 'src/db/model/item.entity';
+import { Npc } from 'src/db/model/npc.entity';
 import { DataSource, Repository } from 'typeorm';
 
 @Injectable()
-export class ItemRepository {
-  private repository: Repository<Item>;
+export class NpcRepository {
+  private repository: Repository<Npc>;
 
   constructor(
     @Inject('DATA_SOURCE')
     dataSource: DataSource,
   ) {
-    this.repository = dataSource.getRepository(Item);
+    this.repository = dataSource.getRepository(Npc);
   }
 
-  findAll(): Promise<Item[]> {
+  findAll(): Promise<Npc[]> {
     return this.repository.find();
   }
 }

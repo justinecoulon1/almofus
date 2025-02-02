@@ -77,6 +77,6 @@ export async function getSyncDofusDbData(): Promise<SyncRequestDto> {
     dofusDbNpcDtos: npcs,
     dofusDbItemDtos: items,
     dofusDbAlmanaxBonusDtos: almanaxBonuses,
-    dofusDbQuestDto: almanaxQuests,
+    dofusDbQuestDtos: almanaxQuests,
   };
 }

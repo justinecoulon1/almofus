@@ -20,4 +20,8 @@ export class AlmanaxQuestRepository {
   createAlmanaxQuests(quests: AlmanaxQuest[]): Promise<AlmanaxQuest[]> {
     return this.repository.save(quests);
   }
+
+  findAll(): Promise<AlmanaxQuest[]> {
+    return this.repository.find();
+  }
 }

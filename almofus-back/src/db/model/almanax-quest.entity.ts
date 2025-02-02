@@ -12,6 +12,9 @@ export class AlmanaxQuest {
   })
   id: number;
 
+  @Column({ name: 'dofus_quest_id' })
+  dofusId: number;
+
   @Column()
   date: Date;
 
@@ -38,6 +41,7 @@ export class AlmanaxQuest {
   nameLabel: Label;
 
   constructor(
+    dofusId: number,
     date: Date,
     itemQuantity: number,
     kamasReward: number,
@@ -46,6 +50,7 @@ export class AlmanaxQuest {
     almanaxBonus: AlmanaxBonus,
     nameLabel: Label,
   ) {
+    this.dofusId = dofusId;
     this.date = date;
     this.itemQuantity = itemQuantity;
     this.kamasReward = kamasReward;
