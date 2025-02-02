@@ -16,4 +16,8 @@ export class AlmanaxQuestRepository {
   createAlmanaxQuest(quest: AlmanaxQuest): Promise<AlmanaxQuest> {
     return this.repository.save(quest);
   }
+
+  createAlmanaxQuests(quests: AlmanaxQuest[]): Promise<AlmanaxQuest[]> {
+    return this.repository.save(quests);
+  }
 }

@@ -1,13 +1,12 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
 import { DofusDbDataService } from './dofus-db-data.service';
-import { DofusDbAlmanaxBonusDto, DofusDbItemDto, DofusDbNpcDto, DofusDbQuestDto, SyncRequestDto } from './dto/dofus-db.dto';
 
 @Controller('/dofusdb')
 export class DofusDbDataController {
-    constructor(private DofusDbDataService: DofusDbDataService) { }
+  constructor(private dofusDbDataService: DofusDbDataService) {}
 
-    @Post()
-    createDofusDbData(@Body() syncRequestDto: SyncRequestDto) {
-
-    }
+  @Post()
+  async createDofusDbData() {
+    await this.dofusDbDataService.mapDofusDbDataToEntities();
+  }
 }

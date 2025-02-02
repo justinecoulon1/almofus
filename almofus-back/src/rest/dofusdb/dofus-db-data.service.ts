@@ -12,6 +12,9 @@ import {
 import { AlmanaxQuest } from 'src/db/model/almanax-quest.entity';
 import { Item } from 'src/db/model/item.entity';
 import { Label } from 'src/db/model/label.entity';
+import { Npc } from 'src/db/model/npc.entity';
+import { AlmanaxBonus } from 'src/db/model/almanax-bonus.entity';
+import { getSyncDofusDbData } from './utils/dofus-db.utils';
 
 @Injectable()
 export class DofusDbDataService {
@@ -27,20 +30,25 @@ export class DofusDbDataService {
     private readonly labelRepository: LabelRepository,
   ) {}
 
-  mapDofusDbDataToEntities(syncRequestDto: SyncRequestDto) {
+  async mapDofusDbDataToEntities() {
     if (this.isSyncStarted) {
       throw new Error('Sync already started');
     } else {
       try {
         this.isSyncStarted = true;
+        const syncRequestDto = await getSyncDofusDbData();
 
         this.dofusDbNpcDtos = syncRequestDto.dofusDbNpcDtos;
         this.dofusDbItemDtos = syncRequestDto.dofusDbItemDtos;
         this.dofusDbAlmanaxBonusDtos = syncRequestDto.dofusDbAlmanaxBonusDtos;
         this.dofusDbQuestDto = syncRequestDto.dofusDbQuestDto;
 
-        const almanaxQuestEntities = this.dofusDbQuestDto.map((questDto) =>
-          this.mapQuestDtoToEntity(questDto),
+        const almanaxQuestEntities = this.dofusDbQuestDto
+          .filter((questDto) => questDto.name.fr.startsWith('Offrande à'))
+          .map((questDto) => this.mapQuestDtoToEntity(questDto));
+
+        await this.almanaxQuestRepository.createAlmanaxQuests(
+          almanaxQuestEntities,
         );
       } finally {
         this.isSyncStarted = false;
@@ -50,18 +58,17 @@ export class DofusDbDataService {
 
   mapQuestDtoToEntity(dofusDbQuestDto: DofusDbQuestDto): AlmanaxQuest {
     const dofusDbItemDtoId =
-      dofusDbQuestDto.steps.objectives[0].need.generated.items[0];
+      dofusDbQuestDto.steps[0].objectives[0].need.generated.items[0];
     const dofusDbNpcDtoId =
-      dofusDbQuestDto.steps.objectives[3].parameters.parameter0;
+      dofusDbQuestDto.steps[0].objectives[2].parameters.parameter0;
 
-    const dofusDbItemDto: DofusDbItemDto = this.findItemById(dofusDbItemDtoId);
-    const dofusDbNpcDto: DofusDbNpcDto = this.findNpcById(dofusDbNpcDtoId);
-    const dofusDbAlmanaxBonusDto: DofusDbAlmanaxBonusDto =
-      this.findAlmanaxBonusById(dofusDbNpcDtoId);
+    const dofusDbItemDto = this.findItemById(dofusDbItemDtoId);
+    const dofusDbNpcDto = this.findNpcById(dofusDbNpcDtoId);
+    const dofusDbAlmanaxBonusDto = this.findAlmanaxBonusById(dofusDbNpcDtoId);
 
     const itemNameLabel = new Label(
-      dofusDbItemDto.nameLabelDto.fr,
-      dofusDbItemDto.nameLabelDto.en,
+      dofusDbItemDto.name.fr,
+      dofusDbItemDto.name.en,
     );
 
     const item = new Item(
@@ -70,33 +77,41 @@ export class DofusDbDataService {
       itemNameLabel,
     );
 
-    const questNameLabel = new Label(
-      dofusDbQuestDto.nameLabelDto.fr,
-      dofusDbQuestDto.nameLabelDto.en,
-    );
-
     const npcNameLabel = new Label(
-      dofusDbNpcDto.nameLabelDto.fr,
-      dofusDbNpcDto.nameLabelDto.en,
+      dofusDbNpcDto.name.fr,
+      dofusDbNpcDto.name.en,
     );
 
-    const bonusEffectDescriptionLabel = new Label(
-      dofusDbAlmanaxBonusDto.descLabelDto.fr,
-      dofusDbAlmanaxBonusDto.descLabelDto.en,
+    const npc = new Npc(dofusDbNpcDto.id, npcNameLabel);
+
+    const almanaxBonusNameLabel = new Label(
+      dofusDbAlmanaxBonusDto.name.fr,
+      dofusDbAlmanaxBonusDto.name.en,
+    );
+    const almanaxBonusDescLabel = new Label(
+      dofusDbAlmanaxBonusDto.desc.fr,
+      dofusDbAlmanaxBonusDto.desc.en,
     );
 
-    const almanaxQuest = new AlmanaxQuest();
-    almanaxQuest.itemQuantity =
-      dofusDbQuestDto.steps.objectives[0].need.generated.quantities[0];
-    almanaxQuest.dofusNpcId = dofusDbNpcDtoId;
-    almanaxQuest.kamaReward = dofusDbQuestDto.steps.rewards[0].kamaRatio;
-    almanaxQuest.item = Promise.resolve(item);
-    almanaxQuest.nameLabel = Promise.resolve(questNameLabel);
-    almanaxQuest.npcNameLabel = Promise.resolve(npcNameLabel);
-    almanaxQuest.bonusEffectDescriptionLabel = Promise.resolve(
-      bonusEffectDescriptionLabel,
+    const almanaxBonus = new AlmanaxBonus(
+      almanaxBonusNameLabel,
+      almanaxBonusDescLabel,
     );
 
+    const questNameLabel = new Label(
+      dofusDbQuestDto.name.fr,
+      dofusDbQuestDto.name.en,
+    );
+
+    const almanaxQuest = new AlmanaxQuest(
+      new Date(),
+      dofusDbQuestDto.steps[0].objectives[0].need.generated.quantities[0],
+      dofusDbQuestDto.steps[0].rewards[0].kamasRatio,
+      npc,
+      item,
+      almanaxBonus,
+      questNameLabel,
+    );
     return almanaxQuest;
   }
 

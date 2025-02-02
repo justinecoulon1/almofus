@@ -8,23 +8,19 @@ import {
 import { Label } from './label.entity';
 
 @Entity()
-export class Item {
-  @PrimaryGeneratedColumn({ name: 'item_id' })
+export class Npc {
+  @PrimaryGeneratedColumn({ name: 'npc_id' })
   id: number;
 
-  @Column({ name: 'dofus_item_id' })
+  @Column({ name: 'dofus_npc_id' })
   dofusId: number;
-
-  @Column()
-  level: number;
 
   @ManyToOne(() => Label, { eager: true, cascade: true })
   @JoinColumn({ name: 'name_label_id' })
   nameLabel: Label;
 
-  constructor(dofusId: number, level: number, nameLabel: Label) {
+  constructor(dofusId: number, nameLabel: Label) {
     this.dofusId = dofusId;
-    this.level = level;
     this.nameLabel = nameLabel;
   }
 }
