@@ -4,6 +4,15 @@ import { Label } from './label.entity';
 import { AlmanaxBonus } from './almanax-bonus.entity';
 import { Npc } from './npc.entity';
 
+export enum MobileEvent {
+  PAQUES = 'PAQUES',
+  MARDIGRAS = 'MARDIGRAS',
+  ASCENSION = 'ASCENSION',
+  PENTECOTE = 'PENTECOTE',
+  THANKSGIVING_CA = 'THANKSGIVING_CA',
+  THANKSGIVING = 'THANKSGIVING',
+}
+
 @Entity('almanax_quest')
 export class AlmanaxQuest {
   @PrimaryColumn({
@@ -16,13 +25,16 @@ export class AlmanaxQuest {
   dofusId: number;
 
   @Column()
-  date: Date;
+  date: string | null;
 
   @Column({ name: 'item_quantity' })
   itemQuantity: number;
 
   @Column({ name: 'kamas_reward' })
   kamasReward: number;
+
+  @Column({ name: 'mobile_event_name' })
+  mobileEvent: MobileEvent | null;
 
   @ManyToOne(() => Npc, { cascade: true })
   @JoinColumn({ name: 'npc_id' })
@@ -42,13 +54,14 @@ export class AlmanaxQuest {
 
   constructor(
     dofusId: number,
-    date: Date,
+    date: string | null,
     itemQuantity: number,
     kamasReward: number,
     npc: Npc,
     item: Item,
     almanaxBonus: AlmanaxBonus,
     nameLabel: Label,
+    mobileEvent: MobileEvent | null,
   ) {
     this.dofusId = dofusId;
     this.date = date;
@@ -58,5 +71,6 @@ export class AlmanaxQuest {
     this.item = Promise.resolve(item);
     this.almanaxBonus = Promise.resolve(almanaxBonus);
     this.nameLabel = nameLabel;
+    this.mobileEvent = mobileEvent;
   }
 }

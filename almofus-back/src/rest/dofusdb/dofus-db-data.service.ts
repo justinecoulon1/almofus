@@ -87,4 +87,6 @@ export class DofusDbDataService {
 
     return almanaxQuest;
   }
+
+  async initMobileDates(year: number) {}
 }

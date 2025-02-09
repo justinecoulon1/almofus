@@ -36,12 +36,13 @@ CREATE TABLE Almanax_Quest (
 	almanax_quest_id int GENERATED ALWAYS AS IDENTITY,
 	dofus_quest_id int UNIQUE NOT NULL,
 	name_label_id int,
-	date date NOT NULL,
+	date varchar(4),
 	kamas_reward float,
 	item_id int,
 	item_quantity int NOT NULL,
 	npc_id int,
 	almanax_bonus_id int,
+	mobile_event_name varchar(50),
 	
 	CONSTRAINT PK_almanax_quest PRIMARY KEY (almanax_quest_id)
 );
@@ -70,6 +71,15 @@ CREATE TABLE Item (
 	level int,
 	
 	CONSTRAINT PK_item PRIMARY KEY (item_id)
+);
+
+CREATE TABLE Almanax_Mobile_Date (
+	almanax_mobile_date_id int GENERATED ALWAYS AS IDENTITY,
+	date varchar(4),
+	year int,
+	quest_id int,
+	
+	CONSTRAINT PK_almanax_mobile_date PRIMARY KEY (almanax_mobile_date_id)
 );
 
 ALTER TABLE Character
@@ -103,3 +113,13 @@ ADD CONSTRAINT FK_Almanax_Bonus__Label__Bonus_Desc_Label_Id foreign key (desc_la
 
 ALTER TABLE Almanax_Day 
 ADD CONSTRAINT UQ_almanax_day__character_id_quest_id UNIQUE (almanax_quest_id, character_id);
+
+ALTER TABLE Almanax_Mobile_Date 
+ADD CONSTRAINT FK_Almanax_Mobile_Date__Quest_Id__Almanax_Quest_Quest_Id 
+foreign key (quest_id) references Almanax_Quest (almanax_quest_id);
+
+ALTER TABLE Almanax_Quest 
+ALTER COLUMN date TYPE varchar(5);
+
+ALTER TABLE Almanax_Mobile_Date 
+ALTER COLUMN date TYPE varchar(5);
