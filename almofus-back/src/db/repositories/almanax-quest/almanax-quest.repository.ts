@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { AlmanaxQuest } from 'src/db/model/almanax-quest.entity';
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, IsNull, Not, Repository } from 'typeorm';
 
 @Injectable()
 export class AlmanaxQuestRepository {
@@ -23,5 +23,9 @@ export class AlmanaxQuestRepository {
 
   findAll(): Promise<AlmanaxQuest[]> {
     return this.repository.find();
+  }
+
+  findMobileQuests(): Promise<AlmanaxQuest[]> {
+    return this.repository.find({ where: { mobileEvent: Not(IsNull()) } });
   }
 }

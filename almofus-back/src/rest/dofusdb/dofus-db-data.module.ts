@@ -6,6 +6,7 @@ import { AlmanaxQuestRepositoryModule } from 'src/db/repositories/almanax-quest/
 import { LabelRepositoryModule } from 'src/db/repositories/label/label.repository.module';
 import { NpcRepositoryModule } from 'src/db/repositories/npc/npc.repository.module';
 import { AlmanaxBonusRepositoryModule } from 'src/db/repositories/almanax-bonus/almanax-bonus.repository.module';
+import { AlmanaxMobileDateRepositoryModule } from 'src/db/repositories/almanax-mobile-date/almanax-mobile-date.repository.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AlmanaxBonusRepositoryModule } from 'src/db/repositories/almanax-bonus/
     LabelRepositoryModule,
     NpcRepositoryModule,
     AlmanaxBonusRepositoryModule,
+    AlmanaxMobileDateRepositoryModule,
   ],
   controllers: [DofusDbDataController],
   providers: [DofusDbDataService],

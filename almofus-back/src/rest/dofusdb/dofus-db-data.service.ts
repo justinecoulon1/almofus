@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { AlmanaxQuestRepository } from 'src/db/repositories/almanax-quest/almanax-quest.repository';
 import { ItemRepository } from 'src/db/repositories/item/item.repository';
 import { DofusDbQuestDto, SyncRequestDto } from './dto/dofus-db.dto';
-import { AlmanaxQuest } from 'src/db/model/almanax-quest.entity';
+import { AlmanaxQuest, MobileEvent } from 'src/db/model/almanax-quest.entity';
 import { Item } from 'src/db/model/item.entity';
 import { Npc } from 'src/db/model/npc.entity';
 import { AlmanaxBonus } from 'src/db/model/almanax-bonus.entity';
@@ -13,6 +13,9 @@ import { getAlmanaxBonus, getAlmanaxBonusDtoById } from './utils/dofus-db-almana
 import { AlmanaxBonusRepository } from 'src/db/repositories/almanax-bonus/almanax-bonus.repository';
 import { NpcRepository } from 'src/db/repositories/npc/npc.repository';
 import { getAlmanaxQuest } from './utils/dofus-db-almanax-quest.utils';
+import { AlmanaxMobileDateRepository } from 'src/db/repositories/almanax-mobile-date/almanax-mobile-date.repository';
+import { AlmanaxMobileDate } from 'src/db/model/almanax-mobile-date.entity';
+import { getMobileDates as getMobileDates } from './utils/almanax-quest-date.utils';
 
 @Injectable()
 export class DofusDbDataService {
@@ -23,11 +26,12 @@ export class DofusDbDataService {
     private readonly almanaxQuestRepository: AlmanaxQuestRepository,
     private readonly almanaxBonusRepository: AlmanaxBonusRepository,
     private readonly npcRepository: NpcRepository,
+    private readonly almanaxMobileDateRepository: AlmanaxMobileDateRepository,
   ) {}
 
   async syncDofusDbData() {
     if (this.isSyncStarted) {
-      throw new Error('Sync already started');
+      throw new BadRequestException('Sync already started');
     } else {
       try {
         this.isSyncStarted = true;
@@ -88,5 +92,19 @@ export class DofusDbDataService {
     return almanaxQuest;
   }
 
-  async initMobileDates(year: number) {}
+  async initMobileDates(year: number) {
+    const mobileDates = await this.almanaxMobileDateRepository.findByYear(year);
+    if (mobileDates?.length !== 0) {
+      throw new BadRequestException(`All mobile dates for year ${year} are already in db`);
+    }
+    if (year < new Date().getFullYear()) {
+      throw new BadRequestException('This is in the past you sicko');
+    }
+    if (year > 2100) {
+      throw new BadRequestException('wtf mate');
+    }
+    const mobileEventAlmanaxQuests = await this.almanaxQuestRepository.findMobileQuests();
+    const toCreateMobileDates = getMobileDates(year, mobileEventAlmanaxQuests);
+    await this.almanaxMobileDateRepository.createAlmanaxMobileDates(toCreateMobileDates);
+  }
 }
