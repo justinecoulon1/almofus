@@ -1,5 +1,7 @@
 {
-  "home": {
-    "maintitle": "Accueil"
+  "header": {
+    "maintitle": "Almofus",
+    "character": "Personnages",
+    "almanax": "Almanax"
   }
 }

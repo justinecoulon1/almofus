@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Armata, Arvo, Athiti, Geist } from "next/font/google";
 import "./globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { Header } from "@/components/global/header/header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const arvo = Arvo({
+  variable: "--font-arvo",
   subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const armata = Armata({
+  variable: "--font-armata",
   subsets: ["latin"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -29,7 +31,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <NextIntlClientProvider messages={messages}>
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <body className={`${arvo.variable} ${armata.variable}`}>
           <Header />
           {children}
         </body>
