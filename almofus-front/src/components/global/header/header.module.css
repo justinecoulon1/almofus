@@ -21,6 +21,8 @@
     gap: var(--medium-gap);
 
     color: var(--foreground-accent-light);
+    font-family: var(--font-orbitron);
+
     & h1 {
       font-size: 2rem;
     }
@@ -33,39 +35,51 @@
 
   .nav {
     display: flex;
+    align-items: center;
 
-    & ul {
+    gap: var(--medium-gap);
+
+    font-family: var(--font-orbitron);
+
+    & a {
       display: flex;
-      gap: var(--medium-gap);
 
-      & a {
-        display: flex;
-        padding: 0.5rem;
+      height: fit-content;
 
-        font-family: var(--font-armata);
+      padding: 0.5rem;
 
-        border-radius: 0.3rem;
-        text-decoration: none;
+      border-radius: 0.3rem;
+      text-decoration: none;
+    }
+
+    .almanaxBtn {
+      background-color: var(--accent-medium);
+      border: 2px solid transparent;
+      color: var(--foreground-accent-light);
+
+      &:hover {
+        background-color: var(--accent-light);
+        border: 2px solid var(--foreground-accent-light);
       }
+    }
 
-      .almanaxBtn {
-        background-color: var(--accent-medium);
-        color: var(--foreground-accent-light);
+    .characterBtn,
+    .userBtn {
+      border: 2px solid var(--accent-light);
+      color: var(--foreground-accent-light);
 
-        &:hover {
-          background-color: var(--accent-light);
-        }
+      &:hover {
+        background-color: var(--accent-light);
+        border: 2px solid var(--foreground-accent-light);
       }
+    }
 
-      .characterBtn {
-        border: 2px solid var(--accent-light);
-        color: var(--foreground-accent-light);
+    .userBtn {
+      border-radius: 50%;
 
-        &:hover {
-          background-color: var(--foreground-accent-light);
-          border: 2px solid var(--foreground-accent-light);
-          color: var(--foreground-accent-dark);
-        }
+      .userImg {
+        height: 1.3rem;
+        width: auto;
       }
     }
   }

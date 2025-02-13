@@ -1,0 +1,34 @@
+.dailyAlmanaxContainer {
+  display: flex;
+  flex-direction: column;
+
+  height: 25rem;
+  width: 25rem;
+  padding: 2rem;
+
+  background-color: var(--primary-dark);
+  color: var(--foreground-primary);
+
+  box-shadow: rgba(0, 0, 0, 0.7) 0 0.15rem 0.5rem 0;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  }
+  .titleDiv {
+    display: flex;
+
+    .buttonImg {
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+
+  .almanaxImage {
+    height: 5rem;
+    width: 5rem;
+
+    background-color: var(--primary-darker);
+    border: 2px solid var(--primary-dark);
+  }
+}

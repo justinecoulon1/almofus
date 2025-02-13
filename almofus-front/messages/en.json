@@ -1,7 +1,8 @@
 {
   "header": {
     "maintitle": "Almofus",
-    "character": "Characters",
-    "almanax": "Almanax"
-  }
+    "character": "CHARACTER",
+    "almanax": "ALMANAX"
+  },
+  "daily-almanax": {}
 }

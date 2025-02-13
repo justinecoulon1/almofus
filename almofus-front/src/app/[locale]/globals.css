@@ -1,13 +1,13 @@
 :root {
-  --primary-darker: #0d1e3f;
-  --primary-dark: #162c55;
-  --primary-medium: #19407d;
+  --primary-darker: #0b1b3a;
+  --primary-dark: #0e2144;
+  --primary-medium: #142a53;
   --primary-light: #1b53b2;
   --primary-highlight: #1a65db;
-  --secondary-dark: #2c5659;
-  --secondary-medium: #387478;
-  --secondary-light: #42878a;
-  --secondary-highlight: #5ca3a5;
+  --secondary-dark: #3f0d1e;
+  --secondary-medium: #3d1a3f;
+  --secondary-light: #b1eee9;
+  --secondary-highlight: #7a2d7c;
 
   --accent-dark: #a11041;
   --accent-medium: #c10f46;
@@ -26,20 +26,28 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  font-family: var(--font-arvo);
 }
 
 body {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
 
   color: var(--foreground);
-  background: var(--primary-dark);
+  background: var(--primary-medium);
+}
 
-  font-family: var(--font-arvo);
+main {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 4rem;
+  min-height: 100%;
+  flex: 1;
+}
+
+.noUserSelect {
+  user-select: none;
 }
