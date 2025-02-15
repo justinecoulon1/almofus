@@ -36,17 +36,17 @@ export class AlmanaxQuest {
   @Column({ name: 'mobile_event_name' })
   mobileEvent: MobileEvent | null;
 
-  @ManyToOne(() => Npc, { cascade: true })
+  @ManyToOne(() => Npc, { eager: true, cascade: true })
   @JoinColumn({ name: 'npc_id' })
-  npc: Promise<Npc>;
+  npc: Npc;
 
-  @ManyToOne(() => Item, { cascade: true })
+  @ManyToOne(() => Item, { eager: true, cascade: true })
   @JoinColumn({ name: 'item_id' })
-  item: Promise<Item>;
+  item: Item;
 
-  @ManyToOne(() => AlmanaxBonus, { cascade: true })
+  @ManyToOne(() => AlmanaxBonus, { eager: true, cascade: true })
   @JoinColumn({ name: 'almanax_bonus_id' })
-  almanaxBonus: Promise<AlmanaxBonus>;
+  almanaxBonus: AlmanaxBonus;
 
   @ManyToOne(() => Label, { eager: true, cascade: true })
   @JoinColumn({ name: 'name_label_id' })
@@ -67,9 +67,9 @@ export class AlmanaxQuest {
     this.date = date;
     this.itemQuantity = itemQuantity;
     this.kamasReward = kamasReward;
-    this.npc = Promise.resolve(npc);
-    this.item = Promise.resolve(item);
-    this.almanaxBonus = Promise.resolve(almanaxBonus);
+    this.npc = npc;
+    this.item = item;
+    this.almanaxBonus = almanaxBonus;
     this.nameLabel = nameLabel;
     this.mobileEvent = mobileEvent;
   }

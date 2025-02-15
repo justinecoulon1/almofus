@@ -25,6 +25,14 @@ export class AlmanaxQuestRepository {
     return this.repository.find();
   }
 
+  findById(id: number): Promise<AlmanaxQuest> {
+    return this.repository.findOneBy({ id });
+  }
+
+  findOneByDate(date: string): Promise<AlmanaxQuest> {
+    return this.repository.findOneBy({ date });
+  }
+
   findMobileQuests(): Promise<AlmanaxQuest[]> {
     return this.repository.find({ where: { mobileEvent: Not(IsNull()) } });
   }
