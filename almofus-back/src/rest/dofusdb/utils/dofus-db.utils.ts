@@ -23,24 +23,18 @@ const AxiosDofusdb = axios.create({
   baseURL: 'https://api.dofusdb.fr/',
 });
 
-async function getDofusDbEntries(
-  collectionName: string,
-  filter: any,
-): Promise<DofusDbEntry[]> {
+async function getDofusDbEntries(collectionName: string, filter: any): Promise<DofusDbEntry[]> {
   const allEntries: DofusDbEntry[] = [];
   let skip = 0;
   let totalLength = -1;
   while (allEntries.length !== totalLength) {
-    const { data: responseData } = await AxiosDofusdb.get<DofusDbResponse>(
-      collectionName,
-      {
-        params: {
-          $limit: 50,
-          $skip: skip,
-          ...filter,
-        },
+    const { data: responseData } = await AxiosDofusdb.get<DofusDbResponse>(collectionName, {
+      params: {
+        $limit: 50,
+        $skip: skip,
+        ...filter,
       },
-    );
+    });
     const entries = responseData.data;
     if (entries.length === 0) {
       throw new Error('Empty response - should not happen');
@@ -59,7 +53,7 @@ export async function getSyncDofusDbData(): Promise<SyncRequestDto> {
   console.log('npcs done', npcs.length);
 
   const items = (await getDofusDbEntries('items', {
-    $select: ['id', 'name', 'level'],
+    $select: ['id', 'name', 'level', 'iconId'],
   })) as unknown as DofusDbItemDto[];
   console.log('items done', items.length);
 

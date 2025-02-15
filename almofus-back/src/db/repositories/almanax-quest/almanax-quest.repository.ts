@@ -13,11 +13,11 @@ export class AlmanaxQuestRepository {
     this.repository = dataSource.getRepository(AlmanaxQuest);
   }
 
-  createAlmanaxQuest(quest: AlmanaxQuest): Promise<AlmanaxQuest> {
+  saveAlmanaxQuest(quest: AlmanaxQuest): Promise<AlmanaxQuest> {
     return this.repository.save(quest);
   }
 
-  createAlmanaxQuests(quests: AlmanaxQuest[]): Promise<AlmanaxQuest[]> {
+  saveAlmanaxQuests(quests: AlmanaxQuest[]): Promise<AlmanaxQuest[]> {
     return this.repository.save(quests);
   }
 

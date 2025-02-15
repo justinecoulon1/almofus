@@ -58,7 +58,7 @@ export class DofusDbDataService {
             this.getUpdatedQuest(syncRequestDto, questDto, itemById, npcById, almanaxBonusByNpcId, almanaxQuestById),
           );
 
-        await this.almanaxQuestRepository.createAlmanaxQuests(almanaxQuestEntities);
+        await this.almanaxQuestRepository.saveAlmanaxQuests(almanaxQuestEntities);
       } finally {
         this.isSyncStarted = false;
       }

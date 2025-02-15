@@ -8,6 +8,7 @@ class ItemMapper {
       id: entity.id,
       dofusId: entity.dofusId,
       level: entity.level,
+      iconId: entity.iconId,
       nameLabel: labelMapper.toDto(entity.nameLabel),
     };
   }

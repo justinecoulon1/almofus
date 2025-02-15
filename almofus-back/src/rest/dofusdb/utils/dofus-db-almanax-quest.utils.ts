@@ -5,7 +5,7 @@ import { updateLabel } from './dofus-db-label.utils';
 import { AlmanaxBonus } from 'src/db/model/almanax-bonus.entity';
 import { Item } from 'src/db/model/item.entity';
 import { Npc } from 'src/db/model/npc.entity';
-import * as almanaxQuestsDateInfo from 'src/rest/dofusdb/utils/Almanax.json';
+import almanaxQuestsDateInfo from 'src/rest/dofusdb/utils/Almanax.json';
 import { AlmanaxQuestDateInfo } from './almanax-quest-date-info';
 
 export function getAlmanaxQuest(
@@ -19,16 +19,25 @@ export function getAlmanaxQuest(
   if (!existingQuest) {
     return mapAlmanaxQuestDtoToEntity(dofusDbQuestDto, npc, item, almanaxBonus);
   }
-  updateAlmanaxQuest(existingQuest, dofusDbQuestDto, npc);
+  updateAlmanaxQuest(existingQuest, dofusDbQuestDto, npc, item, almanaxBonus);
   return existingQuest;
 }
 
-export function updateAlmanaxQuest(existingQuest: AlmanaxQuest, dofusDbQuestDto: DofusDbQuestDto, npc: Npc) {
+export function updateAlmanaxQuest(
+  existingQuest: AlmanaxQuest,
+  dofusDbQuestDto: DofusDbQuestDto,
+  npc: Npc,
+  item: Item,
+  almanaxBonus: AlmanaxBonus,
+) {
   const questDateInfo = getAlmanaxQuestDateInfoByNpcId(npc.dofusId);
   existingQuest.date = questDateInfo?.date || null;
   existingQuest.mobileEvent = (questDateInfo?.mobileInfo as MobileEvent) || null;
   existingQuest.itemQuantity = dofusDbQuestDto.steps[0].objectives[0].need.generated.quantities[0];
   existingQuest.kamasReward = dofusDbQuestDto.steps[0].rewards[0].kamasRatio;
+  existingQuest.npc = npc;
+  existingQuest.item = item;
+  existingQuest.almanaxBonus = almanaxBonus;
   updateLabel(existingQuest.nameLabel, dofusDbQuestDto.name);
 }
 

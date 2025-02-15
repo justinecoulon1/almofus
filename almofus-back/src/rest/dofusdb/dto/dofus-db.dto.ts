@@ -27,6 +27,7 @@ export type DofusDbNpcDto = {
 export type DofusDbItemDto = {
   id: number;
   level: number;
+  iconId: number;
   name: DofusDbLabelDto;
 };
 
