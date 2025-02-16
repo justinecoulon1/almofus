@@ -1,34 +1,176 @@
 .dailyAlmanaxContainer {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  height: 25rem;
+  height: 24rem;
   width: 25rem;
-  padding: 2rem;
 
-  background-color: var(--primary-dark);
-  color: var(--foreground-primary);
+  color: var(--foreground-primary-light);
 
-  box-shadow: rgba(0, 0, 0, 0.7) 0 0.15rem 0.5rem 0;
+  border-radius: 1rem;
 
   &:hover {
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-      rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  }
-  .titleDiv {
-    display: flex;
+    .dateHeader {
+      background-color: var(--blue-accent-light);
+    }
 
-    .buttonImg {
-      height: 3rem;
-      width: 3rem;
+    .dailyAlmanaxCard {
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     }
   }
 
-  .almanaxImage {
-    height: 5rem;
-    width: 5rem;
+  .dateHeader {
+    display: flex;
+    justify-content: center;
 
-    background-color: var(--primary-darker);
-    border: 2px solid var(--primary-dark);
+    width: 50%;
+
+    border-radius: 0.5rem 0.5rem 0 0;
+    background-color: var(--blue-accent-medium);
+
+    transition: all 0.2s ease;
+    user-select: none;
+
+    & p {
+      padding: var(--small-gap);
+
+      color: var(--foreground-primary-dark);
+      font-weight: bold;
+      border-radius: 0.5rem;
+    }
+  }
+
+  .dailyAlmanaxCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    height: 100%;
+
+    padding: 1rem;
+    gap: var(--medium-gap);
+
+    border-radius: 0.5rem;
+    background-color: var(--primary-medium);
+
+    box-shadow: rgba(0, 0, 0, 0.7) 0 0.15rem 0.5rem 0;
+
+    .titleDiv {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: var(--small-gap);
+
+      .arrowButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 0.3rem;
+
+        border: 0;
+        border-radius: 10%;
+
+        background-color: var(--primary-medium);
+        color: var(--foreground-orange-accent-light);
+
+        .buttonImg {
+          width: 2rem;
+          height: auto;
+          filter: invert(1);
+          transition: transform 0.2s ease;
+        }
+
+        &:hover {
+          .buttonImg {
+            cursor: pointer;
+            filter: invert(98%) sepia(20%) saturate(6445%) hue-rotate(168deg) brightness(113%) contrast(87%);
+            transform: scale(1.15);
+          }
+        }
+      }
+    }
+
+    .itemContainer {
+      display: flex;
+
+      padding: var(--medium-gap);
+      gap: var(--medium-gap);
+
+      background-color: var(--primary-dark);
+      border-radius: 0.5rem;
+
+      .almanaxImage {
+        height: 5rem;
+        width: 5rem;
+
+        background-color: var(--primary-dark);
+      }
+
+      .itemDesc {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 70%;
+
+        gap: var(--small-gap);
+
+        .textDiv {
+          display: flex;
+
+          gap: var(--small-gap);
+
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+
+          & p {
+            padding: var(--small-gap);
+
+            background-color: var(--primary-dark);
+            border-radius: 0.5rem;
+          }
+
+          & h3 {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+        }
+
+        .buttonImg {
+          cursor: pointer;
+          height: 1rem;
+          width: 1rem;
+          filter: invert(1);
+          transition: transform 0.2s ease;
+
+          &:hover {
+            filter: invert(98%) sepia(20%) saturate(6445%) hue-rotate(168deg) brightness(113%) contrast(87%);
+
+            transform: scale(1.15);
+          }
+        }
+      }
+    }
+
+    .bonusContainer {
+      display: flex;
+      flex-direction: column;
+
+      padding: var(--medium-gap);
+      gap: var(--medium-gap);
+
+      background-color: var(--primary-dark);
+      border-radius: 0.5rem;
+
+      .titleContainer {
+        display: flex;
+        justify-content: center;
+      }
+    }
   }
 }

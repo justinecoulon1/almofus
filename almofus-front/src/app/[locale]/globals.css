@@ -1,21 +1,28 @@
 :root {
-  --primary-darker: #0b1b3a;
-  --primary-dark: #0e2144;
-  --primary-medium: #142a53;
-  --primary-light: #1b53b2;
-  --primary-highlight: #1a65db;
-  --secondary-dark: #3f0d1e;
-  --secondary-medium: #3d1a3f;
-  --secondary-light: #b1eee9;
-  --secondary-highlight: #7a2d7c;
+  --primary-darker: #1e2038;
+  --primary-dark: #2b2e4a;
+  --primary-medium: #363c68;
+  --primary-medium-highlight: #2f345f;
+  --primary-light: #454c88;
+  --primary-lighter: #4f5aa6;
+  --secondary-darker: #3c151e;
+  --secondary-dark: #6d2e3e;
+  --secondary-medium: #7f3244;
+  --secondary-light: #903749;
+  --secondary-lighter: #b44a5d;
 
-  --accent-dark: #a11041;
-  --accent-medium: #c10f46;
-  --accent-light: #e31a53;
+  --orange-accent-dark: #b32222;
+  --orange-accent-medium: #d52d2d;
+  --orange-accent-light: #e84545;
 
-  --foreground-accent-light: #fef2f3;
-  --foreground-accent-dark: #570520;
-  --foreground-primary: #eef8ff;
+  --blue-accent-dark: #28a1a4;
+  --blue-accent-medium: #6fd9d7;
+  --blue-accent-light: #b8efec;
+
+  --foreground-primary-light: #f3f6fb;
+  --foreground-primary-dark: #14162b;
+  --foreground-orange-accent-light: #fef2f2;
+  --foreground-orange-accent-dark: #430c0c;
 
   --small-gap: 0.5rem;
   --medium-gap: 1rem;
@@ -26,7 +33,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: var(--font-arvo);
 }
 
 body {
@@ -35,8 +41,9 @@ body {
   min-height: 100vh;
   width: 100%;
 
+  font-family: var(--font-electrolize);
   color: var(--foreground);
-  background: var(--primary-medium);
+  background: var(--primary-dark);
 }
 
 main {
