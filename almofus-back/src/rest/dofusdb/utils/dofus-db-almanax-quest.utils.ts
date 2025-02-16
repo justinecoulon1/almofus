@@ -1,12 +1,11 @@
-import { AlmanaxQuest, MobileEvent } from 'src/db/model/almanax-quest.entity';
-import { Label } from 'src/db/model/label.entity';
-import { DofusDbQuestDto } from '../dto/dofus-db.dto';
-import { updateLabel } from './dofus-db-label.utils';
 import { AlmanaxBonus } from 'src/db/model/almanax-bonus.entity';
+import { AlmanaxQuest, MobileEvent } from 'src/db/model/almanax-quest.entity';
 import { Item } from 'src/db/model/item.entity';
 import { Npc } from 'src/db/model/npc.entity';
 import almanaxQuestsDateInfo from 'src/rest/dofusdb/utils/Almanax.json';
+import { DofusDbQuestDto } from '../dto/dofus-db.dto';
 import { AlmanaxQuestDateInfo } from './almanax-quest-date-info';
+import { createLabel, updateLabel } from './dofus-db-label.utils';
 
 export function getAlmanaxQuest(
   questById: Record<number, AlmanaxQuest>,
@@ -47,7 +46,7 @@ export function mapAlmanaxQuestDtoToEntity(
   item: Item,
   almanaxBonus: AlmanaxBonus,
 ): AlmanaxQuest {
-  const questNameLabel = new Label(dofusDbQuestDto.name.fr, dofusDbQuestDto.name.en);
+  const questNameLabel = createLabel(dofusDbQuestDto.name);
   const questDateInfo = getAlmanaxQuestDateInfoByNpcId(npc.dofusId);
   return new AlmanaxQuest(
     dofusDbQuestDto.id,

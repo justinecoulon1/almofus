@@ -1,7 +1,6 @@
 import { Item } from 'src/db/model/item.entity';
 import { DofusDbItemDto } from '../dto/dofus-db.dto';
-import { Label } from 'src/db/model/label.entity';
-import { updateLabel } from './dofus-db-label.utils';
+import { createLabel, updateLabel } from './dofus-db-label.utils';
 
 export function getItem(itemById: Record<number, Item>, dofusDbItemDto: DofusDbItemDto): Item {
   const existingItem = itemById[dofusDbItemDto.id];
@@ -19,7 +18,7 @@ export function updateItem(existingItem: Item, dofusDbItemDto: DofusDbItemDto) {
 }
 
 export function mapItemDtoToEntity(dofusDbItemDto: DofusDbItemDto): Item {
-  const itemNameLabel = new Label(dofusDbItemDto.name.fr, dofusDbItemDto.name.en);
+  const itemNameLabel = createLabel(dofusDbItemDto.name);
   return new Item(dofusDbItemDto.id, dofusDbItemDto.level, itemNameLabel, dofusDbItemDto.iconId);
 }
 
