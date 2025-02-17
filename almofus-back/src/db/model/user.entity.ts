@@ -15,11 +15,15 @@ export class User {
   @IsEmail()
   email: string;
 
+  @Column()
+  password: string;
+
   @OneToMany(() => Character, (character) => character.user)
   characters: Promise<Character[]>;
 
-  constructor(name: string, email: string) {
+  constructor(name: string, email: string, password: string) {
     this.name = name;
     this.email = email;
+    this.password = password;
   }
 }
