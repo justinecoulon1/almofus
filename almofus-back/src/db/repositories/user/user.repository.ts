@@ -23,7 +23,7 @@ export class UserRepository {
     });
   }
 
-  create(user: User): Promise<User> {
+  save(user: User): Promise<User> {
     return this.repository.save(user);
   }
 }

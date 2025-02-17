@@ -12,4 +12,8 @@ export class CharacterRepository {
   ) {
     this.repository = dataSource.getRepository(Character);
   }
+
+  save(character: Character): Promise<Character> {
+    return this.repository.save(character);
+  }
 }

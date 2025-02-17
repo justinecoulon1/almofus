@@ -1,14 +1,7 @@
 import { Length } from 'class-validator';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { User } from './user.entity';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { AlmanaxDay } from './almanax-day.entity';
+import { User } from './user.entity';
 
 @Entity()
 export class Character {
@@ -25,4 +18,9 @@ export class Character {
 
   @OneToMany(() => AlmanaxDay, (almanaxDay) => almanaxDay.character)
   almanaxDays: Promise<AlmanaxDay[]>;
+
+  constructor(name: string, user: User) {
+    this.name = name;
+    this.user = Promise.resolve(user);
+  }
 }

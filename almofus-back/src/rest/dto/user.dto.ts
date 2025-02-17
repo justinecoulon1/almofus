@@ -1,4 +1,4 @@
-import { Character } from 'src/db/model/character.entity';
+import { CharacterDto } from './character.dto';
 
 export type CreateUserRequestDto = {
   email: string;
@@ -11,5 +11,5 @@ export type UserDto = {
 };
 
 export type CompleteUserDto = UserDto & {
-  characters: Character[];
+  characters: CharacterDto[];
 };

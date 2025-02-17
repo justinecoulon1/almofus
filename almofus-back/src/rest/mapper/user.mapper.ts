@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
 import { User } from 'src/db/model/user.entity';
 import { CompleteUserDto, UserDto } from 'src/rest/dto/user.dto';
+import characterMapper from './character.mapper';
 
 class UserMapper {
   toDto(entity: User): UserDto {
@@ -11,10 +11,9 @@ class UserMapper {
   }
 
   async toCompleteDto(entity: User): Promise<CompleteUserDto> {
-    await Promise.all((await entity.characters).map((c) => c.almanaxDays));
     return {
       ...this.toDto(entity),
-      characters: await entity.characters,
+      characters: characterMapper.toDtos(await entity.characters),
     };
   }
 
