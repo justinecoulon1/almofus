@@ -7,11 +7,11 @@ const databaseProviders = [
     useFactory: async () => {
       const dataSource = new DataSource({
         type: 'postgres',
-        host: 'localhost',
-        port: 5432,
-        username: 'postgres',
-        password: '1234*',
-        database: 'almofus',
+        host: process.env.DBHOST ?? 'localhost',
+        port: parseInt(process.env.DBPORT ?? '5432'),
+        username: process.env.DBUSER ?? 'postgres',
+        password: process.env.DBPASSWORD ?? '1234*',
+        database: process.env.DBNAME ?? 'almofus',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: false,
       });
