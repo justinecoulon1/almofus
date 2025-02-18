@@ -27,6 +27,7 @@
   --small-gap: 0.5rem;
   --medium-gap: 1rem;
   --big-gap: 2rem;
+  --huge-gap: 3rem;
 
   --header-height: 4rem;
 }
@@ -64,6 +65,7 @@ main {
 
 button {
   border: none;
+  font-family: var(--font-orbitron);
 }
 
 * ::-webkit-scrollbar {

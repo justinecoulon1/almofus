@@ -23,98 +23,142 @@
     position: absolute;
     overflow-y: auto;
 
-    height: 60vh;
-    width: 50%;
+    height: 55vh;
+    width: 25rem;
 
-    padding: var(--big-gap);
-    gap: var(--medium-gap);
+    gap: var(--big-gap);
 
     border-radius: 1.3rem;
     border: 2px solid var(--blue-accent-dark);
     box-shadow: 0px 0px 20px rgba(40, 161, 164, 0.6);
 
-    background: rgba(43, 46, 74, 0.9);
+    background-color: rgba(43, 46, 74, 0.9);
     color: var(--blue-accent-light);
     backdrop-filter: blur(1rem);
 
-    & form {
+    .titleDiv {
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
 
       width: 100%;
-      gap: var(--medium-gap);
 
-      .emailDiv,
-      .passwordDiv {
+      .loginTab,
+      .registerTab {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 50%;
+        padding: var(--medium-gap);
+
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+
+        font-family: var(--font-electrolize);
+        color: var(--blue-accent-dark);
+
+        border-bottom: 2px solid var(--blue-accent-medium);
+
+        &:hover {
+          box-shadow: 0px 0px 15px var(--blue-accent-light);
+          background-color: var(--primary-medium);
+          color: var(--blue-accent-medium);
+        }
+
+        &.selected {
+          border-bottom: 2px solid transparent;
+          box-shadow: none;
+          background-color: transparent;
+          color: var(--blue-accent-medium);
+        }
+      }
+
+      .registerTab {
+        border-left: 2px solid var(--blue-accent-medium);
+      }
+    }
+
+    & form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      height: 100%;
+      width: 100%;
+
+      padding-bottom: var(--huge-gap);
+      gap: var(--big-gap);
+
+      .inputsDiv {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
-        width: 80%;
-        gap: var(--small-gap);
+        width: 100%;
+        gap: var(--medium-gap);
 
-        & label {
-          align-self: flex-start;
-        }
+        .inputDiv {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
 
-        & input {
-          width: 100%;
-          padding: var(--small-gap);
+          width: 60%;
+          gap: var(--small-gap);
 
-          background: var(--primary-medium);
-          color: var(--blue-accent-light);
+          & label {
+            align-self: flex-start;
+          }
 
-          text-align: center;
-          font-size: 1rem;
+          & input {
+            width: 100%;
+            padding: var(--small-gap);
 
-          border-radius: 10px;
-          border: none;
-          outline: none;
-          transition: 0.3s;
+            background-color: var(--primary-medium);
+            color: var(--blue-accent-light);
 
-          &:focus {
-            background: var(--primary-medium-highlight);
-            box-shadow: 0px 0px 10px var(--blue-accent-medium);
+            text-align: center;
+
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            transition: 0.3s;
+
+            &:focus {
+              background-color: var(--primary-medium-highlight);
+              box-shadow: 0px 0px 10px var(--blue-accent-medium);
+            }
           }
         }
       }
 
-      .titleDiv {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        width: 100%;
-
-        padding: var(--medium-gap)
-      }
-
       .button {
-        width: 100%;
-        padding: var(--medium-gap);
+        width: 30%;
+        padding: var(--small-gap);
 
         border-radius: 10px;
 
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: bold;
         border: none;
 
-        background: var(--blue-accent-medium);
+        font-family: var(--font-electrolize);
+        background-color: var(--blue-accent-medium);
         color: var(--primary-dark);
 
         cursor: pointer;
         transition: 0.3s;
 
         &:hover {
-          background: var(--blue-accent-light);
+          background-color: var(--blue-accent-light);
           box-shadow: 0px 0px 15px var(--blue-accent-light);
         }
       }
     }
-
-
   }
 }

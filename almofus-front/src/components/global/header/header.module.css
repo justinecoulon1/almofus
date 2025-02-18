@@ -48,13 +48,15 @@
 
       font-family: var(--font-orbitron);
 
-      & a {
+      & a,
+      & button {
         display: flex;
 
         height: fit-content;
 
         padding: 0.5rem;
 
+        font-size: 1rem;
         border-radius: 0.3rem;
         text-decoration: none;
       }
