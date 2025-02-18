@@ -1,3 +1,5 @@
+import { AlmanaxPage } from '@/components/almanax-page/almanax-page';
+
 export default function Almanax() {
-  return <p>ALMA ALMA ALMA</p>;
+  return <AlmanaxPage />;
 }

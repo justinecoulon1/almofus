@@ -1,0 +1,16 @@
+.characterSectionContainer {
+  display: flex;
+  flex-direction: column;
+
+  height: calc(100vh - 2 * var(--almanax-page-vertical-padding) - var(--header-height));
+  overflow-y: scroll;
+  width: fit-content;
+
+  padding: 1rem;
+  gap: var(--medium-gap);
+
+  background-color: var(--primary-medium);
+  border: 2px solid var(--primary-darker);
+  border-right: transparent;
+  border-radius: 10px 0 0 10px;
+}

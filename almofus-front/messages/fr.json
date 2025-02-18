@@ -2,7 +2,14 @@
   "header": {
     "maintitle": "Almofus",
     "shopping": "LISTE D'ACHATS",
-    "almanax": "ALMANAX"
+    "almanax": "ALMANAX",
+    "login": "SE CONNECTER",
+    "register": "S'INSCRIRE"
   },
-  "daily-almanax": {}
+  "mustlogin": {
+    "errorMessage": "Oups - Vous devez être connecté pour accéder à cette page !"
+  },
+  "loginLightbox": {},
+  "daily-almanax": {},
+  "almanax-page": {}
 }

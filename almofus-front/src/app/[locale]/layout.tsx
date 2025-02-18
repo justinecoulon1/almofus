@@ -1,9 +1,10 @@
+import { Header } from '@/components/global/header/header';
 import type { Metadata } from 'next';
-import { Electrolize, Orbitron } from 'next/font/google';
-import './globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { Header } from '@/components/global/header/header';
+import { Electrolize, Orbitron } from 'next/font/google';
+import { ClientProviders } from './client-providers';
+import './globals.css';
 
 const electrolize = Electrolize({
   variable: '--font-electrolize',
@@ -22,19 +23,17 @@ export const metadata: Metadata = {
   description: 'Almanax manager',
 };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const messages = await getMessages();
   return (
     <html lang="en">
       <NextIntlClientProvider messages={messages}>
-        <body className={`${orbitron.variable} ${electrolize.variable}`}>
-          <Header />
-          <main>{children}</main>
-        </body>
+        <ClientProviders>
+          <body className={`${orbitron.variable} ${electrolize.variable}`}>
+            <Header />
+            <main>{children}</main>
+          </body>
+        </ClientProviders>
       </NextIntlClientProvider>
     </html>
   );

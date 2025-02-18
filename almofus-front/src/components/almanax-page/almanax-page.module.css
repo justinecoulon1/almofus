@@ -1,0 +1,13 @@
+.almanaxPageContainer {
+  --almanax-page-vertical-padding: 3rem;
+
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  flex: 1;
+
+  padding: var(--almanax-page-vertical-padding) 5rem;
+
+  overflow-y: hidden;
+}

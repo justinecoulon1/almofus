@@ -79,14 +79,13 @@
         .buttonImg {
           width: 2rem;
           height: auto;
-          filter: invert(1);
           transition: transform 0.2s ease;
         }
 
         &:hover {
           .buttonImg {
             cursor: pointer;
-            filter: invert(98%) sepia(20%) saturate(6445%) hue-rotate(168deg) brightness(113%) contrast(87%);
+            filter: invert(1) invert(92%) sepia(11%) saturate(653%) hue-rotate(121deg) brightness(95%) contrast(99%);
             transform: scale(1.15);
           }
         }
@@ -145,11 +144,10 @@
           cursor: pointer;
           height: 1rem;
           width: 1rem;
-          filter: invert(1);
           transition: transform 0.2s ease;
 
           &:hover {
-            filter: invert(98%) sepia(20%) saturate(6445%) hue-rotate(168deg) brightness(113%) contrast(87%);
+            filter: invert(1) invert(92%) sepia(11%) saturate(653%) hue-rotate(121deg) brightness(95%) contrast(99%);
 
             transform: scale(1.15);
           }
