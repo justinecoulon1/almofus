@@ -29,11 +29,18 @@ export function LoginLightbox({
       }}
     >
       <div className={styles.lightboxContainer} onMouseDown={(e) => e.stopPropagation()}>
-        <h2>LOGIN</h2>
-        <input type="text" />
-        <input type="text" />
-        <input type="text" />
-        <input className={styles.button} type="submit" value="LOGIN" />
+        <div className={styles.titleDiv}><h2>LOGIN</h2></div>
+        <form>
+          <div className={styles.emailDiv}>
+            <label htmlFor="email">Email</label>
+            <input type="text" name='email' id='email' />
+          </div>
+          <div className={styles.passwordDiv}>
+            <label htmlFor="password">Password</label>
+            <input type="password" name='password' id='password' />
+          </div>
+          <input className={styles.button} type="submit" value="LOGIN" />
+        </form>
       </div>
     </div>
   );
