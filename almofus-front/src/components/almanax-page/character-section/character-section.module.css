@@ -3,11 +3,13 @@
   flex-direction: column;
 
   height: calc(100vh - 2 * var(--almanax-page-vertical-padding) - var(--header-height));
-  overflow-y: scroll;
   width: fit-content;
 
-  padding: 1rem;
+  padding: var(--small-gap);
   gap: var(--medium-gap);
+
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   background-color: var(--primary-medium);
   border: 2px solid var(--primary-darker);

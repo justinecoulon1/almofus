@@ -72,7 +72,7 @@
         }
       }
 
-      .characterBtn,
+      .shoppingBtn,
       .userBtn {
         background-color: var(--primary-medium);
         border: 2px solid var(--orange-accent-medium);

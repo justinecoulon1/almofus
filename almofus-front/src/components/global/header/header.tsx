@@ -93,7 +93,7 @@ export function LoginButton({
 export function ShoppingListLink() {
   const t = useHeaderTranslations();
   return (
-    <Link className={styles.almanaxBtn} href={'/shopping'}>
+    <Link className={styles.shoppingBtn} href={'/shopping'}>
       {t('shopping')}
     </Link>
   );
@@ -109,7 +109,7 @@ export function RegisterButton({
   const t = useHeaderTranslations();
   return (
     <button
-      className={styles.almanaxBtn}
+      className={styles.shoppingBtn}
       onClick={async () => {
         setLightboxOpened(true);
         setLoginTab(LoginTabs.REGISTER);

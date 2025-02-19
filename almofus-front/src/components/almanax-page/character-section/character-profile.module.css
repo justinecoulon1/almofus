@@ -1,0 +1,52 @@
+.characterSelectionButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  height: 5rem;
+  width: 5rem;
+
+  border-radius: 2rem 2rem 0 0;
+  background-color: var(--primary-darker);
+
+  cursor: pointer;
+
+  .selectionDisplayImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1rem;
+    width: 1rem;
+  }
+
+  .characterProfileText {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 0.3rem;
+
+    color: var(--blue-accent-light);
+    background-color: rgba(16, 10, 48, 0.5);
+
+    white-space: nowrap;
+    overflow: hidden;
+
+    & p {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  .characterProfileImage {
+    background-color: transparent;
+
+    height: 3rem;
+    width: 3rem;
+
+    border-radius: 2rem;
+  }
+}
