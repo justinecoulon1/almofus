@@ -1,6 +1,9 @@
+import { useRouter } from '@/i18n/routing';
+import userRequestProcessor from '@/utils/api/user.request-processor';
+import { setLocalStorageItem } from '@/utils/local-storage/local-storage.utils';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import { LoginTabs } from '../global/header/login-tabs';
 import styles from './log-in-lightbox.module.css';
 
@@ -52,27 +55,50 @@ export function LoginLightbox({
             <h2>REGISTER</h2>
           </div>
         </div>
-        {loginTab === LoginTabs.LOGIN && <LoginTab />}
+        {loginTab === LoginTabs.LOGIN && <LoginTab setLightboxOpened={setLightboxOpened} />}
         {loginTab === LoginTabs.REGISTER && <RegisterTab />}
       </div>
     </div>
   );
 }
 
-function LoginTab({}) {
+function LoginTab({ setLightboxOpened }: { setLightboxOpened: (isOpened: boolean) => void }) {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const login = async () => {
+    const user = await userRequestProcessor.login(email, password);
+    setLocalStorageItem('user', user);
+    setLightboxOpened(false);
+    router.refresh();
+  };
   return (
     <form>
       <div className={styles.inputsDiv}>
         <div className={styles.inputDiv}>
           <label htmlFor="email">Email</label>
-          <input type="text" name="email" id="email" />
+          <input type="text" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className={styles.inputDiv}>
           <label htmlFor="password">Password</label>
-          <input type="password" name="password" id="password" />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
       </div>
-      <input className={styles.button} type="submit" value="LOGIN" />
+      <input
+        className={styles.button}
+        type="submit"
+        value="LOGIN"
+        onClick={(e) => {
+          e.preventDefault();
+          login();
+        }}
+      />
     </form>
   );
 }
@@ -98,7 +124,14 @@ function RegisterTab({}) {
           <input type="password" name="confirm-password" id="confirm-password" />
         </div>
       </div>
-      <input className={styles.button} type="submit" value="LOGIN" />
+      <input
+        className={styles.button}
+        type="submit"
+        value="REGISTER"
+        onClick={(e) => {
+          e.preventDefault();
+        }}
+      />
     </form>
   );
 }

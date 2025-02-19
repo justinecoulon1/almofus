@@ -2,7 +2,8 @@
 
 import { LoginLightbox } from '@/components/login-lightbox/log-in-lightbox';
 import { useLocalStorageItem } from '@/components/utils/env-specific/env-component.utils';
-import { Link } from '@/i18n/routing';
+import { Link, useRouter } from '@/i18n/routing';
+import { clearLocalStorage } from '@/utils/local-storage/local-storage.utils';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -11,6 +12,7 @@ import styles from './header.module.css';
 import { LoginTabs } from './login-tabs';
 
 export function Header() {
+  const router = useRouter();
   const t = useHeaderTranslations();
   const user = useLocalStorageItem('user');
   const [isLightboxOpened, setLightboxOpened] = useState(false);
@@ -38,9 +40,15 @@ export function Header() {
             <RegisterButton setLightboxOpened={setLightboxOpened} setLoginTab={setLoginTab} />
           )}
           {user && (
-            <Link className={styles.userBtn} href={'/user'}>
+            <button
+              className={styles.userBtn}
+              onClick={() => {
+                clearLocalStorage();
+                router.refresh();
+              }}
+            >
               <Image className={styles.userImg} src={'/icons/user.png'} alt={'user'} width={512} height={512} />
-            </Link>
+            </button>
           )}
         </nav>
       </div>
