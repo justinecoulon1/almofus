@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX IDX_Almofus_User__email_lower ON Almofus_User (LOWER(email));

@@ -30,4 +30,8 @@ export class UserRepository {
   findByEmail(email: string): Promise<User> {
     return this.repository.findOneBy({ email });
   }
+
+  findByLowercaseEmail(email: string): Promise<User> {
+    return this.repository.createQueryBuilder('user').where('LOWER(user.email) = LOWER(:email)', { email }).getOne();
+  }
 }
