@@ -1,12 +1,10 @@
 import { useTranslations } from "next-intl";
 import styles from '../header.module.css';
-import Link from "next/link";
+import { GenericLink } from "@/components/generic/links/link";
 
 export function AlmanaxLink() {
     const t = useTranslations('header');
     return (
-        <Link className={styles.orangePlainButton} href={'/almanax'}>
-            {t('almanax')}
-        </Link>
+        <GenericLink style={styles.orangePlainButton} label={t('almanax')} href={'/almanax'} />
     );
 }

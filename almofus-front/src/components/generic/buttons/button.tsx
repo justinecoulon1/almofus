@@ -1,5 +1,5 @@
 
-export function Button({
+export function GenericButton({
     style,
     label,
     onClick,

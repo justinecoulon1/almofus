@@ -1,9 +1,9 @@
 import { useTranslations } from "next-intl";
 import styles from '../header.module.css';
-import { LoginTabs } from "../login-tabs";
-import { Button } from "./button";
+import { LoginTabs } from "./login-tabs";
+import { GenericButton } from "@/components/generic/buttons/button";
 
-export function RegisterButton({
+export function LoginButton({
     setLightboxOpened,
     setLoginTab,
 }: {
@@ -12,16 +12,16 @@ export function RegisterButton({
 }) {
     const t = useTranslations('header');
     return (
-        <Button style={styles.bluePlainButton}
-            label={t('register')}
+        <GenericButton style={styles.orangePlainButton}
+            label={t('login')}
             onClick={async () => {
                 setLightboxOpened(true);
-                setLoginTab(LoginTabs.REGISTER);
+                setLoginTab(LoginTabs.LOGIN);
             }}
             onKeyDown={(e) => {
                 if (e.key === 'Escape') {
                     setLightboxOpened(false);
-                    setLoginTab(LoginTabs.REGISTER);
+                    setLoginTab(LoginTabs.LOGIN);
                 }
             }}
         />)

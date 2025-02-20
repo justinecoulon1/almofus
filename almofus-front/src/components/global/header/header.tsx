@@ -9,11 +9,11 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useState } from 'react';
 import styles from './header.module.css';
-import { LoginTabs } from './login-tabs';
+import { LoginTabs } from './login/login-tabs';
 import { AlmanaxLink } from './links/almanax-link';
 import { ShoppingListLink } from './links/shopping-link';
-import { RegisterButton } from './buttons/register-button';
-import { LoginButton } from './buttons/login-button';
+import { RegisterButton } from './login/register-button';
+import { LoginButton } from './login/login-button';
 
 export function Header() {
   const router = useRouter();

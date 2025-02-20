@@ -4,8 +4,8 @@ import { setLocalStorageItem } from '@/utils/local-storage/local-storage.utils';
 import classNames from 'classnames';
 import { useTranslations } from 'next-intl';
 import { MouseEventHandler, useState } from 'react';
-import { LoginTabs } from '../global/header/login-tabs';
 import styles from './log-in-lightbox.module.css';
+import { LoginTabs } from '../global/header/login/login-tabs';
 
 export function LoginLightbox({
   isLightboxOpened,
@@ -103,7 +103,7 @@ function LoginTab({ setLightboxOpened }: { setLightboxOpened: (isOpened: boolean
   );
 }
 
-function RegisterTab({}) {
+function RegisterTab({ }) {
   return (
     <form>
       <div className={styles.inputsDiv}>

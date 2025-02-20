@@ -1,12 +1,10 @@
 import { useTranslations } from "next-intl";
 import styles from '../header.module.css';
-import Link from "next/link";
+import { GenericLink } from "@/components/generic/links/link";
 
 export function ShoppingListLink() {
     const t = useTranslations('header');
     return (
-        <Link className={styles.bluePlainButton} href={'/shopping'}>
-            {t('shopping')}
-        </Link>
+        <GenericLink style={styles.bluePlainButton} label={t('shopping')} href={'/shopping'} />
     );
 }
