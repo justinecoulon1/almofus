@@ -61,30 +61,6 @@
         text-decoration: none;
       }
 
-      .almanaxBtn {
-        background-color: var(--orange-accent-medium);
-        border: 2px solid transparent;
-        color: var(--foreground-orange-accent-light);
-
-        &:hover {
-          background-color: var(--orange-accent-light);
-          border: 2px solid var(--orange-accent-dark);
-        }
-      }
-
-      .shoppingBtn,
-      .userBtn {
-        background-color: var(--primary-medium);
-        border: 2px solid var(--orange-accent-medium);
-        color: var(--foreground-orange-accent-light);
-
-        &:hover {
-          background-color: var(--orange-accent-medium);
-          border: 2px solid var(--orange-accent-dark);
-          color: var(--foreground-orange-accent-light);
-        }
-      }
-
       .userBtn {
         border-radius: 50%;
 
@@ -94,5 +70,30 @@
         }
       }
     }
+  }
+}
+
+
+
+.orangePlainButton {
+  background-color: var(--orange-accent-medium);
+  border: 2px solid transparent;
+  color: var(--foreground-orange-accent-light);
+
+  &:hover {
+    background-color: var(--orange-accent-light);
+    border: 2px solid var(--orange-accent-dark);
+  }
+}
+
+.bluePlainButton {
+  background-color: var(--primary-medium);
+  border: 2px solid var(--orange-accent-medium);
+  color: var(--foreground-orange-accent-light);
+
+  &:hover {
+    background-color: var(--orange-accent-medium);
+    border: 2px solid var(--orange-accent-dark);
+    color: var(--foreground-orange-accent-light);
   }
 }

@@ -10,10 +10,14 @@ import Image from 'next/image';
 import { useState } from 'react';
 import styles from './header.module.css';
 import { LoginTabs } from './login-tabs';
+import { AlmanaxLink } from './links/almanax-link';
+import { ShoppingListLink } from './links/shopping-link';
+import { RegisterButton } from './buttons/register-button';
+import { LoginButton } from './buttons/login-button';
 
 export function Header() {
   const router = useRouter();
-  const t = useHeaderTranslations();
+  const t = useTranslations('header');
   const user = useLocalStorageItem('user');
   const [isLightboxOpened, setLightboxOpened] = useState(false);
   const [loginTab, setLoginTab] = useState(LoginTabs.LOGIN);
@@ -41,7 +45,7 @@ export function Header() {
           )}
           {user && (
             <button
-              className={styles.userBtn}
+              className={classNames(styles.userBtn, styles.bluePlainButton)}
               onClick={() => {
                 clearLocalStorage();
                 router.refresh();
@@ -54,78 +58,4 @@ export function Header() {
       </div>
     </div>
   );
-}
-export function AlmanaxLink() {
-  const t = useHeaderTranslations();
-  return (
-    <Link className={styles.almanaxBtn} href={'/almanax'}>
-      {t('almanax')}
-    </Link>
-  );
-}
-export function LoginButton({
-  setLightboxOpened,
-  setLoginTab,
-}: {
-  setLightboxOpened: (isOpened: boolean) => void;
-  setLoginTab: (newTab: LoginTabs) => void;
-}) {
-  const t = useHeaderTranslations();
-  return (
-    <button
-      className={styles.almanaxBtn}
-      onClick={async () => {
-        setLightboxOpened(true);
-        setLoginTab(LoginTabs.LOGIN);
-      }}
-      onKeyDown={(e) => {
-        if (e.key === 'Escape') {
-          setLightboxOpened(false);
-          setLoginTab(LoginTabs.LOGIN);
-        }
-      }}
-    >
-      {t('login')}
-    </button>
-  );
-}
-
-export function ShoppingListLink() {
-  const t = useHeaderTranslations();
-  return (
-    <Link className={styles.shoppingBtn} href={'/shopping'}>
-      {t('shopping')}
-    </Link>
-  );
-}
-
-export function RegisterButton({
-  setLightboxOpened,
-  setLoginTab,
-}: {
-  setLightboxOpened: (isOpened: boolean) => void;
-  setLoginTab: (newTab: LoginTabs) => void;
-}) {
-  const t = useHeaderTranslations();
-  return (
-    <button
-      className={styles.shoppingBtn}
-      onClick={async () => {
-        setLightboxOpened(true);
-        setLoginTab(LoginTabs.REGISTER);
-      }}
-      onKeyDown={(e) => {
-        if (e.key === 'Escape') {
-          setLightboxOpened(false);
-          setLoginTab(LoginTabs.REGISTER);
-        }
-      }}
-    >
-      {t('register')}
-    </button>
-  );
-}
-
-function useHeaderTranslations() {
-  return useTranslations('header');
 }
