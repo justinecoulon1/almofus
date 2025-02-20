@@ -11,5 +11,7 @@
   },
   "loginLightbox": {},
   "daily-almanax": {},
-  "almanax-page": {}
+  "almanax-page": {
+    "addCharacter": "Nouveau"
+  }
 }

@@ -1,0 +1,15 @@
+.addCharacterButton {
+    padding: var(--small-gap);
+    border-radius: 0.3rem;
+
+
+    background-color: var(--primary-dark);
+    border: 2px solid var(--orange-accent-medium);
+    color: var(--foreground-orange-accent-light);
+
+    &:hover {
+        background-color: var(--orange-accent-medium);
+        border: 2px solid var(--orange-accent-dark);
+        color: var(--foreground-orange-accent-light);
+    }
+}

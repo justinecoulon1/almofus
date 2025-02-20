@@ -14,6 +14,7 @@ import { AlmanaxLink } from './links/almanax-link';
 import { ShoppingListLink } from './links/shopping-link';
 import { RegisterButton } from './login/register-button';
 import { LoginButton } from './login/login-button';
+import { GenericButtonWithImage } from '@/components/generic/buttons/button-img';
 
 export function Header() {
   const router = useRouter();
@@ -44,15 +45,20 @@ export function Header() {
             <RegisterButton setLightboxOpened={setLightboxOpened} setLoginTab={setLoginTab} />
           )}
           {user && (
-            <button
-              className={classNames(styles.userBtn, styles.bluePlainButton)}
+            <GenericButtonWithImage
+              buttonStyle={classNames(styles.userBtn, styles.bluePlainButton)}
               onClick={() => {
                 clearLocalStorage();
                 router.refresh();
               }}
-            >
-              <Image className={styles.userImg} src={'/icons/user.png'} alt={'user'} width={512} height={512} />
-            </button>
+              onKeyDown={() => {
+                clearLocalStorage();
+                router.refresh();
+              }}
+              imageSrc={'/icons/user.png'}
+              imageStyle={styles.userImg}
+              imageLabel={'user'}
+              imageSize={512} />
           )}
         </nav>
       </div>
