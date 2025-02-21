@@ -1,8 +1,8 @@
 'use client';
 
+import { MustLogInSection } from '@/components/global/must-log-in/must-log-in-section';
+import { useLocalStorageItem, useMounted } from '@/components/utils/env-specific/env-component.utils';
 import { useTranslations } from 'next-intl';
-import { MustLogInSection } from '../global/must-log-in/must-log-in-section';
-import { useLocalStorageItem, useMounted } from '../utils/env-specific/env-component.utils';
 import { AlmanaxCalendar, AlmanaxCalendarDisabled } from './almanax-calendar/almanax-calendar';
 import styles from './almanax-page.module.css';
 import { CharacterSection } from './character-section/character-section';

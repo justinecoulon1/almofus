@@ -1,6 +1,6 @@
 'use client';
 
-import { LoginLightbox } from '@/components/login-lightbox/log-in-lightbox';
+import { GenericButtonWithImage } from '@/components/generic/buttons/button-img';
 import { useLocalStorageItem } from '@/components/utils/env-specific/env-component.utils';
 import { Link, useRouter } from '@/i18n/routing';
 import { clearLocalStorage } from '@/utils/local-storage/local-storage.utils';
@@ -9,12 +9,12 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useState } from 'react';
 import styles from './header.module.css';
-import { LoginTabs } from './login/login-tabs';
 import { AlmanaxLink } from './links/almanax-link';
 import { ShoppingListLink } from './links/shopping-link';
-import { RegisterButton } from './login/register-button';
 import { LoginButton } from './login/login-button';
-import { GenericButtonWithImage } from '@/components/generic/buttons/button-img';
+import { LoginLightbox } from './login/login-lightbox/log-in-lightbox';
+import { LoginTabs } from './login/login-tabs';
+import { RegisterButton } from './login/register-button';
 
 export function Header() {
   const router = useRouter();
@@ -58,7 +58,8 @@ export function Header() {
               imageSrc={'/icons/user.png'}
               imageStyle={styles.userImg}
               imageLabel={'user'}
-              imageSize={512} />
+              imageSize={512}
+            />
           )}
         </nav>
       </div>

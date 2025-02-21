@@ -1,4 +1,4 @@
-import { AlmanaxPage } from '@/components/almanax-page/almanax-page';
+import { AlmanaxPage } from '@/components/pages/almanax-page/almanax-page';
 
 export default function Almanax() {
   return <AlmanaxPage />;
