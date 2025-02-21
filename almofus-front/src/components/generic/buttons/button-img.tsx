@@ -7,7 +7,7 @@ export function GenericButtonWithImage({
   onKeyDown,
   imageSrc,
   imageStyle,
-  imageLabel,
+  imageAlt: imageLabel,
   imageSize = 512,
 }: {
   buttonStyle: string;
@@ -15,7 +15,7 @@ export function GenericButtonWithImage({
   onKeyDown?: KeyboardEventHandler<HTMLButtonElement>;
   imageSrc: string;
   imageStyle: string;
-  imageLabel: string;
+  imageAlt: string;
   imageSize?: number;
 }) {
   return (

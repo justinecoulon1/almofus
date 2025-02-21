@@ -57,7 +57,7 @@ export function Header() {
               }}
               imageSrc={'/icons/user.png'}
               imageStyle={styles.userImg}
-              imageLabel={'user'}
+              imageAlt={'user'}
               imageSize={512}
             />
           )}
