@@ -29,11 +29,11 @@
     gap: var(--big-gap);
 
     border-radius: 1.3rem;
-    border: 2px solid var(--blue-accent-dark);
+    border: 2px solid var(--tertiary-dark);
     box-shadow: 0px 0px 20px rgba(40, 161, 164, 0.6);
 
     background-color: rgba(43, 46, 74, 0.9);
-    color: var(--blue-accent-light);
+    color: var(--tertiary-light);
     backdrop-filter: blur(1rem);
 
     .titleDiv {
@@ -58,26 +58,26 @@
         transition: 0.3s;
 
         font-family: var(--font-electrolize);
-        color: var(--blue-accent-dark);
+        color: var(--tertiary-dark);
 
-        border-bottom: 2px solid var(--blue-accent-medium);
+        border-bottom: 2px solid var(--tertiary-medium);
 
         &:hover {
-          box-shadow: 0px 0px 15px var(--blue-accent-light);
+          box-shadow: 0px 0px 15px var(--tertiary-light);
           background-color: var(--primary-medium);
-          color: var(--blue-accent-medium);
+          color: var(--tertiary-medium);
         }
 
         &.selected {
           border-bottom: 2px solid transparent;
           box-shadow: none;
           background-color: transparent;
-          color: var(--blue-accent-medium);
+          color: var(--tertiary-medium);
         }
       }
 
       .registerTab {
-        border-left: 2px solid var(--blue-accent-medium);
+        border-left: 2px solid var(--tertiary-medium);
       }
     }
 
@@ -120,7 +120,7 @@
             padding: var(--small-gap);
 
             background-color: var(--primary-medium);
-            color: var(--blue-accent-light);
+            color: var(--tertiary-light);
 
             text-align: center;
 
@@ -131,7 +131,7 @@
 
             &:focus {
               background-color: var(--primary-medium-highlight);
-              box-shadow: 0px 0px 10px var(--blue-accent-medium);
+              box-shadow: 0px 0px 10px var(--tertiary-medium);
             }
           }
         }
@@ -148,15 +148,15 @@
         border: none;
 
         font-family: var(--font-electrolize);
-        background-color: var(--blue-accent-medium);
+        background-color: var(--tertiary-medium);
         color: var(--primary-dark);
 
         cursor: pointer;
         transition: 0.3s;
 
         &:hover {
-          background-color: var(--blue-accent-light);
-          box-shadow: 0px 0px 15px var(--blue-accent-light);
+          background-color: var(--tertiary-light);
+          box-shadow: 0px 0px 15px var(--tertiary-light);
         }
       }
     }

@@ -1,18 +1,4 @@
-.addCharacterButton {
-    padding: var(--small-gap);
-    border-radius: 0.3rem;
-
-    background-color: var(--orange-accent-medium);
-    border: 2px solid transparent;
-    color: var(--foreground-orange-accent-light);
-
-    &:hover {
-        background-color: var(--orange-accent-light);
-        border: 2px solid var(--orange-accent-dark);
-    }
-
-    .addImage {
-        height: 2rem;
-        width: 2rem;
-    }
+.addImage {
+  height: 2rem;
+  width: 2rem;
 }

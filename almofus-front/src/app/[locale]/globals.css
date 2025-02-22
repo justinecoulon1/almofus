@@ -5,24 +5,23 @@
   --primary-medium-highlight: #2f345f;
   --primary-light: #454c88;
   --primary-lighter: #4f5aa6;
-  --secondary-darker: #3c151e;
-  --secondary-dark: #6d2e3e;
-  --secondary-medium: #7f3244;
-  --secondary-light: #903749;
-  --secondary-lighter: #b44a5d;
 
-  --orange-accent-dark: #b32222;
-  --orange-accent-medium: #d52d2d;
-  --orange-accent-light: #e84545;
+  --secondary-darker: #b32222;
+  --secondary-dark: #d52d2d;
+  --secondary-medium: #e84545;
+  --secondary-light: #f37676;
+  --secondary-lighter: #f9a8a8;
 
-  --blue-accent-dark: #28a1a4;
-  --blue-accent-medium: #6fd9d7;
-  --blue-accent-light: #b8efec;
+  --tertiary-darker: #1d8084;
+  --tertiary-dark: #28a1a4;
+  --tertiary-medium: #6fd9d7;
+  --tertiary-light: #b8efec;
+  --tertiary-lighter: #d2f5f3;
 
   --foreground-primary-light: #f3f6fb;
   --foreground-primary-dark: #14162b;
-  --foreground-orange-accent-light: #fef2f2;
-  --foreground-orange-accent-dark: #430c0c;
+  --foreground-secondary-light: #fef2f2;
+  --foreground-secondary-dark: #430c0c;
 
   --small-gap: 0.5rem;
   --medium-gap: 1rem;
