@@ -7,4 +7,4 @@ import { CharacterRepository } from './character.repository';
   providers: [CharacterRepository],
   exports: [CharacterRepository],
 })
-export class CharacterRepositoryModule { }
+export class CharacterRepositoryModule {}

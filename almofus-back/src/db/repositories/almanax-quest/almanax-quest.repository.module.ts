@@ -7,4 +7,4 @@ import { AlmanaxQuestRepository } from './almanax-quest.repository';
   providers: [AlmanaxQuestRepository],
   exports: [AlmanaxQuestRepository],
 })
-export class AlmanaxQuestRepositoryModule { }
+export class AlmanaxQuestRepositoryModule {}

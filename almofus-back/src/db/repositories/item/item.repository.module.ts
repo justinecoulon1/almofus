@@ -7,4 +7,4 @@ import { ItemRepository } from './item.repository';
   providers: [ItemRepository],
   exports: [ItemRepository],
 })
-export class ItemRepositoryModule { }
+export class ItemRepositoryModule {}

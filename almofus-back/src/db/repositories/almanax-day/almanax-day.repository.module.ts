@@ -7,4 +7,4 @@ import { AlmanaxDayRepository } from './almanax-day.repository';
   providers: [AlmanaxDayRepository],
   exports: [AlmanaxDayRepository],
 })
-export class AlmanaxDayRepositoryModule { }
+export class AlmanaxDayRepositoryModule {}

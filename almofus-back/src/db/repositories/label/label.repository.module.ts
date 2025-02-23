@@ -7,4 +7,4 @@ import { LabelRepository } from './label.repository';
   providers: [LabelRepository],
   exports: [LabelRepository],
 })
-export class LabelRepositoryModule { }
+export class LabelRepositoryModule {}
