@@ -5,14 +5,22 @@
   height: calc(100vh - 2 * var(--almanax-page-vertical-padding) - var(--header-height));
   width: fit-content;
 
-  padding: var(--small-gap);
-  gap: var(--medium-gap);
-
-  overflow-y: scroll;
   overflow-x: hidden;
 
   background-color: var(--primary-medium);
   border: 2px solid var(--primary-darker);
   border-right: transparent;
   border-radius: 10px 0 0 10px;
+
+  .characterProfilesScrollableContainer {
+    overflow-y: scroll;
+
+    .characterProfilesContainer {
+      display: flex;
+      flex-direction: column;
+
+      padding: var(--small-gap);
+      gap: var(--medium-gap);
+    }
+  }
 }

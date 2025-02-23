@@ -22,7 +22,7 @@ function AlmanaxCalendarSection() {
     if (user) {
       return (
         <>
-          <CharacterSection characters={user.characters} />
+          <CharacterSection user={user} />
           <AlmanaxCalendar characters={user.characters} />
         </>
       );

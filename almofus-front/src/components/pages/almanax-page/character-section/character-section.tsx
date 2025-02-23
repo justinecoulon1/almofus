@@ -1,17 +1,21 @@
-import { CharacterDto } from '@/utils/api/dto/character.dto';
+import { CompleteUserDto } from '@/utils/api/dto/user.dto';
 import { useTranslations } from 'next-intl';
+import { AddCharacterButton } from './add-character-button';
 import { CharacterProfile } from './character-profile';
 import styles from './character-section.module.css';
-import { AddCharacterButton } from './add-character-button';
 
-export function CharacterSection(parameters: { characters: CharacterDto[] }) {
+export function CharacterSection({ user }: { user: CompleteUserDto }) {
   const t = useTranslations('almanax-page');
   return (
     <div className={styles.characterSectionContainer}>
-      <AddCharacterButton />
-      {parameters.characters.map((character, index) => (
-        <CharacterProfile key={index} />
-      ))}
+      <AddCharacterButton user={user} />
+      <div className={styles.characterProfilesScrollableContainer}>
+        <div className={styles.characterProfilesContainer}>
+          {user.characters.map((character, index) => (
+            <CharacterProfile key={index} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
