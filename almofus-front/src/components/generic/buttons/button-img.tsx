@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import Image from 'next/image';
 import React from 'react';
 import styles from './buttons.module.css';
@@ -12,12 +13,12 @@ interface CompleteGenericButtonProps extends React.ButtonHTMLAttributes<HTMLButt
 
 interface ButtonProps extends Omit<CompleteGenericButtonProps, 'buttonStyle'> {}
 
-export function OrangeAccentButtonWithImage(props: ButtonProps) {
-  return <GenericButtonWithImage buttonStyle={styles.orangeButton} {...props} />;
+export function SecondaryButtonWithImage(props: ButtonProps) {
+  return <GenericButtonWithImage buttonStyle={styles.secondaryButton} {...props} />;
 }
 
 export function PrimaryButtonWithImage(props: ButtonProps) {
-  return <GenericButtonWithImage buttonStyle="fgezrger" {...props} />;
+  return <GenericButtonWithImage buttonStyle={styles.primaryButton} {...props} />;
 }
 
 export function GenericButtonWithImage({
@@ -29,7 +30,7 @@ export function GenericButtonWithImage({
   ...buttonProps
 }: CompleteGenericButtonProps) {
   return (
-    <button className={buttonStyle} {...buttonProps}>
+    <button {...buttonProps} className={classNames(buttonStyle, buttonProps.className)}>
       <Image className={imageStyle} src={imageSrc} alt={imageLabel} width={imageSize} height={imageSize} />
     </button>
   );

@@ -1,4 +1,4 @@
-import { OrangeAccentButtonWithImage } from '@/components/generic/buttons/button-img';
+import { SecondaryButtonWithImage } from '@/components/generic/buttons/button-img';
 import { useRouter } from '@/i18n/routing';
 import characterRequestProcessor from '@/utils/api/character.request-processor';
 import { CompleteUserDto } from '@/utils/api/dto/user.dto';
@@ -16,10 +16,8 @@ export function AddCharacterButton({ user }: { user: CompleteUserDto }) {
     router.refresh();
   };
   return (
-    <OrangeAccentButtonWithImage
-      onClick={async () => {
-        createCharacter();
-      }}
+    <SecondaryButtonWithImage
+      onClick={createCharacter}
       onKeyDown={(e) => {
         if (e.key === 'Escape') {
         }
@@ -27,6 +25,7 @@ export function AddCharacterButton({ user }: { user: CompleteUserDto }) {
       imageSrc={'/icons/add-user.png'}
       imageStyle={styles.addImage}
       imageAlt={'Add Character'}
+      className={styles.createCharacterButton}
     />
   );
 }

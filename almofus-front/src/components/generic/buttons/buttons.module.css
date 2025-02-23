@@ -1,11 +1,10 @@
-.orangeButton {
+.secondaryButton {
   display: flex;
   justify-content: center;
   align-items: center;
   height: fit-content;
   padding: 0.5rem;
   font-size: 1rem;
-  border-radius: 0.3rem;
 
   background-color: var(--secondary-dark);
   border: 2px solid transparent;
@@ -16,7 +15,7 @@
     border: 2px solid var(--secondary-darker);
   }
 }
-.blueButton {
+.primaryButton {
   display: flex;
   justify-content: center;
   align-items: center;

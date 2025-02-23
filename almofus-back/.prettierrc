@@ -2,5 +2,6 @@
   "editor.formatOnSave": true,
   "singleQuote": true,
   "trailingComma": "all",
-  "printWidth": 120
+  "printWidth": 120,
+  "endOfLine": "crlf"
 }
