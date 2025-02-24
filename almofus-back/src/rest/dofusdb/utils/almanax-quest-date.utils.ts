@@ -93,6 +93,7 @@ function getThanksgivingCanadaDate(year: number): MobileDateInfo {
     mobileEvent: MobileEvent.THANKSGIVING_CA,
   };
 }
+
 function getThanksgivingUnitedStatesDate(year: number): MobileDateInfo {
   const november = dayjs(`${year}-11-01`);
   const firstDayOfMonth = november.startOf('month');

@@ -1,14 +1,14 @@
 .addImage {
-    height: 2rem;
-    width: 2rem;
+  height: 2rem;
+  width: 2rem;
 }
 
 .addCharacterButtonContainer {
-    display: flex;
-    border-right: 2px solid var(--primary-darker);
+  display: flex;
+  border-right: 2px solid var(--primary-darker);
 
-    .createCharacterButton {
-        border-radius: 0.5rem 0 0 0;
-        width: 100%;
-    }
+  .createCharacterButton {
+    border-radius: 0.5rem 0 0 0;
+    width: 100%;
+  }
 }

@@ -7,7 +7,7 @@ interface CompleteGenericLinkProps extends React.LinkHTMLAttributes<HTMLAnchorEl
   href: string;
 }
 
-interface LinkProps extends Omit<CompleteGenericLinkProps, 'linkStyle'> { }
+interface LinkProps extends Omit<CompleteGenericLinkProps, 'linkStyle'> {}
 
 export function SecondaryLink(props: LinkProps) {
   return <GenericLink linkStyle={styles.secondaryLink} {...props} />;
@@ -17,12 +17,7 @@ export function PrimaryLink(props: LinkProps) {
   return <GenericLink linkStyle={styles.primaryLink} {...props} />;
 }
 
-export function GenericLink({
-  linkStyle,
-  label,
-  href,
-  ...linkProps
-}: CompleteGenericLinkProps) {
+export function GenericLink({ linkStyle, label, href, ...linkProps }: CompleteGenericLinkProps) {
   return (
     <Link {...linkProps} className={linkStyle} href={href}>
       {label}

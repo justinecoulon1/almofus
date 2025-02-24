@@ -103,7 +103,7 @@ function LoginTab({ setLightboxOpened }: { setLightboxOpened: (isOpened: boolean
   );
 }
 
-function RegisterTab({ }) {
+function RegisterTab({}) {
   return (
     <form>
       <div className={styles.inputsDiv}>

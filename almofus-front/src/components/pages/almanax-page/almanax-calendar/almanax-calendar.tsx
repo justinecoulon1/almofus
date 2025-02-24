@@ -12,18 +12,21 @@ export function AlmanaxCalendar(parameters: { characters: CharacterDto[] }) {
   const days = Object.keys(DaysOfWeek);
   return (
     <div className={styles.almanaxCalendarContainer}>
-      {days.map(day => <div className={styles.gridHeader}>{day}</div>)}
+      {days.map((day, i) => (
+        <div key={`day_${i}`} className={styles.gridHeader}>
+          {day}
+        </div>
+      ))}
       {calendar.map((c) =>
         c.map((d, index) => {
           if (d !== null) {
-            return <CalendarDay key={index} characters={parameters.characters} dayindex={d} />
+            return <CalendarDay key={index} characters={parameters.characters} dayindex={d} />;
           } else {
-            return <CalendarDay key={index} characters={parameters.characters} dayindex={d} />
+            return <CalendarDay key={index} characters={parameters.characters} dayindex={d} />;
           }
-        })
-      )
-      }
-    </div >
+        }),
+      )}
+    </div>
   );
 }
 
