@@ -56,10 +56,6 @@ main {
     flex: 1;
 }
 
-.noUserSelect {
-    user-select: none;
-}
-
 button {
     border: none;
     font-family: var(--font-orbitron);

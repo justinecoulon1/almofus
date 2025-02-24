@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import styles from '../header.module.css';
 import { LoginTabs } from "./login-tabs";
-import { GenericButton } from "@/components/generic/buttons/button";
+import { SecondaryButton } from "@/components/generic/buttons/button";
 
 export function LoginButton({
     setLightboxOpened,
@@ -12,7 +12,7 @@ export function LoginButton({
 }) {
     const t = useTranslations('header');
     return (
-        <GenericButton style={styles.orangePlainButton}
+        <SecondaryButton
             label={t('login')}
             onClick={async () => {
                 setLightboxOpened(true);

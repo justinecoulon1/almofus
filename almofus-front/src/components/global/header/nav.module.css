@@ -1,0 +1,30 @@
+.nav {
+    display: flex;
+    align-items: center;
+
+    gap: var(--medium-gap);
+
+    font-family: var(--font-orbitron);
+
+    & a,
+    & button {
+        display: flex;
+
+        height: fit-content;
+
+        padding: 0.5rem;
+
+        font-size: 1rem;
+        border-radius: 0.3rem;
+        text-decoration: none;
+    }
+
+    .userBtn {
+        border-radius: 50%;
+
+        .userImg {
+            height: 1.3rem;
+            width: auto;
+        }
+    }
+}

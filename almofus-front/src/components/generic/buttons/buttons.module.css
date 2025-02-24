@@ -15,6 +15,7 @@
     border: 2px solid var(--secondary-darker);
   }
 }
+
 .primaryButton {
   display: flex;
   justify-content: center;
@@ -22,7 +23,6 @@
   height: fit-content;
   padding: 0.5rem;
   font-size: 1rem;
-  border-radius: 0.3rem;
 
   background-color: var(--primary-medium);
   border: 2px solid var(--secondary-dark);

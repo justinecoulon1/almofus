@@ -15,15 +15,12 @@ import { LoginButton } from './login/login-button';
 import { LoginLightbox } from './login/login-lightbox/log-in-lightbox';
 import { LoginTabs } from './login/login-tabs';
 import { RegisterButton } from './login/register-button';
+import { HeaderNav } from './nav';
 
 export function Header() {
-  const router = useRouter();
   const t = useTranslations('header');
-  const user = useLocalStorageItem('user');
-  const [isLightboxOpened, setLightboxOpened] = useState(false);
-  const [loginTab, setLoginTab] = useState(LoginTabs.LOGIN);
   return (
-    <div className={classNames(styles.header, 'noUserSelect')}>
+    <div className={styles.header}>
       <div className={styles.headerContainer}>
         <div className={styles.logoDiv}>
           <Link className={styles.almanaxBtn} href={'/'}>
@@ -31,37 +28,7 @@ export function Header() {
           </Link>
           <h1>{t('maintitle')}</h1>
         </div>
-        <nav className={styles.nav}>
-          {user ? <AlmanaxLink /> : <LoginButton setLightboxOpened={setLightboxOpened} setLoginTab={setLoginTab} />}
-          <LoginLightbox
-            isLightboxOpened={isLightboxOpened}
-            setLightboxOpened={setLightboxOpened}
-            loginTab={loginTab}
-            setLoginTab={setLoginTab}
-          />
-          {user ? (
-            <ShoppingListLink />
-          ) : (
-            <RegisterButton setLightboxOpened={setLightboxOpened} setLoginTab={setLoginTab} />
-          )}
-          {user && (
-            <GenericButtonWithImage
-              buttonStyle={classNames(styles.userBtn, styles.bluePlainButton)}
-              onClick={() => {
-                clearLocalStorage();
-                router.refresh();
-              }}
-              onKeyDown={() => {
-                clearLocalStorage();
-                router.refresh();
-              }}
-              imageSrc={'/icons/user.png'}
-              imageStyle={styles.userImg}
-              imageAlt={'user'}
-              imageSize={512}
-            />
-          )}
-        </nav>
+        <HeaderNav />
       </div>
     </div>
   );
