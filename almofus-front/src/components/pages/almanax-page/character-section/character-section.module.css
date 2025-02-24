@@ -1,26 +1,22 @@
 .characterSectionContainer {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  height: calc(100vh - 2 * var(--almanax-page-vertical-padding) - var(--header-height));
-  width: fit-content;
+    width: fit-content;
+    overflow-x: hidden;
 
-  overflow-x: hidden;
+    background-color: var(--primary-medium);
 
-  background-color: var(--primary-medium);
-  border: 2px solid var(--primary-darker);
-  border-right: transparent;
-  border-radius: 10px 0 0 10px;
+    .characterProfilesScrollableContainer {
+        overflow-y: scroll;
 
-  .characterProfilesScrollableContainer {
-    overflow-y: scroll;
+        .characterProfilesContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-    .characterProfilesContainer {
-      display: flex;
-      flex-direction: column;
-
-      padding: var(--small-gap);
-      gap: var(--medium-gap);
+            padding: var(--small-gap);
+            gap: var(--medium-gap);
+        }
     }
-  }
 }

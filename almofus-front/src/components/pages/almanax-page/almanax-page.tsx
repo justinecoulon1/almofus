@@ -21,10 +21,10 @@ function AlmanaxCalendarSection() {
   if (useMounted()) {
     if (user) {
       return (
-        <>
+        <div className={styles.almanaxCalendarContainer}>
           <CharacterSection user={user} />
           <AlmanaxCalendar characters={user.characters} />
-        </>
+        </div>
       );
     }
     return <MustLogInSection />;

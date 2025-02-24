@@ -21,10 +21,9 @@ class UserMapper {
     return entities.map((entity) => this.toDto(entity));
   }
 
-  async toCompleteDtos(entities: User[]): Promise<CompleteUserDto[]> {
+  toCompleteDtos(entities: User[]): Promise<CompleteUserDto[]> {
     const dtoPromises = entities.map((entity) => this.toCompleteDto(entity));
-    const dtos = await Promise.all(dtoPromises);
-    return dtos;
+    return Promise.all(dtoPromises);
   }
 }
 

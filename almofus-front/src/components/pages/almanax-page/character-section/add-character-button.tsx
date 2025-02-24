@@ -16,16 +16,18 @@ export function AddCharacterButton({ user }: { user: CompleteUserDto }) {
     router.refresh();
   };
   return (
-    <SecondaryButtonWithImage
-      onClick={createCharacter}
-      onKeyDown={(e) => {
-        if (e.key === 'Escape') {
-        }
-      }}
-      imageSrc={'/icons/add-user.png'}
-      imageStyle={styles.addImage}
-      imageAlt={'Add Character'}
-      className={styles.createCharacterButton}
-    />
+    <div className={styles.addCharacterButtonContainer}>
+      <SecondaryButtonWithImage
+        onClick={createCharacter}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') {
+          }
+        }}
+        imageSrc={'/icons/add-user.png'}
+        imageStyle={styles.addImage}
+        imageAlt={'Add Character'}
+        className={styles.createCharacterButton}
+      />
+    </div>
   );
 }
