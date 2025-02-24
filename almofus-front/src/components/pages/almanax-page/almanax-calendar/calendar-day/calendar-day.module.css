@@ -1,0 +1,10 @@
+.calendarDayContainer {
+    display: flex;
+
+    padding: var(--small-gap);
+
+    font-weight: bold;
+
+    background-color: var(--primary-medium);
+    border-radius: 10px;
+}
