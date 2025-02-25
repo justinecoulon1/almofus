@@ -4,8 +4,8 @@ import styles from './almanax-calendar.module.css';
 import dayjs from 'dayjs';
 import { DaysOfWeek, generateCalendar, Months } from './calendar-utils/calendar';
 import { CalendarDay } from './calendar-day/calendar-day';
-import { SecondaryDarkButtonWithImage } from '@/components/generic/buttons/button-img';
 import { useState } from 'react';
+import { CalendarHeader } from './calendar-header/calendar-header';
 
 export function AlmanaxCalendar(parameters: { characters: CharacterDto[] }) {
   const t = useTranslations('almanax-page');
@@ -18,31 +18,7 @@ export function AlmanaxCalendar(parameters: { characters: CharacterDto[] }) {
   const currentMonth = months.find(([, value]) => value === currentDayJs.month())?.[0];
   return (
     <div className={styles.almanaxCalendarContainer}>
-      <div className={styles.almanaxCalendarHeader}>
-        <SecondaryDarkButtonWithImage
-          imageSrc={'/icons/left-arrow.png'}
-          imageAlt={'left arrow'}
-          imageStyle={styles.buttonImg}
-          onClick={() => { setMonthDelta(monthDelta - 1); }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-            }
-          }}
-        />
-        <h2>
-          {currentMonth} {currentDayJs.year()}
-        </h2>
-        <SecondaryDarkButtonWithImage
-          imageSrc={'/icons/right-arrow.png'}
-          imageAlt={'left arrow'}
-          imageStyle={styles.buttonImg}
-          onClick={() => { setMonthDelta(monthDelta + 1); }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-            }
-          }}
-        />
-      </div>
+      <CalendarHeader currentMonth={currentMonth} setMonthDelta={setMonthDelta} monthDelta={monthDelta} currentDayJs={currentDayJs} />
       <div className={styles.almanaxCalendarGridContainer}>
         {days.map((day, i) => (
           <div key={`day_${i}`} className={styles.gridHeader}>

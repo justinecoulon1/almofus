@@ -1,0 +1,12 @@
+.almanaxCalendarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--primary-medium);
+}  
+
+.buttonImg {
+  height: 2rem;
+  width: 2rem;
+}

@@ -7,14 +7,6 @@
 
   color: var(--foreground-primary-light);
 
-  .almanaxCalendarHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background-color: var(--primary-medium);
-  }
-
   .almanaxCalendarGridContainer {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -42,9 +34,4 @@
 
     background-color: var(--primary-dark);
   }
-}
-
-.buttonImg {
-  height: 2rem;
-  width: 2rem;
 }
