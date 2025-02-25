@@ -12,6 +12,7 @@
   "loginLightbox": {},
   "daily-almanax": {},
   "almanax-page": {
-    "addCharacter": "Nouveau"
+    "addCharacter": "Nouveau",
+    "characterDefaultName": "Nouveau personnage"
   }
 }

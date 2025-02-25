@@ -12,7 +12,7 @@ export function CharacterSection({ user }: { user: CompleteUserDto }) {
       <div className={styles.characterProfilesScrollableContainer}>
         <div className={styles.characterProfilesContainer}>
           {user.characters.map((character, index) => (
-            <CharacterProfile key={index} />
+            <CharacterProfile key={index} character={character} />
           ))}
         </div>
       </div>
@@ -23,9 +23,6 @@ export function CharacterSection({ user }: { user: CompleteUserDto }) {
 export function CharacterSectionDisabled() {
   return (
     <div className={styles.characterSectionContainer}>
-      <CharacterProfile disabled={true} />
-      <CharacterProfile disabled={true} />
-      <CharacterProfile disabled={true} />
     </div>
   );
 }

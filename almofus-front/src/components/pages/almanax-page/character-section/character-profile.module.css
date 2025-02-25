@@ -1,4 +1,4 @@
-.characterSelectionButton {
+.characterProfileDiv {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,14 +10,24 @@
   border-radius: 2rem 2rem 0 0;
   background-color: var(--primary-darker);
 
-  cursor: pointer;
-
   .selectionDisplayImg {
     position: absolute;
     top: 0;
     left: 0;
     height: 1rem;
     width: 1rem;
+
+    cursor: pointer;
+  }
+
+  .editImg{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 1rem;
+    width: 1rem;
+
+    cursor: pointer;
   }
 
   .characterProfileText {
