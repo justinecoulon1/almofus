@@ -1,7 +1,7 @@
 import styles from './calendar-header.module.css';
 import { SecondaryDarkButtonWithImage } from '@/components/generic/buttons/button-img';
 import { Dayjs } from 'dayjs';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 export function CalendarHeader(
     {

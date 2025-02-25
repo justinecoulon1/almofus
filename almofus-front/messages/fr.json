@@ -14,5 +14,6 @@
   "almanax-page": {
     "addCharacter": "Nouveau",
     "characterDefaultName": "Nouveau personnage"
-  }
+  },
+  "edit-character-lightbox": {}
 }
