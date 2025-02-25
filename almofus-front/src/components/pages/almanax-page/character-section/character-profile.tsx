@@ -2,18 +2,22 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import styles from './character-profile.module.css';
 import { CharacterDto } from '@/utils/api/dto/character.dto';
+import { EditCharacterLightbox } from '../edit-character-lightbox/edit-character-lightbox';
+import { useState } from 'react';
 
 export function CharacterProfile({
   disabled = false,
   character,
-  setLightboxOpened,
 }: {
   disabled?: boolean;
   character: CharacterDto,
-  setLightboxOpened: (isOpened: boolean) => void
 }) {
   const t = useTranslations('almanax-page');
-  return <div className={styles.characterProfileDiv}>{!disabled && <CharacterProfileInnerContent character={character} setLightboxOpened={setLightboxOpened} />}</div>;
+  const [isLightboxOpened, setLightboxOpened] = useState(false);
+  return (<>
+    <EditCharacterLightbox isLightboxOpened={isLightboxOpened} setLightboxOpened={setLightboxOpened} character={character} />
+    <div className={styles.characterProfileDiv}>{!disabled && <CharacterProfileInnerContent character={character} setLightboxOpened={setLightboxOpened} />}</div>
+  </>);
 }
 
 function CharacterProfileInnerContent({ character, setLightboxOpened }: {
