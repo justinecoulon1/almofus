@@ -8,7 +8,7 @@ import { SecondaryButtonWithImage } from '@/components/generic/buttons/button-im
 
 export function AlmanaxCalendar(parameters: { characters: CharacterDto[] }) {
   const t = useTranslations('almanax-page');
-  const currentDayJs = dayjs().add(0, 'month');
+  const currentDayJs = dayjs().add(-2, 'month');
   const calendar = generateCalendar(currentDayJs);
   const days = Object.keys(DaysOfWeek);
   const months = Object.entries(Months);
@@ -21,7 +21,9 @@ export function AlmanaxCalendar(parameters: { characters: CharacterDto[] }) {
           imageAlt={'left arrow'}
           imageStyle={styles.buttonImg}
         />
-        <h2>{currentMonth}</h2>
+        <h2>
+          {currentMonth} {currentDayJs.year()}
+        </h2>
         <SecondaryButtonWithImage
           imageSrc={'/icons/right-arrow.png'}
           imageAlt={'left arrow'}
