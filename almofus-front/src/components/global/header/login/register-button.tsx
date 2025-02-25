@@ -1,5 +1,4 @@
 import { useTranslations } from 'next-intl';
-import styles from '../header.module.css';
 import { LoginTabs } from './login-tabs';
 import { PrimaryButton } from '@/components/generic/buttons/button';
 

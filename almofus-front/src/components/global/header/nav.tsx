@@ -1,6 +1,6 @@
 'use client';
 
-import { GenericButtonWithImage, PrimaryButtonWithImage } from '@/components/generic/buttons/button-img';
+import { PrimaryButtonWithImage } from '@/components/generic/buttons/button-img';
 import { AlmanaxLink } from './links/almanax-link';
 import { ShoppingListLink } from './links/shopping-link';
 import { LoginButton } from './login/login-button';
@@ -34,10 +34,6 @@ export function HeaderNav() {
         <PrimaryButtonWithImage
           className={styles.userBtn}
           onClick={() => {
-            clearLocalStorage();
-            router.refresh();
-          }}
-          onKeyDown={() => {
             clearLocalStorage();
             router.refresh();
           }}
