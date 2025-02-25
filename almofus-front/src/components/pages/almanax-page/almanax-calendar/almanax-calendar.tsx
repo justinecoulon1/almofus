@@ -4,7 +4,7 @@ import styles from './almanax-calendar.module.css';
 import dayjs from 'dayjs';
 import { DaysOfWeek, generateCalendar, Months } from './calendar-utils/calendar';
 import { CalendarDay } from './calendar-day/calendar-day';
-import { SecondaryButtonWithImage } from '@/components/generic/buttons/button-img';
+import { SecondaryDarkButtonWithImage } from '@/components/generic/buttons/button-img';
 import { useState } from 'react';
 
 export function AlmanaxCalendar(parameters: { characters: CharacterDto[] }) {
@@ -19,7 +19,7 @@ export function AlmanaxCalendar(parameters: { characters: CharacterDto[] }) {
   return (
     <div className={styles.almanaxCalendarContainer}>
       <div className={styles.almanaxCalendarHeader}>
-        <SecondaryButtonWithImage
+        <SecondaryDarkButtonWithImage
           imageSrc={'/icons/left-arrow.png'}
           imageAlt={'left arrow'}
           imageStyle={styles.buttonImg}
@@ -32,7 +32,7 @@ export function AlmanaxCalendar(parameters: { characters: CharacterDto[] }) {
         <h2>
           {currentMonth} {currentDayJs.year()}
         </h2>
-        <SecondaryButtonWithImage
+        <SecondaryDarkButtonWithImage
           imageSrc={'/icons/right-arrow.png'}
           imageAlt={'left arrow'}
           imageStyle={styles.buttonImg}
