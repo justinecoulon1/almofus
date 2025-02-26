@@ -6,6 +6,7 @@ class CharacterMapper {
     return {
       id: entity.id,
       name: entity.name,
+      profilePictureId: entity.profilePictureId,
     };
   }
 

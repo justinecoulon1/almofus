@@ -12,6 +12,9 @@ export class Character {
   @Length(3, 50)
   name: string;
 
+  @Column({ name: 'profile_picture_id' })
+  profilePictureId: number;
+
   @ManyToOne(() => User, (user) => user.characters)
   @JoinColumn({ name: 'user_id' })
   user: Promise<User>;
