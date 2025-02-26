@@ -3,6 +3,7 @@
 import { GenericLightbox } from '@/components/generic/lightbox/lightbox';
 import { EditCharacterLightboxContent } from './edit-character-lighbox-content';
 import { CharacterDto } from '@/utils/api/dto/character.dto';
+import { EditCharacterLightboxProvider } from '@/components/pages/almanax-page/edit-character-lightbox/edit-character-lightbox-context';
 
 export function EditCharacterLightbox({
   isLightboxOpened,
@@ -15,7 +16,9 @@ export function EditCharacterLightbox({
 }) {
   return (
     <GenericLightbox isLightboxOpened={isLightboxOpened} setLightboxOpened={setLightboxOpened}>
-      <EditCharacterLightboxContent character={character} />
+      <EditCharacterLightboxProvider character={character}>
+        <EditCharacterLightboxContent />
+      </EditCharacterLightboxProvider>
     </GenericLightbox>
   );
 }

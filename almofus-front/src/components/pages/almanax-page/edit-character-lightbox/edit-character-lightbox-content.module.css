@@ -9,7 +9,7 @@
   height: 55vh;
   width: 25rem;
 
-  gap: var(--big-gap);
+  gap: var(--medium-gap);
   padding: var(--small-gap);
 
   border-radius: 1.3rem;
@@ -23,7 +23,49 @@
   .inputsDiv {
     display: flex;
     flex-direction: column;
+    align-items: center;
 
-    width: 70%;
+    width: 100%;
+
+    gap: var(--medium-gap);
+
+    .profileContainer {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+
+      .profilePictureContainer {
+        display: flex;
+
+        width: fit-content;
+
+        padding: var(--medium-gap);
+
+        border: 2px solid var(--tertiary-light);
+
+        .profilePicture {
+          height: 3rem;
+          width: 3rem;
+        }
+      }
+
+      .colorDiv {
+      }
+    }
+
+    .characterNameInputDiv {
+      display: flex;
+
+      width: 70%;
+    }
+  }
+
+  .seperator {
+    display: flex;
+
+    width: 90%;
+    height: 1px;
+
+    background-color: var(--tertiary-light);
   }
 }
