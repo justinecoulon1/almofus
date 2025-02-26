@@ -1,0 +1,33 @@
+.inputDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  gap: var(--small-gap);
+
+  .label {
+    align-self: flex-start;
+  }
+
+  .input {
+    width: 100%;
+    padding: var(--small-gap);
+
+    background-color: var(--primary-medium);
+    color: var(--tertiary-light);
+
+    text-align: center;
+
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+
+    &:focus {
+      background-color: var(--primary-medium-highlight);
+      box-shadow: 0 0 10px var(--tertiary-medium);
+    }
+  }
+}

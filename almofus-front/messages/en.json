@@ -23,7 +23,31 @@
   "almanax-page": {
     "character-default-name": "New character"
   },
+  "almanax-calendar-months": {
+    "JANUARY": "JANUARY",
+    "FEBRUARY": "FEBRUARY",
+    "MARCH": "MARCH",
+    "APRIL": "APRIL",
+    "MAY": "MAY",
+    "JUNE": "JUNE",
+    "JULY": "JULY",
+    "AUGUST": "AUGUST",
+    "SEPTEMBER": "SEPTEMBER",
+    "OCTOBER": "OCTOBER",
+    "NOVEMBER": "NOVEMBER",
+    "DECEMBER": "DECEMBER"
+  },
+  "almanax-calendar-days": {
+    "MONDAY": "MONDAY",
+    "TUESDAY": "TUESDAY",
+    "WEDNESDAY": "WEDNESDAY",
+    "THURSDAY": "THURSDAY",
+    "FRIDAY": "FRIDAY",
+    "SATURDAY": "SATURDAY",
+    "SUNDAY": "SUNDAY"
+  },
   "edit-character-lightbox": {
-    "edit-character": "Edit character"
+    "edit-character": "Edit character",
+    "character-name-input-label": "Character's name"
   }
 }

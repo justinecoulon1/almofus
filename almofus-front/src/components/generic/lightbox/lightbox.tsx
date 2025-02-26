@@ -28,7 +28,7 @@ export function GenericLightbox({
         }
       }}
     >
-      {children}
+      {isLightboxOpened && children}
     </div>
   );
 }

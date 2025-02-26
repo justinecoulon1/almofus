@@ -1,61 +1,29 @@
 .lightboxContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: absolute;
+  overflow-y: auto;
+
+  height: 55vh;
+  width: 25rem;
+
+  gap: var(--big-gap);
+  padding: var(--small-gap);
+
+  border-radius: 1.3rem;
+  border: 2px solid var(--tertiary-dark);
+  box-shadow: 0 0 20px rgba(40, 161, 164, 0.6);
+
+  background-color: rgba(43, 46, 74, 0.9);
+  color: var(--tertiary-light);
+  backdrop-filter: blur(1rem);
+
+  .inputsDiv {
     display: flex;
     flex-direction: column;
-    align-items: center;
 
-    position: absolute;
-    overflow-y: auto;
-
-    height: 55vh;
-    width: 25rem;
-
-    gap: var(--big-gap);
-    padding: var(--small-gap);
-
-    border-radius: 1.3rem;
-    border: 2px solid var(--tertiary-dark);
-    box-shadow: 0px 0px 20px rgba(40, 161, 164, 0.6);
-
-    background-color: rgba(43, 46, 74, 0.9);
-    color: var(--tertiary-light);
-    backdrop-filter: blur(1rem);
-
-    .characterNameContainer {
-        display: flex;
-
-        .nameInput {
-            width: 100%;
-            padding: var(--small-gap);
-
-            background-color: var(--primary-medium);
-            color: var(--tertiary-light);
-
-            text-align: center;
-
-            border: none;
-            border-radius: 10px 0 0 10px;
-            outline: none;
-            transition: 0.3s;
-
-            &:focus {
-            background-color: var(--primary-medium-highlight);
-            box-shadow: 0px 0px 10px var(--tertiary-medium);
-            }
-        }
-
-        .editButton {
-            display: flex;
-            
-            padding: var(--small-gap);
-            border-radius: 0 10px 10px 0;
-        }
-    }
-}
-.editable {
-    pointer-events: none;
-}
-
-.editImage {
-    height:1rem;
-    width:1rem;
+    width: 70%;
+  }
 }

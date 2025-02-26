@@ -1,30 +1,48 @@
 import styles from '@/components/global/header/login/login-lightbox/login-lightbox.module.css';
 import { useTranslations } from 'next-intl';
+import { TertiaryGlowingInput } from '@/components/generic/inputs/input';
+import { useState } from 'react';
 
 export function RegisterTab({}) {
   const t = useTranslations('login-lightbox');
+  const [pseudo, setPseudo] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   return (
     <form>
       <div className={styles.inputsDiv}>
-        <div className={styles.inputDiv}>
-          <label htmlFor="pseudo">{t('pseudo-input-label')}</label>
-          <input type="text" name="pseudo" id="pseudo" />
-        </div>
-        <div className={styles.inputDiv}>
-          <label htmlFor="email">{t('email-input-label')}</label>
-          <input type="text" name="email" id="email" />
-        </div>
-        <div className={styles.inputDiv}>
-          <label htmlFor="password">{t('password-input-label')}</label>
-          <input type="password" name="password" id="password" />
-        </div>
-        <div className={styles.inputDiv}>
-          <label htmlFor="confirm-password">{t('password-confirmation-input-label')}</label>
-          <input type="password" name="confirm-password" id="confirm-password" />
-        </div>
+        <TertiaryGlowingInput
+          labelText={t('pseudo-input-label')}
+          inputType={'text'}
+          inputName={'pseudo'}
+          inputValue={pseudo}
+          onInputValueChange={setPseudo}
+        />
+        <TertiaryGlowingInput
+          labelText={t('email-input-label')}
+          inputType={'text'}
+          inputName={'email'}
+          inputValue={email}
+          onInputValueChange={setEmail}
+        />
+        <TertiaryGlowingInput
+          labelText={t('password-input-label')}
+          inputType={'password'}
+          inputName={'password'}
+          inputValue={password}
+          onInputValueChange={setPassword}
+        />
+        <TertiaryGlowingInput
+          labelText={t('password-confirmation-input-label')}
+          inputType={'password'}
+          inputName={'confirm-password'}
+          inputValue={confirmPassword}
+          onInputValueChange={setConfirmPassword}
+        />
       </div>
       <input
-        className={styles.button}
+        className={styles.buttonInput}
         type="submit"
         value={t('register-input-label')}
         onClick={(e) => {

@@ -20,10 +20,34 @@
     "password-confirmation-input-label": "Confirmation du mot de passe"
   },
   "daily-almanax": {},
+  "almanax-calendar-months": {
+    "JANUARY": "JANVIER",
+    "FEBRUARY": "FÉVRIER",
+    "MARCH": "MARS",
+    "APRIL": "AVRIL",
+    "MAY": "MAI",
+    "JUNE": "JUIN",
+    "JULY": "JUILLET",
+    "AUGUST": "AOUT",
+    "SEPTEMBER": "SEPTEMBRE",
+    "OCTOBER": "OCTOBRE",
+    "NOVEMBER": "NOVEMBRE",
+    "DECEMBER": "DÉCEMBRE"
+  },
+  "almanax-calendar-days": {
+    "MONDAY": "LUNDI",
+    "TUESDAY": "MARDI",
+    "WEDNESDAY": "MERCREDI",
+    "THURSDAY": "JEUDI",
+    "FRIDAY": "VENDREDI",
+    "SATURDAY": "SAMEDI",
+    "SUNDAY": "DIMANCHE"
+  },
   "almanax-page": {
     "character-default-name": "Nouveau personnage"
   },
   "edit-character-lightbox": {
-    "edit-character": "Modifier le personnage"
+    "edit-character": "Modifier le personnage",
+    "character-name-input-label": "Nom du personnage"
   }
 }

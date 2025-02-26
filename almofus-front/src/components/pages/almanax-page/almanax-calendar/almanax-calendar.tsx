@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { CalendarHeader } from './calendar-header/calendar-header';
 
 export function AlmanaxCalendar(parameters: { characters: CharacterDto[] }) {
-  const t = useTranslations('almanax-page');
+  const t = useTranslations('almanax-calendar-days');
   const days = Object.keys(DaysOfWeek);
   const months = Object.entries(Months);
   const [monthDelta, setMonthDelta] = useState(0);
@@ -18,11 +18,16 @@ export function AlmanaxCalendar(parameters: { characters: CharacterDto[] }) {
   const currentMonth = months.find(([, value]) => value === currentDayJs.month())?.[0];
   return (
     <div className={styles.almanaxCalendarContainer}>
-      <CalendarHeader currentMonth={currentMonth} setMonthDelta={setMonthDelta} monthDelta={monthDelta} currentDayJs={currentDayJs} />
+      <CalendarHeader
+        currentMonth={currentMonth}
+        setMonthDelta={setMonthDelta}
+        monthDelta={monthDelta}
+        currentDayJs={currentDayJs}
+      />
       <div className={styles.almanaxCalendarGridContainer}>
         {days.map((day, i) => (
           <div key={`day_${i}`} className={styles.gridHeader}>
-            {day}
+            {t(day)}
           </div>
         ))}
         {calendar.map((d, index) => {
