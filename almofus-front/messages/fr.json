@@ -1,19 +1,29 @@
 {
   "header": {
-    "maintitle": "Almofus",
+    "main-title": "Almofus",
     "shopping": "LISTE D'ACHATS",
     "almanax": "ALMANAX",
     "login": "SE CONNECTER",
     "register": "S'INSCRIRE"
   },
-  "mustlogin": {
-    "errorMessage": "Oups - Vous devez être connecté pour accéder à cette page !"
+  "must-login": {
+    "error-message": "Oups - Vous devez être connecté pour accéder à cette page !"
   },
-  "loginLightbox": {},
+  "login-lightbox": {
+    "login": "CONNEXION",
+    "register": "INSCRIPTION",
+    "email-input-label": "Email",
+    "password-input-label": "Mot de passe",
+    "login-input-label": "SE CONNECTER",
+    "register-input-label": "S'INSCRIRE",
+    "pseudo-input-label": "Pseudo",
+    "password-confirmation-input-label": "Confirmation du mot de passe"
+  },
   "daily-almanax": {},
   "almanax-page": {
-    "addCharacter": "Nouveau",
-    "characterDefaultName": "Nouveau personnage"
+    "character-default-name": "Nouveau personnage"
   },
-  "edit-character-lightbox": {}
+  "edit-character-lightbox": {
+    "edit-character": "Modifier le personnage"
+  }
 }

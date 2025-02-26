@@ -15,7 +15,7 @@ export function Header() {
           <Link className={styles.almanaxBtn} href={'/'}>
             <Image src={'/logos.png'} alt={'logo'} width={93} height={128} />
           </Link>
-          <h1>{t('maintitle')}</h1>
+          <h1>{t('main-title')}</h1>
         </div>
         <HeaderNav />
       </div>

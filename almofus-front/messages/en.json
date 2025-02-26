@@ -1,19 +1,29 @@
 {
   "header": {
-    "maintitle": "Almofus",
+    "main-title": "Almofus",
     "shopping": "SHOPPING LIST",
     "almanax": "ALMANAX",
     "login": "LOGIN",
     "register": "REGISTER"
   },
-  "mustlogin": {
-    "errorMessage": "Oops - You must be logged in to access this page!"
+  "must-login": {
+    "error-message": "Oops - You must be logged in to access this page!"
   },
-  "loginLightbox": {},
+  "login-lightbox": {
+    "login": "LOGIN",
+    "register": "REGISTER",
+    "email-input-label": "Email",
+    "password-input-label": "Password",
+    "login-input-label": "LOGIN",
+    "register-input-label": "REGISTER",
+    "pseudo-input-label": "Pseudo",
+    "password-confirmation-input-label": "Confirm password"
+  },
   "daily-almanax": {},
   "almanax-page": {
-    "addCharacter": "New",
-    "characterDefaultName": "New character"
+    "character-default-name": "New character"
   },
-  "edit-character-lightbox": {}
+  "edit-character-lightbox": {
+    "edit-character": "Edit character"
+  }
 }

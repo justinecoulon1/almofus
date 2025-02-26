@@ -4,7 +4,7 @@ import { PrimaryButtonWithImage } from '@/components/generic/buttons/button-img'
 import { AlmanaxLink } from './links/almanax-link';
 import { ShoppingListLink } from './links/shopping-link';
 import { LoginButton } from './login/login-button';
-import { LoginLightbox } from './login/login-lightbox/log-in-lightbox';
+import { LoginLightbox } from './login/login-lightbox/login-lightbox';
 import { RegisterButton } from './login/register-button';
 import { clearLocalStorage } from '@/utils/local-storage/local-storage.utils';
 import styles from './nav.module.css';
