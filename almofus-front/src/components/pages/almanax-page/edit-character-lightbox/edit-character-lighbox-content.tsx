@@ -11,7 +11,9 @@ export function EditCharacterLightboxContent() {
   const t = useTranslations('edit-character-lightbox');
   const { character } = useEditCharacterLightboxContext();
   const [characterName, setCharacterName] = useState(character.name);
+  const [isOpen, setOpen] = useState(false);
   const pictureId = character.profilePictureId ?? 0;
+  const images =['/profile-pictures/0.png', '/profile-pictures/1.png'];
   return (
     <div className={styles.lightboxContainer} onMouseDown={(e) => e.stopPropagation()}>
       <h2>{t('edit-character')}</h2>
@@ -27,15 +29,31 @@ export function EditCharacterLightboxContent() {
         </div>
         <div className={styles.seperator}></div>
         <div className={styles.profileContainer}>
-          <div className={styles.profilePictureContainer}>
-            <Image
-              className={styles.profilePicture}
-              src={`/profile-pictures/${pictureId}.png`}
-              alt={'Character profile picture'}
-              width={512}
-              height={512}
-            />
-          </div>
+          <button className={styles.profilePictureContainer} onClick={() => setOpen((prev) => !prev)}>
+              <Image
+                className={styles.profilePicture}
+                src={`/profile-pictures/${pictureId}.png`}
+                alt={'Character profile picture'}
+                width={512}
+                height={512}
+              />
+          </button>
+          {isOpen && <div className={styles.dropDown}>
+            <ul>
+              {images.map((image, index) =>
+                  <div key={index}>
+                    <button className={styles.profilePictureContainer} onClick={() => {}}>
+                      <Image
+                          className={styles.profilePicture}
+                          src={image}
+                          alt={'Character profile picture'}
+                          width={512}
+                          height={512}
+                      />
+                    </button>
+                  </div>)}
+            </ul>
+          </div>}
           <div>
             <div className={styles.colorDiv}></div>
           </div>

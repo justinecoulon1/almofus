@@ -36,16 +36,32 @@
 
       .profilePictureContainer {
         display: flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;
 
         width: fit-content;
+        height: fit-content;
 
-        padding: var(--medium-gap);
+        padding: var(--small-gap);
+
+        background-color: transparent;
 
         border: 2px solid var(--tertiary-light);
 
-        .profilePicture {
-          height: 3rem;
+        .profilePicture{
           width: 3rem;
+          height: 3rem;
+        }
+      }
+
+      .dropDown {
+        display: flex;
+        position: absolute;
+
+        .profilePicture{
+          width: 3rem;
+          height: 3rem;
         }
       }
 
