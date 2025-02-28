@@ -23,22 +23,25 @@
   .inputsDiv {
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     width: 100%;
     height: 100%;
 
-    gap: var(--medium-gap);
+    gap: var(--big-gap);
 
     .generalPictureSection {
       display: flex;
       align-items: center;
 
+      width:100%;
+
       .profilePictureSectionContainer {
         display: flex;
         position: relative;
-        width: 30%;
+        width: 40%;
 
-        padding: 0 var(--small-gap) 0 var(--small-gap);
+        padding: 0 var(--big-gap) 0 var(--big-gap);
 
         .profilePictureContainer {
           display: flex;
@@ -49,8 +52,8 @@
           border: 2px solid var(--tertiary-light);
 
           .profilePicture{
-            width: 3rem;
-            height: 3rem;
+            width: 4rem;
+            height: 4rem;
             z-index: -1;
           }
         }
@@ -103,12 +106,35 @@
       }
     }
   }
-  .seperator {
+  .separator {
     display: flex;
 
     width: 90%;
     height: 1px;
 
     background-color: var(--tertiary-light);
+  }
+}
+
+.submitButton {
+  width: fit-content;
+  padding: var(--small-gap);
+
+  border-radius: 10px;
+
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+
+  font-family: var(--font-electrolize);
+  background-color: var(--tertiary-medium);
+  color: var(--primary-dark);
+
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: var(--tertiary-light);
+    box-shadow: 0px 0px 15px var(--tertiary-light);
   }
 }

@@ -48,6 +48,7 @@
   },
   "edit-character-lightbox": {
     "edit-character": "Edit character",
-    "character-name-input-label": "Character's name"
+    "character-name-input-label": "Character's name",
+    "save": "Save"
   }
 }

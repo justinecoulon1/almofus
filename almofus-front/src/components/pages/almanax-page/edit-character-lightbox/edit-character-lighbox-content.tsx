@@ -38,7 +38,7 @@ export function EditCharacterLightboxContent() {
             />
           </div>
         </div>
-        <div className={styles.seperator}></div>
+        <div className={styles.separator}></div>
         <div className={styles.generalPictureSection}>
           <div className={styles.profilePictureSectionContainer}>
             <button
@@ -80,6 +80,16 @@ export function EditCharacterLightboxContent() {
           </div>
           <PictureColorsSection />
         </div>
+
+        <div className={styles.separator}></div>
+        <input
+          className={styles.submitButton}
+          type="submit"
+          value={t('save')}
+          onClick={(e) => {
+            e.preventDefault();
+          }}
+        />
       </div>
     </div>
   );
