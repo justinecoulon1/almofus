@@ -23,59 +23,86 @@
   .inputsDiv {
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     width: 100%;
+    height: 100%;
 
     gap: var(--medium-gap);
 
-    .profileContainer {
+    .generalPictureSection {
       display: flex;
-      width: 100%;
-      justify-content: space-around;
+      align-items: center;
 
-      .profilePictureContainer {
+      .profilePictureSectionContainer {
         display: flex;
         position: relative;
-        justify-content: center;
-        align-items: center;
+        width: 30%;
 
-        width: fit-content;
-        height: fit-content;
+        padding: 0 var(--small-gap) 0 var(--small-gap);
 
-        padding: var(--small-gap);
+        .profilePictureContainer {
+          display: flex;
 
-        background-color: transparent;
+          padding: var(--small-gap);
+          opacity:0.9;
 
-        border: 2px solid var(--tertiary-light);
+          border: 2px solid var(--tertiary-light);
 
-        .profilePicture{
-          width: 3rem;
-          height: 3rem;
+          .profilePicture{
+            width: 3rem;
+            height: 3rem;
+            z-index: -1;
+          }
         }
-      }
 
-      .dropDown {
-        display: flex;
-        position: absolute;
+        .dropDown {
+          display: flex;
+          position: absolute;
 
-        .profilePicture{
-          width: 3rem;
-          height: 3rem;
+          top: 4rem;
+          left: var(--small-gap);
+
+          border: 2px solid var(--tertiary-light);
+
+          .dropDownElementsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            width: 21rem;
+            background-color: var(--primary-medium);
+
+            .dropDownOptionsContainer {
+              display: block;
+
+              height:3rem;
+              padding:0.5rem;
+
+              background-color: var(--primary-light);
+
+              &:hover {
+                background-color: var(--primary-light);
+              }
+
+              .dropDownOptions{
+                width:2rem;
+                height:2rem;
+              }
+            }
+          }
         }
-      }
-
-      .colorDiv {
       }
     }
-
-    .characterNameInputDiv {
+    .characterNameSection{
       display: flex;
+      justify-content: center;
 
-      width: 70%;
+      width: 100%;
+      .characterNameInputDiv {
+        display: flex;
+
+        width: 70%;
+      }
     }
   }
-
   .seperator {
     display: flex;
 
