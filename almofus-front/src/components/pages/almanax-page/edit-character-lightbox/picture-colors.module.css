@@ -1,4 +1,4 @@
-.colorsDiv{
+.colorsDiv {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,7 @@
     height: 3rem;
 
     gap: var(--small-gap);
-    padding:var(--small-gap);
+    padding: var(--small-gap);
 
     background-color: var(--primary-medium);
     border: 2px solid var(--primary-light);
@@ -18,28 +18,5 @@
 
         width: 1.3rem;
         height: 1.3rem;
-    }
-
-    .transparentButton {
-    }
-
-    .redButton {
-        background-color: red;
-    }
-
-    .greyButton {
-        background-color: grey;
-    }
-
-    .blueButton {
-        background-color: blue;
-    }
-
-    .greenButton {
-        background-color: darkgreen;
-    }
-
-    .yellowButton {
-        background-color: yellow;
     }
 }
