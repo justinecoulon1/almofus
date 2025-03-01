@@ -6,16 +6,16 @@ import { CharacterDto } from '@/utils/api/dto/character.dto';
 export type EditCharacterLightboxContextType = {
   profilePictureId: number;
   setProfilePictureId: (id: number) => void;
-  profilePictureColor: string;
-  setProfilePictureColor: (value: string) => void;
+  profilePictureColorId: string;
+  setProfilePictureColorId: (value: string) => void;
   character: CharacterDto;
 };
 
 const EditCharacterLightboxContext = createContext<EditCharacterLightboxContextType>({
   profilePictureId: 0,
   setProfilePictureId: () => {},
-  profilePictureColor: 'none',
-  setProfilePictureColor: () => {},
+  profilePictureColorId: '0',
+  setProfilePictureColorId: () => {},
   character: { id: 0, name: '', profilePictureId: 0 },
 });
 
@@ -35,10 +35,16 @@ export function EditCharacterLightboxProvider({
   children: React.ReactNode;
 }>) {
   const [profilePictureId, setProfilePictureId] = useState(character.profilePictureId || 0);
-  const [profilePictureColor, setProfilePictureColor] = useState('transparent');
+  const [profilePictureColorId, setProfilePictureColorId] = useState('0');
   return (
     <EditCharacterLightboxContext.Provider
-      value={{ profilePictureId, setProfilePictureId, character, profilePictureColor, setProfilePictureColor }}
+      value={{
+        profilePictureId,
+        setProfilePictureId,
+        character,
+        profilePictureColorId,
+        setProfilePictureColorId,
+      }}
     >
       {children}
     </EditCharacterLightboxContext.Provider>

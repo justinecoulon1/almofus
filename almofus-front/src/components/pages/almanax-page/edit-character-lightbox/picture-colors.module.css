@@ -2,21 +2,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    width: 50%;
-    height: 3rem;
+    flex-wrap: wrap;
 
     gap: var(--small-gap);
     padding: var(--small-gap);
 
-    background-color: var(--primary-medium);
-    border: 2px solid var(--primary-light);
-    border-radius: 1rem;
-
     .colorButton {
         display: flex;
 
-        width: 1.3rem;
-        height: 1.3rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        border: 3px var(--primary-darker) solid;
+
+        &:hover {
+            border: 3px var(--primary-light) solid;
+        }
     }
 }

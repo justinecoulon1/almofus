@@ -1,19 +1,21 @@
 import styles from './picture-colors.module.css';
 import { useEditCharacterLightboxContext } from '@/components/pages/almanax-page/edit-character-lightbox/edit-character-lightbox-context';
-
-const colors = ['white', 'red', 'grey', 'blue', '#abcd00', 'yellow', 'orange'];
+import { colorById } from '@/components/utils/colors/color-by-id';
 
 export function PictureColorsSection() {
-  const { setProfilePictureColor } = useEditCharacterLightboxContext();
+  const { setProfilePictureColorId } = useEditCharacterLightboxContext();
   return (
     <div className={styles.colorsDiv}>
-      {colors.map((color, index) => (
+      {Object.entries(colorById).map(([id, color]) => (
         <button
           value={color}
-          key={index}
+          key={id}
           className={styles.colorButton}
-          onClick={() => setProfilePictureColor(color)}
-          style={{ backgroundColor: color }}
+          onClick={(e) => {
+            e.stopPropagation();
+            setProfilePictureColorId(id);
+          }}
+          style={{ backgroundColor: color === 'transparent' ? 'white' : color }}
         />
       ))}
     </div>
