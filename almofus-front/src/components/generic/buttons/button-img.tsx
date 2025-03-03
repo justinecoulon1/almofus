@@ -11,7 +11,7 @@ interface CompleteGenericButtonWithImageProps extends React.ButtonHTMLAttributes
   imageSize?: number;
 }
 
-interface ButtonProps extends Omit<CompleteGenericButtonWithImageProps, 'buttonStyle'> { }
+interface ButtonProps extends Omit<CompleteGenericButtonWithImageProps, 'buttonStyle'> {}
 
 export function SecondaryDarkButtonWithImage(props: ButtonProps) {
   return <GenericButtonWithImage buttonStyle={styles.secondaryDarkButton} {...props} />;
@@ -19,6 +19,10 @@ export function SecondaryDarkButtonWithImage(props: ButtonProps) {
 
 export function SecondaryButtonWithImage(props: ButtonProps) {
   return <GenericButtonWithImage buttonStyle={styles.secondaryButton} {...props} />;
+}
+
+export function TertiaryButtonWithImage(props: ButtonProps) {
+  return <GenericButtonWithImage buttonStyle={styles.tertiaryButton} {...props} />;
 }
 
 export function PrimaryButtonWithImage(props: ButtonProps) {

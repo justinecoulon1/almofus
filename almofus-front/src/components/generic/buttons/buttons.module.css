@@ -1,55 +1,73 @@
 .secondaryButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: fit-content;
-  padding: 0.5rem;
-  font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding: 0.5rem;
+    font-size: 1rem;
 
-  background-color: var(--secondary-dark);
-  border: 2px solid transparent;
-  color: var(--foreground-secondary-light);
+    background-color: var(--secondary-dark);
+    border: 2px solid transparent;
+    color: var(--foreground-secondary-light);
 
-  &:hover {
-    background-color: var(--secondary-medium);
-    border: 2px solid var(--secondary-darker);
-  }
+    &:hover {
+        background-color: var(--secondary-medium);
+        border: 2px solid var(--secondary-darker);
+    }
+}
+
+.tertiaryButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding: 0.5rem;
+    font-size: 1rem;
+
+    background-color: var(--tertiary-medium);
+    border: 2px solid transparent;
+    color: var(--foreground-secondary-light);
+
+    &:hover {
+        background-color: var(--tertiary-light);
+        border: 2px solid var(--tertiary-darker);
+    }
 }
 
 .primaryButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: fit-content;
-  padding: 0.5rem;
-  font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding: 0.5rem;
+    font-size: 1rem;
 
-  background-color: var(--primary-medium);
-  border: 2px solid var(--secondary-dark);
-  color: var(--foreground-secondary-light);
-
-  &:hover {
-    background-color: var(--secondary-dark);
-    border: 2px solid var(--secondary-darker);
+    background-color: var(--primary-medium);
+    border: 2px solid var(--secondary-dark);
     color: var(--foreground-secondary-light);
-  }
+
+    &:hover {
+        background-color: var(--secondary-dark);
+        border: 2px solid var(--secondary-darker);
+        color: var(--foreground-secondary-light);
+    }
 }
 
 .secondaryDarkButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: fit-content;
-  padding: 0.5rem;
-  font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding: 0.5rem;
+    font-size: 1rem;
 
-  background-color: var(--primary-dark);
-  border: 2px solid transparent;
-  color: var(--foreground-secondary-light);
-
-  &:hover {
-    background-color: var(--secondary-dark);
-    border: 2px solid var(--secondary-dark);
+    background-color: var(--primary-dark);
+    border: 2px solid transparent;
     color: var(--foreground-secondary-light);
-  }
+
+    &:hover {
+        background-color: var(--secondary-dark);
+        border: 2px solid var(--secondary-dark);
+        color: var(--foreground-secondary-light);
+    }
 }
