@@ -1,6 +1,5 @@
 .lightboxContainer {
-
-    --edit-character-lightbox-width: 27rem;
+    --edit-character-lightbox-width: 30rem;
 
     display: flex;
     align-items: center;
@@ -9,7 +8,7 @@
     overflow-x: hidden;
 
     width: var(--edit-character-lightbox-width);
-    height: fit-content;
+    height: 15rem;
 
     border-radius: 1.3rem;
     border: 2px solid var(--tertiary-dark);
@@ -32,11 +31,15 @@
                 transform: translateX(0);
             }
 
+            .editCharacterTitle {
+                display: flex;
+                justify-content: center;
+            }
+
             .inputsDiv {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-
 
                 gap: var(--medium-gap);
                 padding: var(--medium-gap);
@@ -125,19 +128,28 @@
 
                 .editedProfilePictureContainer {
                     display: flex;
+                    align-items: center;
                     width: 20%;
                 }
 
                 .pictureSelectorContainer {
                     display: flex;
                     flex-wrap: wrap;
-                    background-color: var(--primary-darker);
+
+                    width: 63%;
+
                     padding: var(--small-gap);
-                    width: 65%;
+
+                    border: 2px solid var(--primary-medium);
+                    border-radius: 15px;
+
+                    background-color: var(--primary-darker);
 
                     .pictureContainer {
-                        background-color: transparent;
+
                         padding: 0.2rem;
+
+                        background-color: transparent;
 
                         &:hover {
                             background-color: var(--primary-medium);
@@ -156,8 +168,16 @@
                     justify-content: center;
                     align-items: center;
                     flex-wrap: wrap;
+
+                    width: 17%;
+
+                    padding: var(--small-gap);
+
+                    border: 2px solid var(--primary-medium);
+                    border-radius: 15px;
+
                     background-color: var(--primary-darker);
-                    width: 15%;
+
 
                     .colorButton {
                         display: flex;
@@ -187,6 +207,7 @@
 
         border: 2px solid var(--primary-light);
         border-radius: 0.5rem;
+
         z-index: 100;
 
         .profilePicture {

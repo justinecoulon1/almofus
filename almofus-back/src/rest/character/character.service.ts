@@ -12,7 +12,7 @@ export class CharacterService {
 
   async createCharacter(userId: number): Promise<Character> {
     const user = await this.userService.getUserById(userId);
-    const newCharacter = new Character('', user);
+    const newCharacter = new Character('', user, 0, 0);
     return this.characterRepository.save(newCharacter);
   }
 }

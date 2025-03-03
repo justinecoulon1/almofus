@@ -15,6 +15,9 @@ export class Character {
   @Column({ name: 'profile_picture_id' })
   profilePictureId: number;
 
+  @Column({ name: 'profile_color_id' })
+  profilePictureColorId: number;
+
   @ManyToOne(() => User, (user) => user.characters)
   @JoinColumn({ name: 'user_id' })
   user: Promise<User>;
@@ -22,8 +25,10 @@ export class Character {
   @OneToMany(() => AlmanaxDay, (almanaxDay) => almanaxDay.character)
   almanaxDays: Promise<AlmanaxDay[]>;
 
-  constructor(name: string, user: User) {
+  constructor(name: string, user: User, profilePictureId: number, profilePictureColorId: number) {
     this.name = name;
     this.user = Promise.resolve(user);
+    this.profilePictureId = profilePictureId;
+    this.profilePictureColorId = profilePictureColorId;
   }
 }

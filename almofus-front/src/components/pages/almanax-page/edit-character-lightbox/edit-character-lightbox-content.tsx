@@ -25,7 +25,7 @@ export function EditCharacterLightboxContent() {
             [styles.isDisplayed]: !isPictureEditorTabOpen,
           })}
         >
-          <h2>{t('edit-character')}</h2>
+          <h2 className={styles.editCharacterTitle}>{t('edit-character')}</h2>
           <div className={styles.inputsDiv}>
             <div className={styles.characterNameSection}>
               <button className={styles.startEditPictureButton} onClick={() => setIsPictureEditorTabOpen(true)}>
@@ -70,7 +70,7 @@ export function EditCharacterLightboxContent() {
                 onClick={() => {
                   setProfilePictureId(character.profilePictureId);
                   setProfilePictureColorId('0');
-                  setIsPictureEditorTabOpen(true);
+                  setIsPictureEditorTabOpen(false);
                 }}
               />
             </div>
