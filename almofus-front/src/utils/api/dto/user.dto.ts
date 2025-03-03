@@ -13,3 +13,8 @@ export type UserDto = {
 export type CompleteUserDto = UserDto & {
   characters: CharacterDto[];
 };
+
+export type LoginRequestDto = {
+  email: string;
+  password: string;
+};

@@ -4,3 +4,9 @@ export type CharacterDto = {
   profilePictureId: number;
   profilePictureColorId: number;
 };
+
+export type UpdateCharacterRequestDto = {
+  name?: string;
+  profilePictureId?: number;
+  profilePictureColorId?: number;
+};

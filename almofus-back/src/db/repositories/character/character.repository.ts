@@ -16,4 +16,10 @@ export class CharacterRepository {
   save(character: Character): Promise<Character> {
     return this.repository.save(character);
   }
+
+  findById(id: number): Promise<Character> {
+    return this.repository.findOneBy({
+      id,
+    });
+  }
 }

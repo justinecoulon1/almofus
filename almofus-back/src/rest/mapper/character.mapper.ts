@@ -7,6 +7,7 @@ class CharacterMapper {
       id: entity.id,
       name: entity.name,
       profilePictureId: entity.profilePictureId,
+      profilePictureColorId: entity.profilePictureColorId,
     };
   }
 

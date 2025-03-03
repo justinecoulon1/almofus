@@ -1,5 +1,5 @@
 import { almofusAxios } from './almofus-axios';
-import { CompleteUserDto } from './dto/user.dto';
+import { CompleteUserDto, LoginRequestDto } from './dto/user.dto';
 
 class UserRequestProcessor {
   async getUser(userId: number) {
@@ -8,7 +8,12 @@ class UserRequestProcessor {
   }
 
   async login(email: string, password: string) {
-    const response = await almofusAxios.post<CompleteUserDto>(`/users/login`, { email, password });
+    const body: LoginRequestDto = {
+      email,
+      password,
+    };
+
+    const response = await almofusAxios.post<CompleteUserDto>(`/users/login`, body);
     return response.data;
   }
 }
