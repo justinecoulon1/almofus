@@ -91,7 +91,7 @@ export function EditCharacterLightboxContent({
                 imageAlt={'copy'}
                 onClick={() => {
                   setProfilePictureId(character.profilePictureId);
-                  setProfilePictureColorId('0');
+                  setProfilePictureColorId(character.profilePictureColorId.toString());
                   setIsPictureEditorTabOpen(false);
                 }}
               />

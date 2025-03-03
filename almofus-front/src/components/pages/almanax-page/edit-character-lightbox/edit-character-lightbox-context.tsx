@@ -35,7 +35,7 @@ export function EditCharacterLightboxProvider({
   children: React.ReactNode;
 }>) {
   const [profilePictureId, setProfilePictureId] = useState(character.profilePictureId);
-  const [profilePictureColorId, setProfilePictureColorId] = useState('0');
+  const [profilePictureColorId, setProfilePictureColorId] = useState(character.profilePictureColorId.toString());
   return (
     <EditCharacterLightboxContext.Provider
       value={{
