@@ -2,6 +2,7 @@ import { CompleteUserDto } from '../api/dto/user.dto';
 
 export type LocalStorageKeys = {
   user: CompleteUserDto;
+  accessToken: string;
 };
 
 type LocalStorageItem = {

@@ -12,8 +12,9 @@ export function LoginTab({ setLightboxOpened }: { setLightboxOpened: (isOpened: 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const login = async () => {
-    const user = await userRequestProcessor.login(email, password);
-    setLocalStorageItem('user', user);
+    const loginResponse = await userRequestProcessor.login(email, password);
+    setLocalStorageItem('user', loginResponse.user);
+    setLocalStorageItem('accessToken', loginResponse.accessToken);
     setLightboxOpened(false);
     router.refresh();
   };
