@@ -1,4 +1,3 @@
-import { CharacterDto } from '@/utils/api/dto/character.dto';
 import { useTranslations } from 'next-intl';
 import styles from './almanax-calendar.module.css';
 import dayjs from 'dayjs';
@@ -6,8 +5,9 @@ import { DaysOfWeek, generateCalendar, Months } from './calendar-utils/calendar'
 import { CalendarDay } from './calendar-day/calendar-day';
 import { useState } from 'react';
 import { CalendarHeader } from './calendar-header/calendar-header';
+import { CompleteUserDto } from '@/utils/api/dto/user.dto';
 
-export function AlmanaxCalendar(parameters: { characters: CharacterDto[] }) {
+export function AlmanaxCalendar({ user }: { user: CompleteUserDto }) {
   const t = useTranslations('almanax-calendar-days');
   const days = Object.keys(DaysOfWeek);
   const months = Object.entries(Months);
@@ -32,9 +32,9 @@ export function AlmanaxCalendar(parameters: { characters: CharacterDto[] }) {
         ))}
         {calendar.map((d, index) => {
           if (d !== 0) {
-            return <CalendarDay key={index} characters={parameters.characters} dayIndex={d} />;
+            return <CalendarDay key={index} characters={user.characters} dayIndex={d} />;
           } else {
-            return <CalendarDay key={index} characters={parameters.characters} dayIndex={d} />;
+            return <CalendarDay key={index} characters={user.characters} dayIndex={d} />;
           }
         })}
       </div>

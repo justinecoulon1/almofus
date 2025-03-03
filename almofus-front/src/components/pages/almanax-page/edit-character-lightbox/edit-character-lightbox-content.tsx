@@ -9,14 +9,27 @@ import Image from 'next/image';
 import { colorById, getColor } from '@/components/utils/colors/color-by-id';
 import classNames from 'classnames';
 import { SecondaryButtonWithImage, TertiaryButtonWithImage } from '@/components/generic/buttons/button-img';
+import { UpdateCharacterRequestDto } from '@/utils/api/dto/character.dto';
+import characterRequestProcessor from '@/utils/api/character.request-processor';
+import { setLocalStorageItem } from '@/utils/local-storage/local-storage.utils';
+import { CompleteUserDto } from '@/utils/api/dto/user.dto';
+import { useRouter } from '@/i18n/routing';
 
 const images = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 
-export function EditCharacterLightboxContent() {
+export function EditCharacterLightboxContent({
+  user,
+  setLightboxOpened,
+}: {
+  user: CompleteUserDto;
+  setLightboxOpened: (isOpened: boolean) => void;
+}) {
   const t = useTranslations('edit-character-lightbox');
-  const { character, setProfilePictureId, setProfilePictureColorId } = useEditCharacterLightboxContext();
+  const { character, profilePictureId, profilePictureColorId, setProfilePictureId, setProfilePictureColorId } =
+    useEditCharacterLightboxContext();
   const [characterName, setCharacterName] = useState(character.name);
   const [isPictureEditorTabOpen, setIsPictureEditorTabOpen] = useState(false);
+  const router = useRouter();
   return (
     <div className={styles.lightboxContainer} onMouseDown={(e) => e.stopPropagation()}>
       <div className={styles.profileEditorTabsContainer}>
@@ -46,7 +59,16 @@ export function EditCharacterLightboxContent() {
               className={styles.submitButton}
               type="submit"
               value={t('save')}
-              onClick={(e) => {
+              onClick={async (e) => {
+                const updateRequestDto: UpdateCharacterRequestDto = {
+                  name: characterName,
+                  profilePictureId: profilePictureId,
+                  profilePictureColorId: parseInt(profilePictureColorId),
+                };
+                user.characters = await characterRequestProcessor.updateCharacter(character.id, updateRequestDto);
+                setLocalStorageItem('user', user);
+                setLightboxOpened(false);
+                router.refresh();
                 e.preventDefault();
               }}
             />

@@ -4,8 +4,17 @@ import styles from './character-profile.module.css';
 import { CharacterDto } from '@/utils/api/dto/character.dto';
 import { EditCharacterLightbox } from '../edit-character-lightbox/edit-character-lightbox';
 import { useState } from 'react';
+import { CompleteUserDto } from '@/utils/api/dto/user.dto';
 
-export function CharacterProfile({ disabled = false, character }: { disabled?: boolean; character: CharacterDto }) {
+export function CharacterProfile({
+  disabled = false,
+  character,
+  user,
+}: {
+  disabled?: boolean;
+  character: CharacterDto;
+  user: CompleteUserDto;
+}) {
   const t = useTranslations('almanax-page');
   const [isLightboxOpened, setLightboxOpened] = useState(false);
   return (
@@ -14,6 +23,7 @@ export function CharacterProfile({ disabled = false, character }: { disabled?: b
         isLightboxOpened={isLightboxOpened}
         setLightboxOpened={setLightboxOpened}
         character={character}
+        user={user}
       />
       <div className={styles.characterProfileDiv}>
         {!disabled && <CharacterProfileInnerContent character={character} setLightboxOpened={setLightboxOpened} />}
@@ -50,7 +60,7 @@ function CharacterProfileInnerContent({
       </button>
       <Image
         className={styles.characterProfileImage}
-        src={'/icons/user.png'}
+        src={`/profile-pictures/${character.profilePictureId ?? 0}.png`}
         alt={'character profile'}
         width={512}
         height={512}

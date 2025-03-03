@@ -16,12 +16,12 @@ export class CharacterController {
   async updateCharacter(
     @Body() updateCharacterRequestDto: UpdateCharacterRequestDto,
     @Param('characterId') characterId: number,
-  ): Promise<CharacterDto> {
-    return characterMapper.toDto(await this.characterService.updateCharacter(characterId, updateCharacterRequestDto));
+  ): Promise<CharacterDto[]> {
+    return characterMapper.toDtos(await this.characterService.updateCharacter(characterId, updateCharacterRequestDto));
   }
 
   @Get('/:id')
-  async getUserById(@Param('id') id: number): Promise<CharacterDto> {
+  async getCharacterById(@Param('id') id: number): Promise<CharacterDto> {
     return characterMapper.toDto(await this.characterService.getCharacterById(id));
   }
 }

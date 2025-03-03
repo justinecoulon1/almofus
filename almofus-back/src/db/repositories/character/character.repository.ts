@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Character } from 'src/db/model/character.entity';
 import { DataSource, Repository } from 'typeorm';
+import { User } from '../../model/user.entity';
 
 @Injectable()
 export class CharacterRepository {
@@ -21,5 +22,9 @@ export class CharacterRepository {
     return this.repository.findOneBy({
       id,
     });
+  }
+
+  findByUser(user: User): Promise<Character[]> {
+    return this.repository.findBy({ user });
   }
 }

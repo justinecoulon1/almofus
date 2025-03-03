@@ -23,7 +23,7 @@ function AlmanaxCalendarSection() {
       return (
         <div className={styles.almanaxCalendarContainer}>
           <CharacterSection user={user} />
-          <AlmanaxCalendar characters={user.characters} />
+          <AlmanaxCalendar user={user} />
         </div>
       );
     }

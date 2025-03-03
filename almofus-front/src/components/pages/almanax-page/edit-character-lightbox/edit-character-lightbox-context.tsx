@@ -16,7 +16,7 @@ const EditCharacterLightboxContext = createContext<EditCharacterLightboxContextT
   setProfilePictureId: () => {},
   profilePictureColorId: '0',
   setProfilePictureColorId: () => {},
-  character: { id: 0, name: '', profilePictureId: 0 },
+  character: { id: 0, name: '', profilePictureId: 0, profilePictureColorId: 0 },
 });
 
 export function useEditCharacterLightboxContext(): EditCharacterLightboxContextType {

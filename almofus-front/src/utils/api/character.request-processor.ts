@@ -8,7 +8,7 @@ class CharacterRequestProcessor {
   }
 
   async updateCharacter(characterId: number, updateCharacterRequestDto: UpdateCharacterRequestDto) {
-    const response = await almofusAxios.post<CharacterDto>(
+    const response = await almofusAxios.post<CharacterDto[]>(
       `/character/update/${characterId}`,
       updateCharacterRequestDto,
     );

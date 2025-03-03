@@ -17,14 +17,23 @@ export class CharacterService {
     return this.characterRepository.save(newCharacter);
   }
 
-  async updateCharacter(characterId: number, updateCharacterRequestDto: UpdateCharacterRequestDto): Promise<Character> {
+  async updateCharacter(
+    characterId: number,
+    updateCharacterRequestDto: UpdateCharacterRequestDto,
+  ): Promise<Character[]> {
     const existingCharacter = await this.characterRepository.findById(characterId);
 
     if (!existingCharacter) {
       throw new NotFoundException();
     }
     const updatedCharacter: Character = { ...existingCharacter, ...updateCharacterRequestDto };
-    return this.characterRepository.save(updatedCharacter);
+    await this.characterRepository.save(updatedCharacter);
+    return this.getCharactersByUser(1);
+  }
+
+  async getCharactersByUser(userId: number): Promise<Character[]> {
+    const user = await this.userService.getUserById(userId);
+    return this.characterRepository.findByUser(user);
   }
 
   getCharacterById(id: number): Promise<Character> {
