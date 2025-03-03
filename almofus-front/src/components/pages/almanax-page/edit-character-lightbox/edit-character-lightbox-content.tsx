@@ -63,7 +63,7 @@ export function EditCharacterLightboxContent({
                 const updateRequestDto: UpdateCharacterRequestDto = {
                   name: characterName,
                   profilePictureId: profilePictureId,
-                  profilePictureColorId: parseInt(profilePictureColorId),
+                  profilePictureColorId: profilePictureColorId,
                 };
                 user.characters = await characterRequestProcessor.updateCharacter(character.id, updateRequestDto);
                 setLocalStorageItem('user', user);
@@ -91,7 +91,7 @@ export function EditCharacterLightboxContent({
                 imageAlt={'copy'}
                 onClick={() => {
                   setProfilePictureId(character.profilePictureId);
-                  setProfilePictureColorId(character.profilePictureColorId.toString());
+                  setProfilePictureColorId(character.profilePictureColorId);
                   setIsPictureEditorTabOpen(false);
                 }}
               />
@@ -168,7 +168,7 @@ function PictureColorsSection() {
           className={styles.colorButton}
           onClick={(e) => {
             e.stopPropagation();
-            setProfilePictureColorId(id);
+            setProfilePictureColorId(parseInt(id));
           }}
           style={{ backgroundColor: color === 'transparent' ? 'white' : color }}
         />

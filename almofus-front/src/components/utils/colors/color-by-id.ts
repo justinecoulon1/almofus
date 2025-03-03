@@ -1,4 +1,4 @@
-export const colorById: Record<string, string> = {
+export const colorById: Record<number, string> = {
   1: 'transparent',
   2: '#555555',
   3: '#5252d5',
@@ -11,6 +11,6 @@ export const colorById: Record<string, string> = {
   10: '#67005e',
 };
 
-export function getColor(id: string): string {
+export function getColor(id: number): string {
   return colorById[id] ?? colorById[1];
 }
