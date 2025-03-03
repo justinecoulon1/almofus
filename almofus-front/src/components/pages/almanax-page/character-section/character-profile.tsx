@@ -5,6 +5,7 @@ import { CharacterDto } from '@/utils/api/dto/character.dto';
 import { EditCharacterLightbox } from '../edit-character-lightbox/edit-character-lightbox';
 import { useState } from 'react';
 import { CompleteUserDto } from '@/utils/api/dto/user.dto';
+import { colorById } from '@/components/utils/colors/color-by-id';
 
 export function CharacterProfile({
   disabled = false,
@@ -25,7 +26,10 @@ export function CharacterProfile({
         character={character}
         user={user}
       />
-      <div className={styles.characterProfileDiv}>
+      <div
+        className={styles.characterProfileDiv}
+        style={{ backgroundColor: colorById[character.profilePictureColorId] }}
+      >
         {!disabled && <CharacterProfileInnerContent character={character} setLightboxOpened={setLightboxOpened} />}
       </div>
     </>
