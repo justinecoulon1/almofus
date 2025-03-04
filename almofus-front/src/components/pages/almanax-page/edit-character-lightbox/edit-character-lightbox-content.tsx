@@ -170,7 +170,7 @@ function PictureColorsSection() {
             e.stopPropagation();
             setProfilePictureColorId(parseInt(id));
           }}
-          style={{ backgroundColor: color === 'transparent' ? 'white' : color }}
+          style={{ backgroundColor: color }}
         />
       ))}
     </div>

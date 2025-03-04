@@ -1,14 +1,14 @@
 export const colorById: Record<number, string> = {
-  1: 'transparent',
-  2: '#555555',
-  3: '#5252d5',
-  4: '#2121e3',
-  5: '#008867',
-  6: '#003e51',
-  7: '#006036',
-  8: '#43007c',
-  9: '#570000',
-  10: '#67005e',
+  1: '#1e2038',
+  2: '#877f7f',
+  3: '#555555',
+  4: '#b8efec',
+  5: '#4DA394',
+  6: '#1D313C',
+  7: '#FFFCC7',
+  8: '#D4AA7D',
+  9: '#f37676',
+  10: '#D54751',
 };
 
 export function getColor(id: number): string {

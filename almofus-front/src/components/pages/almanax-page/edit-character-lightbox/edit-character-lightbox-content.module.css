@@ -172,6 +172,7 @@
                     width: 17%;
 
                     padding: var(--small-gap);
+                    gap: 2px;
 
                     border: 2px solid var(--primary-medium);
                     border-radius: 15px;
@@ -185,7 +186,7 @@
                         width: 1.5rem;
                         height: 1.5rem;
                         border-radius: 50%;
-                        border: 3px var(--primary-darker) solid;
+                        border: 2px var(--primary-dark) solid;
 
                         &:hover {
                             border: 3px var(--primary-light) solid;
