@@ -17,6 +17,7 @@ export class CharacterController {
     @Body() updateCharacterRequestDto: UpdateCharacterRequestDto,
     @Param('characterId') characterId: number,
   ): Promise<CharacterDto[]> {
+    //TODO check if the toUpdateCharacter is owned by the user sending the request
     return characterMapper.toDtos(await this.characterService.updateCharacter(characterId, updateCharacterRequestDto));
   }
 

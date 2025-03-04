@@ -12,6 +12,20 @@ export class GetAlmanaxQuestByDateQueryParamsDto {
   year: number;
 }
 
+export class GetAlmanaxQuestByDateRangeQueryParamsDto {
+  @IsString()
+  startDate: string;
+
+  @IsNumber()
+  startYear: number;
+
+  @IsString()
+  endDate: string;
+
+  @IsNumber()
+  endYear: number;
+}
+
 export type AlmanaxQuestDto = {
   id: number;
   date: string;
