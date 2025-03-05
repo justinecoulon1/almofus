@@ -14,6 +14,11 @@ class CharacterRequestProcessor {
     );
     return response.data;
   }
+
+  async deleteCharacter(characterId: number) {
+    const response = await almofusAxios.delete<CharacterDto[]>(`/character/${characterId}`);
+    return response.data;
+  }
 }
 
 export default new CharacterRequestProcessor();

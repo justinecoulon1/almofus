@@ -15,6 +15,7 @@ import { setLocalStorageItem } from '@/utils/local-storage/local-storage.utils';
 import { CompleteUserDto } from '@/utils/api/dto/user.dto';
 import { useRouter } from '@/i18n/routing';
 import { SecondaryButton } from '@/components/generic/buttons/button';
+import userRequestProcessor from '@/utils/api/user.request-processor';
 
 const images = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
@@ -177,8 +178,10 @@ function BottomButtonsDiv({
           className={styles.deleteButton}
           label={t('delete')}
           onClick={async (e) => {
-            //TODO request to delete character
-            setLocalStorageItem('user', user);
+            const deletedCharacter = await characterRequestProcessor.deleteCharacter(character.id);
+            console.log(deletedCharacter);
+            const updatedUser = await userRequestProcessor.getUser(user.id);
+            setLocalStorageItem('user', updatedUser);
             setLightboxOpened(false);
             router.refresh();
             e.preventDefault();
@@ -197,8 +200,9 @@ function BottomButtonsDiv({
               profilePictureId: profilePictureId,
               profilePictureColorId: profilePictureColorId,
             };
-            user.characters = await characterRequestProcessor.updateCharacter(character.id, updateRequestDto);
-            setLocalStorageItem('user', user);
+            const updatedCharacters = await characterRequestProcessor.updateCharacter(character.id, updateRequestDto);
+            const updatedUser = await userRequestProcessor.getUser(user.id);
+            setLocalStorageItem('user', updatedUser);
             setLightboxOpened(false);
             router.refresh();
             e.preventDefault();
