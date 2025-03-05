@@ -21,7 +21,7 @@ export class AlmanaxMobileDateRepository {
     return this.repository.findBy({ year });
   }
 
-  findOneByDateAndYear(date: string, year: number): Promise<AlmanaxMobileDate> {
+  findOneByDateAndYear(date: number, year: number): Promise<AlmanaxMobileDate> {
     return this.repository.findOneBy({ year, date });
   }
 

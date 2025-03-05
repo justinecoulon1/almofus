@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { AlmanaxQuestRepository } from 'src/db/repositories/almanax-quest/almanax-quest.repository';
 import { ItemRepository } from 'src/db/repositories/item/item.repository';
 import { DofusDbQuestDto, SyncRequestDto } from './dto/dofus-db.dto';
-import { AlmanaxQuest, MobileEvent } from 'src/db/model/almanax-quest.entity';
+import { AlmanaxQuest } from 'src/db/model/almanax-quest.entity';
 import { Item } from 'src/db/model/item.entity';
 import { Npc } from 'src/db/model/npc.entity';
 import { AlmanaxBonus } from 'src/db/model/almanax-bonus.entity';
@@ -14,7 +14,6 @@ import { AlmanaxBonusRepository } from 'src/db/repositories/almanax-bonus/almana
 import { NpcRepository } from 'src/db/repositories/npc/npc.repository';
 import { getAlmanaxQuest } from './utils/dofus-db-almanax-quest.utils';
 import { AlmanaxMobileDateRepository } from 'src/db/repositories/almanax-mobile-date/almanax-mobile-date.repository';
-import { AlmanaxMobileDate } from 'src/db/model/almanax-mobile-date.entity';
 import { getMobileDates as getMobileDates } from './utils/almanax-quest-date.utils';
 
 @Injectable()

@@ -4,8 +4,9 @@ import { Item } from 'src/db/model/item.entity';
 import { Npc } from 'src/db/model/npc.entity';
 import almanaxQuestsDateInfo from 'src/rest/dofusdb/utils/Almanax.json';
 import { DofusDbQuestDto } from '../dto/dofus-db.dto';
-import { AlmanaxQuestDateInfo } from './almanax-quest-date-info';
 import { createLabel, updateLabel } from './dofus-db-label.utils';
+import dayjs from 'dayjs';
+import { AlmanaxQuestDateInfo } from './almanax-quest-date-info';
 
 export function getAlmanaxQuest(
   questById: Record<number, AlmanaxQuest>,
@@ -30,7 +31,7 @@ export function updateAlmanaxQuest(
   almanaxBonus: AlmanaxBonus,
 ) {
   const questDateInfo = getAlmanaxQuestDateInfoByNpcId(npc.dofusId);
-  existingQuest.date = questDateInfo?.date || null;
+  existingQuest.date = parseInt(questDateInfo?.date) || null;
   existingQuest.mobileEvent = (questDateInfo?.mobileInfo as MobileEvent) || null;
   existingQuest.itemQuantity = dofusDbQuestDto.steps[0].objectives[0].need.generated.quantities[0];
   existingQuest.kamasReward = dofusDbQuestDto.steps[0].rewards[0].kamasRatio;
@@ -50,7 +51,7 @@ export function mapAlmanaxQuestDtoToEntity(
   const questDateInfo = getAlmanaxQuestDateInfoByNpcId(npc.dofusId);
   return new AlmanaxQuest(
     dofusDbQuestDto.id,
-    questDateInfo?.date || null,
+    parseInt(questDateInfo?.date) || null,
     dofusDbQuestDto.steps[0].objectives[0].need.generated.quantities[0],
     dofusDbQuestDto.steps[0].rewards[0].kamasRatio,
     npc,
@@ -62,5 +63,7 @@ export function mapAlmanaxQuestDtoToEntity(
 }
 
 function getAlmanaxQuestDateInfoByNpcId(npcId: number): AlmanaxQuestDateInfo | undefined {
-  return almanaxQuestsDateInfo.find((questInfo) => npcId === questInfo.npcId);
+  const almanaxQuestInfo: AlmanaxQuestDateInfo = almanaxQuestsDateInfo.find((questInfo) => npcId === questInfo.npcId);
+  almanaxQuestInfo.date = dayjs(almanaxQuestInfo.date, 'DD/MM').format('MMDD');
+  return almanaxQuestInfo;
 }

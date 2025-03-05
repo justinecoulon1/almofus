@@ -27,12 +27,12 @@ export function getMobileDates(year: number, mobileEventAlmanaxQuests: AlmanaxQu
   return mobileDateInfos.map((mobileDateInfo) => {
     const formattedDate = formatMobileDateDay(mobileDateInfo.day);
     const quest = mobileEventAlmanaxQuests.find((quest) => quest.mobileEvent === mobileDateInfo.mobileEvent);
-    return new AlmanaxMobileDate(formattedDate, year, quest.id);
+    return new AlmanaxMobileDate(parseInt(formattedDate), year, quest.id);
   });
 }
 
 function formatMobileDateDay(dateDay: Dayjs) {
-  return dateDay.format('DD/MM');
+  return dateDay.format('MMDD');
 }
 
 /**

@@ -25,7 +25,7 @@ export class AlmanaxQuest {
   dofusId: number;
 
   @Column()
-  date: string | null;
+  date: number | null;
 
   @Column({ name: 'item_quantity' })
   itemQuantity: number;
@@ -54,7 +54,7 @@ export class AlmanaxQuest {
 
   constructor(
     dofusId: number,
-    date: string | null,
+    date: number | null,
     itemQuantity: number,
     kamasReward: number,
     npc: Npc,

@@ -6,7 +6,7 @@ import { NpcDto } from './npc.dto';
 
 export class GetAlmanaxQuestByDateQueryParamsDto {
   @IsString()
-  date: string;
+  date: number;
 
   @IsNumber()
   year: number;
@@ -14,13 +14,13 @@ export class GetAlmanaxQuestByDateQueryParamsDto {
 
 export class GetAlmanaxQuestByDateRangeQueryParamsDto {
   @IsString()
-  startDate: string;
+  startDate: number;
 
   @IsNumber()
   startYear: number;
 
   @IsString()
-  endDate: string;
+  endDate: number;
 
   @IsNumber()
   endYear: number;
@@ -28,7 +28,7 @@ export class GetAlmanaxQuestByDateRangeQueryParamsDto {
 
 export type AlmanaxQuestDto = {
   id: number;
-  date: string;
+  date: number;
   year: number;
   itemQuantity: number;
   kamasReward: number;

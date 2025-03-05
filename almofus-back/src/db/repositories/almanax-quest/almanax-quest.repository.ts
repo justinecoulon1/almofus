@@ -29,7 +29,7 @@ export class AlmanaxQuestRepository {
     return this.repository.findOneBy({ id });
   }
 
-  findOneByDate(date: string): Promise<AlmanaxQuest> {
+  findOneByDate(date: number): Promise<AlmanaxQuest> {
     return this.repository.findOneBy({ date });
   }
 
