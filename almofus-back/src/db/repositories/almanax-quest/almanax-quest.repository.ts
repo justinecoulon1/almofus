@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { AlmanaxQuest } from 'src/db/model/almanax-quest.entity';
-import { DataSource, IsNull, Not, Repository } from 'typeorm';
+import { Between, DataSource, IsNull, Not, Repository } from 'typeorm';
 
 @Injectable()
 export class AlmanaxQuestRepository {
@@ -35,5 +35,21 @@ export class AlmanaxQuestRepository {
 
   findMobileQuests(): Promise<AlmanaxQuest[]> {
     return this.repository.find({ where: { mobileEvent: Not(IsNull()) } });
+  }
+
+  findByDateRange(startDate: number, startYear: number, endDate: number, endYear: number) {
+    if (startYear === endYear) {
+      return this.repository.find({
+        where: {
+          date: Between(startDate, endDate),
+        },
+      });
+    } else if (endYear - startYear === 1) {
+      return this.repository.find({
+        where: [{ date: Between(startDate, 1231) }, { date: Between(101, endDate) }],
+      });
+    } else {
+      return this.repository.find();
+    }
   }
 }

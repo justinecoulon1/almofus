@@ -5,7 +5,6 @@ import { Npc } from 'src/db/model/npc.entity';
 import almanaxQuestsDateInfo from 'src/rest/dofusdb/utils/Almanax.json';
 import { DofusDbQuestDto } from '../dto/dofus-db.dto';
 import { createLabel, updateLabel } from './dofus-db-label.utils';
-import dayjs from 'dayjs';
 import { AlmanaxQuestDateInfo } from './almanax-quest-date-info';
 
 export function getAlmanaxQuest(
@@ -64,6 +63,12 @@ export function mapAlmanaxQuestDtoToEntity(
 
 function getAlmanaxQuestDateInfoByNpcId(npcId: number): AlmanaxQuestDateInfo | undefined {
   const almanaxQuestInfo: AlmanaxQuestDateInfo = almanaxQuestsDateInfo.find((questInfo) => npcId === questInfo.npcId);
-  almanaxQuestInfo.date = dayjs(almanaxQuestInfo.date, 'DD/MM').format('MMDD');
+  console.log(almanaxQuestInfo?.date);
+
+  if (almanaxQuestInfo?.date) {
+    const [day, month] = almanaxQuestInfo.date.split('/');
+    almanaxQuestInfo.date = month + day;
+    console.log(almanaxQuestInfo?.date);
+  }
   return almanaxQuestInfo;
 }

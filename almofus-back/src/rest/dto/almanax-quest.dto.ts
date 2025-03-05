@@ -13,13 +13,13 @@ export class GetAlmanaxQuestByDateQueryParamsDto {
 }
 
 export class GetAlmanaxQuestByDateRangeQueryParamsDto {
-  @IsString()
+  @IsNumber()
   startDate: number;
 
   @IsNumber()
   startYear: number;
 
-  @IsString()
+  @IsNumber()
   endDate: number;
 
   @IsNumber()
