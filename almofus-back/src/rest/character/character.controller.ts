@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CharacterDto, UpdateCharacterRequestDto } from '../dto/character.dto';
 import characterMapper from '../mapper/character.mapper';
 import { CharacterService } from './character.service';
@@ -24,5 +24,10 @@ export class CharacterController {
   @Get('/:id')
   async getCharacterById(@Param('id') id: number): Promise<CharacterDto> {
     return characterMapper.toDto(await this.characterService.getCharacterById(id));
+  }
+
+  @Delete('/:id')
+  async removeCharacter(@Param('id') id: number): Promise<CharacterDto> {
+    return characterMapper.toDto(await this.characterService.removeCharacter(id));
   }
 }

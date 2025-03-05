@@ -27,4 +27,8 @@ export class CharacterRepository {
   findByUser(user: User): Promise<Character[]> {
     return this.repository.findBy({ user });
   }
+
+  removeCharacter(character: Character): Promise<Character> {
+    return this.repository.remove(character, {});
+  }
 }

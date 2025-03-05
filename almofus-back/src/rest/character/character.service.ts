@@ -39,4 +39,9 @@ export class CharacterService {
   getCharacterById(id: number): Promise<Character> {
     return this.characterRepository.findById(id);
   }
+
+  async removeCharacter(id: number): Promise<Character> {
+    const character = await this.characterRepository.findById(id);
+    return this.characterRepository.removeCharacter(character);
+  }
 }
