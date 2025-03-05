@@ -1,4 +1,5 @@
 import styles from './buttons.module.css';
+import classNames from 'classnames';
 
 interface CompleteGenericButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   buttonStyle: string;
@@ -17,7 +18,7 @@ export function PrimaryButton(props: ButtonProps) {
 
 export function GenericButton({ buttonStyle, label, ...buttonProps }: CompleteGenericButtonProps) {
   return (
-    <button {...buttonProps} className={buttonStyle}>
+    <button {...buttonProps} className={classNames(buttonStyle, buttonProps.className)}>
       {label}
     </button>
   );

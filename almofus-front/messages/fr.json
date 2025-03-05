@@ -49,6 +49,8 @@
   "edit-character-lightbox": {
     "edit-character": "Modifier le personnage",
     "character-name-input-label": "Nom du personnage",
-    "save": "Sauvegarder"
+    "save": "Sauvegarder",
+    "cancel": "Annuler",
+    "delete": "SUPPRIMER LE PERSONNAGE"
   }
 }

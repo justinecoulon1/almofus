@@ -9,6 +9,8 @@ export type EditCharacterLightboxContextType = {
   profilePictureColorId: number;
   setProfilePictureColorId: (value: number) => void;
   character: CharacterDto;
+  characterName: string;
+  setCharacterName: (name: string) => void;
 };
 
 const EditCharacterLightboxContext = createContext<EditCharacterLightboxContextType>({
@@ -17,6 +19,8 @@ const EditCharacterLightboxContext = createContext<EditCharacterLightboxContextT
   profilePictureColorId: 0,
   setProfilePictureColorId: () => {},
   character: { id: 0, name: '', profilePictureId: 0, profilePictureColorId: 0 },
+  characterName: '',
+  setCharacterName: () => {},
 });
 
 export function useEditCharacterLightboxContext(): EditCharacterLightboxContextType {
@@ -36,6 +40,7 @@ export function EditCharacterLightboxProvider({
 }>) {
   const [profilePictureId, setProfilePictureId] = useState(character.profilePictureId);
   const [profilePictureColorId, setProfilePictureColorId] = useState(character.profilePictureColorId);
+  const [characterName, setCharacterName] = useState(character.name);
   return (
     <EditCharacterLightboxContext.Provider
       value={{
@@ -44,6 +49,8 @@ export function EditCharacterLightboxProvider({
         character,
         profilePictureColorId,
         setProfilePictureColorId,
+        characterName,
+        setCharacterName,
       }}
     >
       {children}

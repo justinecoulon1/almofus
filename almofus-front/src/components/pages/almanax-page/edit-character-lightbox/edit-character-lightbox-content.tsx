@@ -14,6 +14,7 @@ import characterRequestProcessor from '@/utils/api/character.request-processor';
 import { setLocalStorageItem } from '@/utils/local-storage/local-storage.utils';
 import { CompleteUserDto } from '@/utils/api/dto/user.dto';
 import { useRouter } from '@/i18n/routing';
+import { SecondaryButton } from '@/components/generic/buttons/button';
 
 const images = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
@@ -25,11 +26,9 @@ export function EditCharacterLightboxContent({
   setLightboxOpened: (isOpened: boolean) => void;
 }) {
   const t = useTranslations('edit-character-lightbox');
-  const { character, profilePictureId, profilePictureColorId, setProfilePictureId, setProfilePictureColorId } =
+  const { character, setProfilePictureId, setProfilePictureColorId, characterName, setCharacterName } =
     useEditCharacterLightboxContext();
-  const [characterName, setCharacterName] = useState(character.name);
   const [isPictureEditorTabOpen, setIsPictureEditorTabOpen] = useState(false);
-  const router = useRouter();
   return (
     <div className={styles.lightboxContainer} onMouseDown={(e) => e.stopPropagation()}>
       <div className={styles.profileEditorTabsContainer}>
@@ -55,23 +54,7 @@ export function EditCharacterLightboxContent({
               </div>
             </div>
 
-            <input
-              className={styles.submitButton}
-              type="submit"
-              value={t('save')}
-              onClick={async (e) => {
-                const updateRequestDto: UpdateCharacterRequestDto = {
-                  name: characterName,
-                  profilePictureId: profilePictureId,
-                  profilePictureColorId: profilePictureColorId,
-                };
-                user.characters = await characterRequestProcessor.updateCharacter(character.id, updateRequestDto);
-                setLocalStorageItem('user', user);
-                setLightboxOpened(false);
-                router.refresh();
-                e.preventDefault();
-              }}
-            />
+            <BottomButtonsDiv user={user} setLightboxOpened={setLightboxOpened} />
           </div>
         </div>
         <div className={classNames(styles.pictureEditorTabContainer, { [styles.isDisplayed]: isPictureEditorTabOpen })}>
@@ -173,6 +156,66 @@ function PictureColorsSection() {
           style={{ backgroundColor: color }}
         />
       ))}
+    </div>
+  );
+}
+
+function BottomButtonsDiv({
+  user,
+  setLightboxOpened,
+}: {
+  user: CompleteUserDto;
+  setLightboxOpened: (isOpened: boolean) => void;
+}) {
+  const t = useTranslations('edit-character-lightbox');
+  const router = useRouter();
+  const { characterName, character, profilePictureId, profilePictureColorId } = useEditCharacterLightboxContext();
+  return (
+    <div className={styles.bottomButtonsContainer}>
+      <div className={styles.deleteButtonContainer}>
+        <SecondaryButton
+          className={styles.deleteButton}
+          label={t('delete')}
+          onClick={async (e) => {
+            //TODO request to delete character
+            setLocalStorageItem('user', user);
+            setLightboxOpened(false);
+            router.refresh();
+            e.preventDefault();
+          }}
+        />
+      </div>
+
+      <div className={styles.saveAndCancelButtonContainer}>
+        <input
+          className={classNames(styles.submitButton, styles.bottomButtons)}
+          type="submit"
+          value={t('save')}
+          onClick={async (e) => {
+            const updateRequestDto: UpdateCharacterRequestDto = {
+              name: characterName,
+              profilePictureId: profilePictureId,
+              profilePictureColorId: profilePictureColorId,
+            };
+            user.characters = await characterRequestProcessor.updateCharacter(character.id, updateRequestDto);
+            setLocalStorageItem('user', user);
+            setLightboxOpened(false);
+            router.refresh();
+            e.preventDefault();
+          }}
+        />
+
+        <input
+          className={classNames(styles.cancelButton, styles.bottomButtons)}
+          type="submit"
+          value={t('cancel')}
+          onClick={async (e) => {
+            setLightboxOpened(false);
+            router.refresh();
+            e.preventDefault();
+          }}
+        />
+      </div>
     </div>
   );
 }

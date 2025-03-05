@@ -8,7 +8,7 @@
     overflow-x: hidden;
 
     width: var(--edit-character-lightbox-width);
-    height: 17rem;
+    height: 19rem;
 
     border-radius: 1.3rem;
     border: 2px solid var(--tertiary-dark);
@@ -19,13 +19,22 @@
     backdrop-filter: blur(1rem);
 
     .profileEditorTabsContainer {
+        display:flex;
+        justify-content: center;
+        align-items: center;
 
         .mainProfileEditorTabContainer {
+            display: flex;
+            flex-direction: column;
             position: absolute;
+
             width: 100%;
+
+            padding: var(--medium-gap);
+            gap: var(--small-gap);
+
             transition: transform 0.3s ease;
             transform: translateX(calc(0rem - var(--edit-character-lightbox-width)));
-            padding: var(--medium-gap);
 
             &.isDisplayed {
                 transform: translateX(0);
@@ -61,28 +70,48 @@
                         width: 70%;
                     }
                 }
-            }
 
-            .submitButton {
-                width: fit-content;
-                padding: var(--small-gap);
+                .bottomButtonsContainer {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
 
-                border-radius: 10px;
+                    gap: var(--medium-gap);
 
-                font-size: 1rem;
-                font-weight: bold;
-                border: none;
+                    .saveAndCancelButtonContainer {
+                        display:flex;
+                        gap: var(--small-gap);
 
-                font-family: var(--font-electrolize);
-                background-color: var(--tertiary-medium);
-                color: var(--primary-dark);
+                    }
+                    .deleteButtonContainer {
+                        display: flex;
+                        .deleteButton {
+                            border-radius:10px;
+                        }
+                    }
 
-                cursor: pointer;
-                transition: 0.3s;
+                    .bottomButtons {
+                        width: fit-content;
+                        padding: var(--small-gap);
 
-                &:hover {
-                    background-color: var(--tertiary-light);
-                    box-shadow: 0 0 15px var(--tertiary-light);
+                        border-radius: 10px;
+
+                        font-size: 1rem;
+                        font-weight: bold;
+                        border: none;
+
+                        font-family: var(--font-electrolize);
+                        background-color: var(--tertiary-medium);
+                        color: var(--primary-dark);
+
+                        cursor: pointer;
+                        transition: 0.3s;
+
+                        &:hover {
+                            background-color: var(--tertiary-light);
+                            box-shadow: 0 0 15px var(--tertiary-light);
+                        }
+                    }
                 }
             }
 
