@@ -6,6 +6,7 @@ import { EditCharacterLightbox } from '../edit-character-lightbox/edit-character
 import { useState } from 'react';
 import { CompleteUserDto } from '@/utils/api/dto/user.dto';
 import { colorById } from '@/components/utils/colors/color-by-id';
+import classNames from 'classnames';
 
 export function CharacterProfile({
   disabled = false,
@@ -46,21 +47,16 @@ function CharacterProfileInnerContent({
   const t = useTranslations('almanax-page');
   return (
     <>
-      <button>
-        <Image
-          className={styles.selectionDisplayImg}
-          src={'/icons/selected.png'}
-          alt={'selected'}
-          width={512}
-          height={512}
-        />
+      <button className={classNames(styles.characterProfileButton, styles.selectionDisplayButton)}>
+        <Image className={styles.buttonImg} src={'/icons/selected.png'} alt={'selected'} width={512} height={512} />
       </button>
       <button
+        className={classNames(styles.characterProfileButton, styles.editButton)}
         onClick={async () => {
           setLightboxOpened(true);
         }}
       >
-        <Image className={styles.editImg} src={'/icons/edit.png'} alt={'edit'} width={512} height={512} />
+        <Image className={styles.buttonImg} src={'/icons/edit.png'} alt={'edit'} width={512} height={512} />
       </button>
       <Image
         className={styles.characterProfileImage}
