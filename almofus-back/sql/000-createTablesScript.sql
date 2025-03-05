@@ -1,5 +1,5 @@
 CREATE TABLE Label (
-	label_id int GENERATED ALWAYS AS IDENTITY,
+	label_id bigint GENERATED ALWAYS AS IDENTITY,
 	fr varchar(5000),
 	en varchar(5000),
 
@@ -7,7 +7,7 @@ CREATE TABLE Label (
 );
 
 CREATE TABLE Almofus_User(
-	almofus_user_id int GENERATED ALWAYS AS IDENTITY,
+	almofus_user_id bigint GENERATED ALWAYS AS IDENTITY,
 	name varchar(50) UNIQUE NOT NULL,
 	email varchar(50),
 
@@ -15,17 +15,17 @@ CREATE TABLE Almofus_User(
 );
 
 CREATE TABLE Character (
-	character_id int GENERATED ALWAYS AS IDENTITY,
+	character_id bigint GENERATED ALWAYS AS IDENTITY,
 	name varchar(50),
-	user_id int,
+	user_id bigint,
 
 	CONSTRAINT PK_character_id PRIMARY KEY (character_id)
 );
 
 CREATE TABLE Almanax_Day (
-	almanax_day_id int GENERATED ALWAYS AS IDENTITY,
-	almanax_quest_id int,
-	character_id int,
+	almanax_day_id bigint GENERATED ALWAYS AS IDENTITY,
+	almanax_quest_id bigint,
+	character_id bigint,
 	is_validated boolean,
 
 	CONSTRAINT PK_almanax_day PRIMARY KEY (almanax_day_id)
@@ -33,51 +33,51 @@ CREATE TABLE Almanax_Day (
 
 
 CREATE TABLE Almanax_Quest (
-	almanax_quest_id int GENERATED ALWAYS AS IDENTITY,
-	dofus_quest_id int UNIQUE NOT NULL,
-	name_label_id int,
-	date varchar(4),
+	almanax_quest_id bigint GENERATED ALWAYS AS IDENTITY,
+	dofus_quest_id bigint UNIQUE NOT NULL,
+	name_label_id bigint,
+	date int,
 	kamas_reward float,
-	item_id int,
+	item_id bigint,
 	item_quantity int NOT NULL,
-	npc_id int,
-	almanax_bonus_id int,
+	npc_id bigint,
+	almanax_bonus_id bigint,
 	mobile_event_name varchar(50),
 	
 	CONSTRAINT PK_almanax_quest PRIMARY KEY (almanax_quest_id)
 );
 
 CREATE TABLE Npc (
-	npc_id int GENERATED ALWAYS AS IDENTITY,
-	dofus_npc_id int UNIQUE NOT NULL,
-	name_label_id int,
+	npc_id bigint GENERATED ALWAYS AS IDENTITY,
+	dofus_npc_id bigint UNIQUE NOT NULL,
+	name_label_id bigint,
 	
 	CONSTRAINT PK_npc PRIMARY KEY (npc_id)
 );
 
 CREATE TABLE Almanax_Bonus (
-	bonus_id int GENERATED ALWAYS AS IDENTITY,
-	npc_id int,
-	name_label_id int,
-	desc_label_id int,
+	bonus_id bigint GENERATED ALWAYS AS IDENTITY,
+	npc_id bigint,
+	name_label_id bigint,
+	desc_label_id bigint,
 	
 	CONSTRAINT PK_bonus PRIMARY KEY (bonus_id)
 );
 
 CREATE TABLE Item (
-	item_id int GENERATED ALWAYS AS IDENTITY,
-	dofus_item_id int UNIQUE NOT NULL,
-	name_label_id int,
+	item_id bigint GENERATED ALWAYS AS IDENTITY,
+	dofus_item_id bigint UNIQUE NOT NULL,
+	name_label_id bigint,
 	level int,
 	
 	CONSTRAINT PK_item PRIMARY KEY (item_id)
 );
 
 CREATE TABLE Almanax_Mobile_Date (
-	almanax_mobile_date_id int GENERATED ALWAYS AS IDENTITY,
-	date varchar(4),
+	almanax_mobile_date_id bigint GENERATED ALWAYS AS IDENTITY,
+	date int,
 	year int,
-	quest_id int,
+	quest_id bigint,
 	
 	CONSTRAINT PK_almanax_mobile_date PRIMARY KEY (almanax_mobile_date_id)
 );
