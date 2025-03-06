@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsDate, IsNotEmpty } from 'class-validator';
 import { AlmanaxBonusDto } from './almanax-bonus.dto';
 import { ItemDto } from './item.dto';
 import { LabelDto } from './label.dto';
@@ -7,11 +7,10 @@ import { Transform } from 'class-transformer';
 import dayjs from 'dayjs';
 
 export class GetAlmanaxQuestByDateQueryParamsDto {
-  @IsString()
-  date: number;
-
-  @IsNumber()
-  year: number;
+  @Transform((params) => dayjs(params.value).toDate())
+  @IsNotEmpty()
+  @IsDate()
+  date: Date;
 }
 
 export class GetAlmanaxQuestByDateRangeQueryParamsDto {

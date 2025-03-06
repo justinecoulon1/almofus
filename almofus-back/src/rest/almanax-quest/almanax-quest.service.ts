@@ -13,15 +13,20 @@ export class AlmanaxQuestService {
     private readonly almanaxMobileDateRepository: AlmanaxMobileDateRepository,
   ) {}
 
-  async getAlmanaxQuestByDate(date: number, year: number): Promise<AlmanaxQuestWithYear> {
-    const mobileDate = await this.almanaxMobileDateRepository.findOneByDateAndYear(date, year);
+  async getAlmanaxQuestByDate(date: Date): Promise<AlmanaxQuestWithYear> {
+    const dateDayjs = dayjs(date);
+    const [dayStr, monthStr, yearStr] = dateDayjs.format('DD/MM/YYYY').split('/');
+    const questDate = parseInt(monthStr + dayStr);
+    const questYear = parseInt(yearStr);
+
+    const mobileDate = await this.almanaxMobileDateRepository.findOneByDateAndYear(questDate, questYear);
     if (!mobileDate) {
-      const almanaxQuest = await this.almanaxQuestRepository.findOneByDate(date);
-      return { ...almanaxQuest, year };
+      const almanaxQuest = await this.almanaxQuestRepository.findOneByDate(questDate);
+      return { ...almanaxQuest, year: questYear };
     }
 
     const almanaxQuest = await this.almanaxQuestRepository.findById(mobileDate.questId);
-    return { ...almanaxQuest, year };
+    return { ...almanaxQuest, year: questYear };
   }
 
   async getAlmanaxQuestByDateRange(startDate: Date, endDate: Date): Promise<AlmanaxQuestWithYear[]> {

@@ -13,7 +13,7 @@ export class AlmanaxQuestController {
 
   @Get()
   async getAlmanaxQuestByDate(@Query() queryParams: GetAlmanaxQuestByDateQueryParamsDto): Promise<AlmanaxQuestDto> {
-    const almanaxQuest = await this.almanaxQuestService.getAlmanaxQuestByDate(queryParams.date, queryParams.year);
+    const almanaxQuest = await this.almanaxQuestService.getAlmanaxQuestByDate(queryParams.date);
     return almanaxQuestMapper.toDto(almanaxQuest);
   }
 
