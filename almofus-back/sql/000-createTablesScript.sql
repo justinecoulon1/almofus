@@ -117,9 +117,3 @@ ADD CONSTRAINT UQ_almanax_day__character_id_quest_id UNIQUE (almanax_quest_id, c
 ALTER TABLE Almanax_Mobile_Date 
 ADD CONSTRAINT FK_Almanax_Mobile_Date__Quest_Id__Almanax_Quest_Quest_Id 
 foreign key (quest_id) references Almanax_Quest (almanax_quest_id);
-
-ALTER TABLE Almanax_Quest 
-ALTER COLUMN date TYPE varchar(5);
-
-ALTER TABLE Almanax_Mobile_Date 
-ALTER COLUMN date TYPE varchar(5);
