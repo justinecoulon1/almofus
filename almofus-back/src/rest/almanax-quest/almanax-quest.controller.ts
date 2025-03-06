@@ -14,7 +14,7 @@ export class AlmanaxQuestController {
   @Get()
   async getAlmanaxQuestByDate(@Query() queryParams: GetAlmanaxQuestByDateQueryParamsDto): Promise<AlmanaxQuestDto> {
     const almanaxQuest = await this.almanaxQuestService.getAlmanaxQuestByDate(queryParams.date, queryParams.year);
-    return almanaxQuestMapper.toDto(almanaxQuest, queryParams.year);
+    return almanaxQuestMapper.toDto(almanaxQuest);
   }
 
   @Get('/date-range')
@@ -22,13 +22,12 @@ export class AlmanaxQuestController {
     @Query() queryParams: GetAlmanaxQuestByDateRangeQueryParamsDto,
   ): Promise<AlmanaxQuestDto[]> {
     //TODO check if year 2 and date 2 are after year 1 and date 1
+
     const almanaxQuests = await this.almanaxQuestService.getAlmanaxQuestByDateRange(
       queryParams.startDate,
-      queryParams.startYear,
       queryParams.endDate,
-      queryParams.endYear,
     );
 
-    return almanaxQuestMapper.toDtos(almanaxQuests, queryParams.startYear);
+    return almanaxQuestMapper.toDtos(almanaxQuests);
   }
 }

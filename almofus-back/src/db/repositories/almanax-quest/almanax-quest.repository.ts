@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { AlmanaxQuest } from 'src/db/model/almanax-quest.entity';
-import { Between, DataSource, IsNull, Not, Repository } from 'typeorm';
+import { Between, DataSource, In, IsNull, Not, Repository } from 'typeorm';
 
 @Injectable()
 export class AlmanaxQuestRepository {
@@ -27,6 +27,10 @@ export class AlmanaxQuestRepository {
 
   findById(id: number): Promise<AlmanaxQuest> {
     return this.repository.findOneBy({ id });
+  }
+
+  findByIds(ids: number[]): Promise<AlmanaxQuest[]> {
+    return this.repository.findBy({ id: In(ids) });
   }
 
   findOneByDate(date: number): Promise<AlmanaxQuest> {

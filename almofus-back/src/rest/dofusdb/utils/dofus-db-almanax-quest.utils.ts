@@ -63,12 +63,10 @@ export function mapAlmanaxQuestDtoToEntity(
 
 function getAlmanaxQuestDateInfoByNpcId(npcId: number): AlmanaxQuestDateInfo | undefined {
   const almanaxQuestInfo: AlmanaxQuestDateInfo = almanaxQuestsDateInfo.find((questInfo) => npcId === questInfo.npcId);
-  console.log(almanaxQuestInfo?.date);
 
   if (almanaxQuestInfo?.date) {
     const [day, month] = almanaxQuestInfo.date.split('/');
     almanaxQuestInfo.date = month + day;
-    console.log(almanaxQuestInfo?.date);
   }
   return almanaxQuestInfo;
 }

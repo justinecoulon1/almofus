@@ -28,6 +28,7 @@ export class CharacterController {
 
   @Delete('/:id')
   async removeCharacter(@Param('id') id: number): Promise<CharacterDto> {
+    //TODO check if the toDeleteCharacter is owned by the user sending the request
     return characterMapper.toDto(await this.characterService.removeCharacter(id));
   }
 }

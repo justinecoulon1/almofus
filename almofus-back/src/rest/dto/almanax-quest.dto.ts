@@ -1,8 +1,10 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { AlmanaxBonusDto } from './almanax-bonus.dto';
 import { ItemDto } from './item.dto';
 import { LabelDto } from './label.dto';
 import { NpcDto } from './npc.dto';
+import { Transform } from 'class-transformer';
+import dayjs from 'dayjs';
 
 export class GetAlmanaxQuestByDateQueryParamsDto {
   @IsString()
@@ -13,17 +15,15 @@ export class GetAlmanaxQuestByDateQueryParamsDto {
 }
 
 export class GetAlmanaxQuestByDateRangeQueryParamsDto {
-  @IsNumber()
-  startDate: number;
+  @Transform((params) => dayjs(params.value).toDate())
+  @IsNotEmpty()
+  @IsDate()
+  startDate: Date;
 
-  @IsNumber()
-  startYear: number;
-
-  @IsNumber()
-  endDate: number;
-
-  @IsNumber()
-  endYear: number;
+  @Transform((params) => dayjs(params.value).toDate())
+  @IsNotEmpty()
+  @IsDate()
+  endDate: Date;
 }
 
 export type AlmanaxQuestDto = {

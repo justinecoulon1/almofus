@@ -1,5 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { AlmanaxQuest } from './almanax-quest.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('almanax_mobile_date')
 export class AlmanaxMobileDate {
@@ -12,8 +11,7 @@ export class AlmanaxMobileDate {
   @Column()
   year: number;
 
-  @ManyToOne(() => AlmanaxQuest, { cascade: true })
-  @JoinColumn({ name: 'quest_id' })
+  @Column({ name: 'quest_id' })
   questId: number;
 
   constructor(date: number, year: number, questId: number) {
