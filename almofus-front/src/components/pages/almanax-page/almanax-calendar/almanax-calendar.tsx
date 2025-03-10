@@ -31,15 +31,15 @@ export function AlmanaxCalendar({ user }: { user: CompleteUserDto }) {
     return await almanaxQuestRequestProcessor.getAlmanaxQuestByDateRange(startDate, endDate);
   };
   const { data: currentMonthQuests } = useQuery({
-    queryKey: ['currentQuests'],
+    queryKey: ['currentQuests', currentDayJs.month()],
     queryFn: () => getQuests(currentDayJs),
   });
   const { data: previousMonthQuests } = useQuery({
-    queryKey: ['previousQuests'],
+    queryKey: ['previousQuests', previousDayJs.month()],
     queryFn: () => getQuests(previousDayJs),
   });
   const { data: nextMonthQuests } = useQuery({
-    queryKey: ['nextQuests'],
+    queryKey: ['nextQuests', nextDayJs.month()],
     queryFn: () => getQuests(nextDayJs),
   });
   return (
