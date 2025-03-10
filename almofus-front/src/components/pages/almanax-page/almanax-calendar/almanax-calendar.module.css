@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: column;
 
-  width: 100%;
+  width: 92%;
   height: 100%;
 
   color: var(--foreground-primary-light);
 
   .almanaxCalendarGridContainer {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, 13.5%);
     grid-template-rows: auto repeat(6, 1fr);
 
     width: 100%;
@@ -33,5 +33,13 @@
     font-weight: bold;
 
     background-color: var(--primary-dark);
+
+    overflow: hidden;
+    white-space: nowrap;
+
+    & p {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
 }

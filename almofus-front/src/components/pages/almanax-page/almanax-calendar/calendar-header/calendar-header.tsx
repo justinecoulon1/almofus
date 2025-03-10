@@ -30,9 +30,11 @@ export function CalendarHeader({
           }
         }}
       />
-      <h2>
-        {t(currentMonth)} {currentDayJs.year()}
-      </h2>
+      <div className={styles.currentMonthContainer}>
+        <h2>
+          {t(currentMonth)} {currentDayJs.year()}
+        </h2>
+      </div>
       <SecondaryDarkButtonWithImage
         imageSrc={'/icons/right-arrow.png'}
         imageAlt={'left arrow'}
