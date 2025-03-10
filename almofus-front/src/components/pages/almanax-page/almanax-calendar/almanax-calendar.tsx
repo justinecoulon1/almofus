@@ -27,7 +27,6 @@ export function AlmanaxCalendar({ user }: { user: CompleteUserDto }) {
     return await almanaxQuestRequestProcessor.getAlmanaxQuestByDateRange(startDate, endDate);
   };
   const { data } = useQuery({ queryKey: ['quests'], queryFn: getQuests });
-  console.log(data);
   return (
     <div className={styles.almanaxCalendarContainer}>
       <CalendarHeader
