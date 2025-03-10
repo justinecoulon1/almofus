@@ -3,7 +3,7 @@ import almanaxQuestRequestProcessor from '@/utils/api/almanax-quest.request-proc
 import styles from './page.module.css';
 
 export default async function Home() {
-  const almanaxQuest = await almanaxQuestRequestProcessor.getAlmanaxQuestByDate('16/02', 2025);
+  const almanaxQuest = await almanaxQuestRequestProcessor.getAlmanaxQuestByDate('20250310');
   return (
     <div className={styles.pageContainer}>
       <DailyAlmanax almanaxQuest={almanaxQuest} />

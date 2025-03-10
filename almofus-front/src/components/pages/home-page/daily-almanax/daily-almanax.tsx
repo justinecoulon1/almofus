@@ -9,11 +9,14 @@ import styles from './daily-almanax.module.css';
 export function DailyAlmanax({ almanaxQuest }: { almanaxQuest: AlmanaxQuestDto }) {
   const t = useTranslations('daily-almanax');
   const locale = useLocale() as Locales;
+  const formattedDate = almanaxQuest.date.toString();
+  const day = formattedDate.slice(-2);
+  const month = formattedDate.slice(0, -2).padStart(2, '0');
   return (
     <div className={styles.dailyAlmanaxContainer}>
       <div className={styles.dateHeader}>
         <p>
-          {almanaxQuest.date}/{almanaxQuest.year}
+          {day}/{month}/{almanaxQuest.year}
         </p>
       </div>
       <div className={styles.dailyAlmanaxCard}>
