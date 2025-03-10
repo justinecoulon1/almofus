@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
 
-  padding: var(--small-gap);
+  padding: 0.2rem;
+  gap:0.2rem;
 
   font-weight: bold;
 
@@ -12,6 +13,8 @@
   .cardHeader {
     display: flex;
     width: 100%;
+
+    font-size: 0.9rem;
   }
 
   .itemContainer {
@@ -21,10 +24,12 @@
     overflow: hidden;
     white-space: nowrap;
 
-    & p {
-      font-size: 1rem;
-      text-overflow: ellipsis;
-      overflow: hidden;
+    .almanaxImage {
+      height:2rem;
+      width: 2rem;
+      border: 1px solid var(--tertiary-light);
+
+      background-color: var(--primary-dark);
     }
   }
 }

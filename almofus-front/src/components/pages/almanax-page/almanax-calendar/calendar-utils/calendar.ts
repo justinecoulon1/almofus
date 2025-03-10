@@ -2,21 +2,45 @@ import dayjs, { Dayjs } from 'dayjs';
 
 const TOTAL_CALENDAR_DAYS = 7 * 6;
 
-export function generateCalendar(date: Dayjs): number[] {
-  const nbDaysInMonth = dayjs(date).daysInMonth();
+export type CalendarDateInfo = {
+  monthIndex: number;
+  dayIndex: number;
+};
+
+export function generateCalendar(date: Dayjs): CalendarDateInfo[] {
+  const nbDaysInPreviousMonth = date.add(-1, 'month').daysInMonth();
+  const nbDaysInCurrentMonth = dayjs(date).daysInMonth();
   const firstDayOfTheMonthIndex = (date.startOf('month').get('day') + 6) % 7;
 
-  const calendar: number[] = [];
+  const calendar: CalendarDateInfo[] = [];
   for (let i = 0; i < firstDayOfTheMonthIndex; i++) {
-    calendar.push(0);
+    calendar.push({
+      monthIndex: date.add(-1, 'month').month(),
+      dayIndex: nbDaysInPreviousMonth - firstDayOfTheMonthIndex + 1 + i,
+    });
   }
-  for (let i = 1; i <= nbDaysInMonth; i++) {
-    calendar.push(i);
+  for (let i = 1; i <= nbDaysInCurrentMonth; i++) {
+    calendar.push({
+      monthIndex: dayjs(date).month(),
+      dayIndex: i,
+    });
   }
-  for (let i = 0; i < TOTAL_CALENDAR_DAYS - nbDaysInMonth - firstDayOfTheMonthIndex; i++) {
-    calendar.push(0);
+  for (let i = 0; i < TOTAL_CALENDAR_DAYS - nbDaysInCurrentMonth - firstDayOfTheMonthIndex; i++) {
+    calendar.push({
+      monthIndex: date.add(1, 'month').month(),
+      dayIndex: i + 1,
+    });
   }
   return calendar;
+}
+
+export function getMonthStartAndEndDate(currentDayJs: Dayjs) {
+  const daysInMonth = currentDayJs.daysInMonth();
+  const month = currentDayJs.month() + 1;
+  const year = currentDayJs.year();
+  const startDate = year.toString().concat(month.toString().padStart(2, '0'), '01');
+  const endDate = year.toString().concat(month.toString().padStart(2, '0'), daysInMonth.toString());
+  return { startDate: startDate, endDate: endDate };
 }
 
 export const DaysOfWeek = {
