@@ -4,6 +4,7 @@ import styles from './calendar-day.module.css';
 import { AlmanaxQuestDto } from '@/utils/api/dto/almanax-quest.dto';
 import classNames from 'classnames';
 import { Locales } from '@/i18n/routing';
+import { Tooltip } from 'react-tooltip';
 
 export function CalendarDay({
   characters,
@@ -39,10 +40,24 @@ export function CalendarDay({
           </div>
         </div>
       </div>
-
       <div className={styles.bonusContainer}>
-        <p>{quest?.almanaxBonus.nameLabel[locale]}</p>
+        <a data-tooltip-id={`tooltip-${quest?.id}`}>
+          <p>{quest?.almanaxBonus.nameLabel[locale]}</p>
+        </a>
+        <Tooltip className={styles.tooltip} id={`tooltip-${quest?.id}`} place={'top'} clickable>
+          <TooltipContent quest={quest} />
+        </Tooltip>
       </div>
+    </div>
+  );
+}
+
+function TooltipContent({ quest }: { quest: AlmanaxQuestDto | undefined }) {
+  const locale = useLocale() as Locales;
+  return (
+    <div className={styles.tooltipContent}>
+      <p className={styles.nameLabel}>{quest?.almanaxBonus.nameLabel[locale]}</p>
+      <p className={styles.descLabel}>{quest?.almanaxBonus.descLabel[locale]}</p>
     </div>
   );
 }
