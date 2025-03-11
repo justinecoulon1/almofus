@@ -43,16 +43,25 @@ export function AlmanaxCalendar({ user }: { user: CompleteUserDto }) {
         ))}
         {calendar.map((calendarDateInfo, index) => {
           let quests: AlmanaxQuestDto[] | undefined = undefined;
+          let isDisabled = false;
           if (calendarDateInfo.monthIndex === previousDayJs.month()) {
             quests = previousMonthQuests;
+            isDisabled = true;
           } else if (calendarDateInfo.monthIndex === currentDayJs.month()) {
             quests = currentMonthQuests;
           } else if (calendarDateInfo.monthIndex === nextDayJs.month()) {
             quests = nextMonthQuests;
+            isDisabled = true;
           }
           const quest = quests?.[calendarDateInfo.dayIndex - 1];
           return (
-            <CalendarDay key={index} characters={user.characters} quest={quest} dayIndex={calendarDateInfo.dayIndex} />
+            <CalendarDay
+              key={index}
+              characters={user.characters}
+              quest={quest}
+              dayIndex={calendarDateInfo.dayIndex}
+              isDisabled={isDisabled}
+            />
           );
         })}
       </div>
