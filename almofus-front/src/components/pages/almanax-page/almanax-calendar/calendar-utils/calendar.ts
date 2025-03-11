@@ -21,7 +21,7 @@ export function generateCalendar(date: Dayjs): CalendarDateInfo[] {
   }
   for (let i = 1; i <= nbDaysInCurrentMonth; i++) {
     calendar.push({
-      monthIndex: dayjs(date).month(),
+      monthIndex: date.month(),
       dayIndex: i,
     });
   }
@@ -32,15 +32,6 @@ export function generateCalendar(date: Dayjs): CalendarDateInfo[] {
     });
   }
   return calendar;
-}
-
-export function getMonthStartAndEndDate(currentDayJs: Dayjs) {
-  const daysInMonth = currentDayJs.daysInMonth();
-  const month = currentDayJs.month() + 1;
-  const year = currentDayJs.year();
-  const startDate = year.toString().concat(month.toString().padStart(2, '0'), '01');
-  const endDate = year.toString().concat(month.toString().padStart(2, '0'), daysInMonth.toString());
-  return { startDate: startDate, endDate: endDate };
 }
 
 export const DaysOfWeek = {

@@ -21,7 +21,7 @@ function AlmanaxCalendarSection() {
   if (useMounted()) {
     if (user) {
       return (
-        <div className={styles.almanaxCalendarContainer}>
+        <div className={styles.globalCalendarContainer}>
           <CharacterSection user={user} />
           <AlmanaxCalendar user={user} />
         </div>

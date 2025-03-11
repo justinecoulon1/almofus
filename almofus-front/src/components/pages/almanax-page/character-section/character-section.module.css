@@ -1,14 +1,16 @@
 .characterSectionContainer {
+
     display: flex;
     flex-direction: column;
 
-    width: 8%;
+    width: var(--character-section-width);
     overflow-x: hidden;
 
     background-color: var(--primary-medium);
 
     .characterProfilesScrollableContainer {
         overflow-y: scroll;
+        height: 100%;
 
         .characterProfilesContainer {
             display: flex;

@@ -1,45 +1,45 @@
 .almanaxCalendarContainer {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  width: 92%;
-  height: 100%;
-
-  color: var(--foreground-primary-light);
-
-  .almanaxCalendarGridContainer {
-    display: grid;
-    grid-template-columns: repeat(7, minmax(0,1fr));
-    grid-template-rows: auto repeat(6, 1fr);
-
-    width: 100%;
+    width: calc(100% - var(--character-section-width));
     height: 100%;
 
-    padding: 0.5rem;
-    gap: 0.5rem;
+    color: var(--foreground-primary-light);
 
-    background-color: var(--primary-light);
-  }
+    .almanaxCalendarGridContainer {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        grid-template-rows: auto repeat(6, 1fr);
 
-  .gridHeader {
-    display: flex;
-    justify-content: center;
+        width: 100%;
+        height: 100%;
 
-    height: fit-content;
-    padding: 0.5rem;
+        padding: 0.5rem;
+        gap: 0.5rem;
 
-    border-radius: 20px;
-
-    font-weight: bold;
-
-    background-color: var(--primary-dark);
-
-    overflow: hidden;
-    white-space: nowrap;
-
-    & p {
-      text-overflow: ellipsis;
-      overflow: hidden;
+        background-color: var(--primary-light);
     }
-  }
+
+    .gridHeader {
+        display: flex;
+        justify-content: center;
+
+        height: fit-content;
+        padding: 0.5rem;
+
+        border-radius: 20px;
+
+        font-weight: bold;
+
+        background-color: var(--primary-dark);
+
+        overflow: hidden;
+        white-space: nowrap;
+
+        & p {
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
 }
