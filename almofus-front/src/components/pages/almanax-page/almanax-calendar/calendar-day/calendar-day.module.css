@@ -68,11 +68,13 @@
 
     .bonusContainer {
         display: flex;
+        padding: 0.25rem 0 0.25rem 0;
 
-        & a {
+        .nameLabelDivContainer {
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
+
             & p {
 
                 text-overflow: ellipsis;
@@ -80,42 +82,42 @@
                 font-size: 0.8rem;
             }
         }
+
         .tooltip {
             display: flex;
             background-color: var(--primary-dark);
-            opacity:0.9;
+            opacity: 0.9;
 
             border-radius: 0.3rem;
-
-            .tooltipContent {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                max-width: 10rem;
-
-                gap: 0.2rem;
-                background-color: var(--primary-dark);
-
-                .nameLabel {
-                    text-align: center;
-                    width: 100%;
-                    word-break: break-all;
-                    padding:0.2rem;
-                    background-color: var(--primary-medium);
-
-                    border-radius: 1rem;
-                }
-
-                .descLabel {
-                    padding-top: 0.5rem;
-                    hyphens: auto;
-                }
-            }
         }
     }
 }
 
 .disabled {
     filter: grayscale(60%);
+}
+
+.tooltipContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 10rem;
+
+    gap: 0.2rem;
+
+    .nameLabel {
+        text-align: center;
+        width: 100%;
+        word-break: break-all;
+        padding: 0.2rem;
+        background-color: var(--primary-medium);
+
+        border-radius: 1rem;
+    }
+
+    .descLabel {
+        padding-top: 0.5rem;
+        hyphens: auto;
+    }
 }

@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import styles from './almanax-calendar.module.css';
 import dayjs, { Dayjs } from 'dayjs';
 import { CalendarDateInfo, DaysOfWeek, generateCalendar, Months } from './calendar-utils/calendar';
@@ -9,9 +9,11 @@ import { CompleteUserDto } from '@/utils/api/dto/user.dto';
 import almanaxQuestRequestProcessor from '@/utils/api/almanax-quest.request-processor';
 import { useQuery } from '@tanstack/react-query';
 import { AlmanaxQuestDto } from '@/utils/api/dto/almanax-quest.dto';
+import { Locales } from '@/i18n/routing';
 
 export function AlmanaxCalendar({ user }: { user: CompleteUserDto }) {
   const t = useTranslations('almanax-calendar-days');
+  const locale = useLocale() as Locales;
   const days = Object.keys(DaysOfWeek);
   const months = Object.entries(Months);
   const [monthDelta, setMonthDelta] = useState(0);
@@ -61,6 +63,7 @@ export function AlmanaxCalendar({ user }: { user: CompleteUserDto }) {
               quest={quest}
               dayIndex={calendarDateInfo.dayIndex}
               isDisabled={isDisabled}
+              locale={locale}
             />
           );
         })}
