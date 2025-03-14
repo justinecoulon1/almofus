@@ -97,8 +97,13 @@
     filter: grayscale(60%);
 }
 
-.tooltipContent {
+.tooltip {
     display: flex;
+    opacity: 0.9;
+    z-index: 1000;
+}
+
+.bonusTooltipContent {
     flex-direction: column;
     align-items: center;
 
@@ -119,5 +124,17 @@
     .descLabel {
         padding-top: 0.5rem;
         hyphens: auto;
+    }
+}
+
+.itemTooltipContent {
+    gap: 0.2rem;
+
+    .tooltipRightSide {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        width: 100%;
+        padding: 0.2rem;
     }
 }

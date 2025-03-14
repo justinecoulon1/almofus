@@ -52,5 +52,8 @@
     "save": "Sauvegarder",
     "cancel": "Annuler",
     "delete": "SUPPRIMER LE PERSONNAGE"
+  },
+  "item-tooltip" :{
+    "level": "Niveau :"
   }
 }

@@ -20,7 +20,6 @@ export function CalendarDay({
   isDisabled: boolean;
   locale: Locales;
 }) {
-  const t = useTranslations('almanax-page');
   return (
     <div className={classNames(styles.calendarDayContainer, isDisabled && styles.disabled)}>
       <div className={styles.cardHeader}>
@@ -36,13 +35,7 @@ export function CalendarDay({
             place={'top'}
             delayShow={300}
           >
-            <img
-              className={classNames(styles.almanaxImage)}
-              src={`https://api.dofusdb.fr/img/items/${quest?.item.iconId}.png`}
-              alt={'almanax img'}
-              width={512}
-              height={512}
-            />
+            <ItemImage questItem={quest?.item} />
           </DefaultTooltipContainer>
         </div>
         <div className={styles.itemDesc}>
@@ -69,7 +62,7 @@ export function CalendarDay({
 
 function BonusTooltipContent({ quest, locale }: { quest: AlmanaxQuestDto | undefined; locale: Locales }) {
   return (
-    <div className={styles.tooltipContent}>
+    <div className={classNames(styles.bonusTooltipContent, styles.tooltip)}>
       <p className={styles.nameLabel}>{quest?.almanaxBonus.nameLabel[locale]}</p>
       <p className={styles.descLabel}>{quest?.almanaxBonus.descLabel[locale]}</p>
     </div>
@@ -77,10 +70,30 @@ function BonusTooltipContent({ quest, locale }: { quest: AlmanaxQuestDto | undef
 }
 
 function ItemTooltipContent({ questItem, locale }: { questItem: ItemDto | undefined; locale: Locales }) {
+  const t = useTranslations('item-tooltip');
   return (
-    <div className={styles.tooltipContent}>
-      <p className={styles.nameLabel}>{questItem?.nameLabel[locale]}</p>
-      <p className={styles.descLabel}>{questItem?.level}</p>
+    <div className={classNames(styles.itemTooltipContent, styles.tooltip)}>
+      <ItemImage questItem={questItem} />
+      <div className={styles.tooltipRightSide}>
+        <p className={styles.itemLevel}>
+          {t('level')}
+          {' ' + questItem?.level}
+        </p>
+        <p className={styles.nameLabel}>{questItem?.nameLabel[locale]}</p>
+      </div>
     </div>
+  );
+}
+
+function ItemImage({ questItem }: { questItem: ItemDto | undefined }) {
+  return (
+    <img
+      key={`quest-item-icon-${questItem?.iconId}`}
+      className={classNames(styles.almanaxImage)}
+      src={`https://api.dofusdb.fr/img/items/${questItem?.iconId}.png`}
+      alt={'Item'}
+      width={512}
+      height={512}
+    />
   );
 }
