@@ -12,4 +12,8 @@ export class AlmanaxDayRepository {
   ) {
     this.repository = dataSource.getRepository(AlmanaxDay);
   }
+
+  async saveCharacterAlmanaxDays(days: AlmanaxDay[]): Promise<AlmanaxDay[]> {
+    return await this.repository.save(days);
+  }
 }

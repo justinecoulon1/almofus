@@ -20,4 +20,10 @@ export class AlmanaxDay {
   @ManyToOne(() => AlmanaxQuest)
   @JoinColumn({ name: 'almanax_quest_id' })
   almanaxQuest: Promise<AlmanaxQuest>;
+
+  constructor(isValidated: boolean, character: Character, almanaxQuest: AlmanaxQuest) {
+    this.isValidated = isValidated;
+    this.character = Promise.resolve(character);
+    this.almanaxQuest = Promise.resolve(almanaxQuest);
+  }
 }
