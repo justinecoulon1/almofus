@@ -44,7 +44,7 @@ function AlmanaxCalendarSection() {
               setDisplayType={setDisplayType}
             />
             {displayType === AlmanaxDisplayType.CALENDAR && <AlmanaxCalendar currentDayjs={currentDayjs} />}
-            {displayType === AlmanaxDisplayType.LIST && <AlmanaxList />}
+            {displayType === AlmanaxDisplayType.LIST && <AlmanaxList currentDayjs={currentDayjs} />}
           </div>
         </div>
       );

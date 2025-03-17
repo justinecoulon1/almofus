@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import styles from './calendar-day.module.css';
 import { AlmanaxQuestDto } from '@/utils/api/dto/almanax-quest.dto';
 import classNames from 'classnames';
@@ -24,20 +23,13 @@ export function AlmanaxCalendarDay({
       </div>
       <div className={styles.itemContainer}>
         <div className={styles.imageContainer}>
-          <DefaultTooltipContainer
-            className={styles.bonusContainer}
-            tooltipId={`tooltip-item-${quest?.item?.id}`}
-            tooltipContent={<ItemTooltipContent questItem={quest?.item} locale={locale} />}
-            clickable={true}
-            place={'top'}
-            delayShow={300}
-          >
-            <ItemImage questItem={quest?.item} />
-          </DefaultTooltipContainer>
+          <ItemImage questItem={quest?.item} />
         </div>
         <div className={styles.itemDesc}>
           <div className={styles.textDiv}>
-            <p>x {quest?.itemQuantity}</p>
+            <p>
+              {quest?.itemQuantity} x {quest?.item.nameLabel[locale]}
+            </p>
           </div>
         </div>
       </div>
@@ -49,7 +41,7 @@ export function AlmanaxCalendarDay({
         place={'top'}
         delayShow={300}
       >
-        <div className={styles.nameLabelDivContainer}>
+        <div className={styles.bonusLabelsDivContainer}>
           <p>{quest?.almanaxBonus?.nameLabel?.[locale]}</p>
         </div>
       </DefaultTooltipContainer>
@@ -62,22 +54,6 @@ function BonusTooltipContent({ quest, locale }: { quest: AlmanaxQuestDto | undef
     <div className={classNames(styles.bonusTooltipContent, styles.tooltip)}>
       <p className={styles.nameLabel}>{quest?.almanaxBonus.nameLabel[locale]}</p>
       <p className={styles.descLabel}>{quest?.almanaxBonus.descLabel[locale]}</p>
-    </div>
-  );
-}
-
-function ItemTooltipContent({ questItem, locale }: { questItem: ItemDto | undefined; locale: Locales }) {
-  const t = useTranslations('item-tooltip');
-  return (
-    <div className={classNames(styles.itemTooltipContent, styles.tooltip)}>
-      <ItemImage questItem={questItem} />
-      <div className={styles.tooltipRightSide}>
-        <p className={styles.itemLevel}>
-          {t('level')}
-          {' ' + questItem?.level}
-        </p>
-        <p className={styles.nameLabel}>{questItem?.nameLabel[locale]}</p>
-      </div>
     </div>
   );
 }
