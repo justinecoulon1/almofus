@@ -1,12 +1,33 @@
 .almanaxCalendarHeader {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+
+    height: var(--almanax-calendar-header-height);
+    width: 100%;
 
     background-color: var(--primary-medium);
-}  
+    color: var(--foreground-primary-light);
+
+    .changeMonthButtonsDiv {
+        display: flex;
+        padding: var(--small-gap);
+    }
+
+    .displayTypeButtonsDiv {
+        display: flex;
+        padding: var(--small-gap);
+
+    }
+
+
+}
 
 .buttonImg {
-  height: 2rem;
-  width: 2rem;
+    height: 1.5rem;
+    width: 1.5em;
+}
+
+.selected {
+    background-color: var(--secondary-medium);
 }

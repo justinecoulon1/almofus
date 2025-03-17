@@ -53,6 +53,23 @@
     }
 }
 
+.primaryButtonBorderless {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 1rem;
+
+    background-color: var(--primary-medium);
+    color: var(--foreground-secondary-light);
+
+    &:hover {
+        background-color: var(--primary-dark);
+    }
+}
+
 .secondaryDarkButton {
     display: flex;
     justify-content: center;

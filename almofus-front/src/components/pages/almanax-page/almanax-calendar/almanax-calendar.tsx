@@ -1,55 +1,45 @@
 import { useLocale, useTranslations } from 'next-intl';
 import styles from './almanax-calendar.module.css';
-import dayjs, { Dayjs } from 'dayjs';
-import { CalendarDateInfo, DaysOfWeek, generateCalendar, Months } from './calendar-utils/calendar';
-import { CalendarDay } from './calendar-day/calendar-day';
-import { useState } from 'react';
-import { CalendarHeader } from './calendar-header/calendar-header';
-import { CompleteUserDto } from '@/utils/api/dto/user.dto';
-import almanaxQuestRequestProcessor from '@/utils/api/almanax-quest.request-processor';
-import { useQuery } from '@tanstack/react-query';
+import { CalendarDateInfo, generateCalendar } from './calendar-utils/calendar';
+import { AlmanaxCalendarDay } from './calendar-day/almanax-calendar-day';
 import { AlmanaxQuestDto } from '@/utils/api/dto/almanax-quest.dto';
 import { Locales } from '@/i18n/routing';
+import { useQuestsQuery } from '@/components/pages/almanax-page/almanax-page-utils/quests-query';
+import { DaysOfWeek } from '@/components/pages/almanax-page/almanax-page-utils/days-of-week';
+import { Dayjs } from 'dayjs';
+import classNames from 'classnames';
 
-export function AlmanaxCalendar({ user }: { user: CompleteUserDto }) {
+export function AlmanaxCalendar({ currentDayjs }: { currentDayjs: Dayjs }) {
   const t = useTranslations('almanax-calendar-days');
   const locale = useLocale() as Locales;
   const days = Object.keys(DaysOfWeek);
-  const months = Object.entries(Months);
-  const [monthDelta, setMonthDelta] = useState(0);
 
-  const currentDayJs = dayjs().add(monthDelta, 'month');
-  const previousDayJs = currentDayJs.add(-1, 'month');
-  const nextDayJs = currentDayJs.add(1, 'month');
-  const calendar: CalendarDateInfo[] = generateCalendar(currentDayJs);
-  const currentMonth = months.find(([, value]) => value === currentDayJs.month())?.[0];
+  const previousDayJs = currentDayjs.add(-1, 'month');
+  const nextDayJs = currentDayjs.add(1, 'month');
+  const calendar: CalendarDateInfo[] = generateCalendar(currentDayjs);
 
-  const { data: currentMonthQuests } = useQuestsQuery(currentDayJs);
+  const { data: currentMonthQuests } = useQuestsQuery(currentDayjs);
   const { data: previousMonthQuests } = useQuestsQuery(previousDayJs);
   const { data: nextMonthQuests } = useQuestsQuery(nextDayJs);
   useQuestsQuery(nextDayJs.add(1, 'month'));
   useQuestsQuery(previousDayJs.add(-1, 'month'));
   return (
     <div className={styles.almanaxCalendarContainer}>
-      <CalendarHeader
-        currentMonth={currentMonth}
-        setMonthDelta={setMonthDelta}
-        monthDelta={monthDelta}
-        currentDayJs={currentDayJs}
-      />
-      <div className={styles.almanaxCalendarGridContainer}>
+      <div className={styles.gridContainer}>
         {days.map((day, i) => (
-          <div key={`day_${i}`} className={styles.gridHeader}>
+          <div key={`day_${i}`} className={styles.daysHeader}>
             <p>{t(day)} </p>
           </div>
         ))}
+      </div>
+      <div className={classNames(styles.scrollableCalendarContainer, styles.gridContainer)}>
         {calendar.map((calendarDateInfo, index) => {
           let quests: AlmanaxQuestDto[] | undefined = undefined;
           let isDisabled = false;
           if (calendarDateInfo.monthIndex === previousDayJs.month()) {
             quests = previousMonthQuests;
             isDisabled = true;
-          } else if (calendarDateInfo.monthIndex === currentDayJs.month()) {
+          } else if (calendarDateInfo.monthIndex === currentDayjs.month()) {
             quests = currentMonthQuests;
           } else if (calendarDateInfo.monthIndex === nextDayJs.month()) {
             quests = nextMonthQuests;
@@ -57,9 +47,8 @@ export function AlmanaxCalendar({ user }: { user: CompleteUserDto }) {
           }
           const quest = quests?.[calendarDateInfo.dayIndex - 1];
           return (
-            <CalendarDay
+            <AlmanaxCalendarDay
               key={index}
-              characters={user.characters}
               quest={quest}
               dayIndex={calendarDateInfo.dayIndex}
               isDisabled={isDisabled}
@@ -70,28 +59,6 @@ export function AlmanaxCalendar({ user }: { user: CompleteUserDto }) {
       </div>
     </div>
   );
-}
-
-function useQuestsQuery(dayJs: Dayjs) {
-  return useQuery({
-    queryKey: ['almanaxCalendarQuests', dayJs.month(), dayJs.year()],
-    staleTime: 1000 * 60 * 5,
-    queryFn: () => {
-      const { startDate, endDate } = getMonthStartAndEndDate(dayJs);
-      return almanaxQuestRequestProcessor.getAlmanaxQuestByDateRange(startDate, endDate);
-    },
-  });
-}
-
-function getMonthStartAndEndDate(dayJs: Dayjs) {
-  const year = dayJs.year();
-  const month = (dayJs.month() + 1).toString().padStart(2, '0');
-  const daysInMonth = dayJs.daysInMonth();
-
-  const startDate = `${year}${month}01`;
-  const endDate = `${year}${month}${daysInMonth}`;
-
-  return { startDate, endDate };
 }
 
 export function AlmanaxCalendarDisabled() {

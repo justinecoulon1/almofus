@@ -29,6 +29,10 @@ export function PrimaryButtonWithImage(props: ButtonProps) {
   return <GenericButtonWithImage buttonStyle={styles.primaryButton} {...props} />;
 }
 
+export function PrimaryButtonWithImageBorderless(props: ButtonProps) {
+  return <GenericButtonWithImage buttonStyle={styles.primaryButtonBorderless} {...props} />;
+}
+
 export function GenericButtonWithImage({
   buttonStyle,
   imageSrc,

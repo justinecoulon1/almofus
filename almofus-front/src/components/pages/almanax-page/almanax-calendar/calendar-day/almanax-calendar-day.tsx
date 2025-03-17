@@ -1,4 +1,3 @@
-import { CharacterDto } from '@/utils/api/dto/character.dto';
 import { useTranslations } from 'next-intl';
 import styles from './calendar-day.module.css';
 import { AlmanaxQuestDto } from '@/utils/api/dto/almanax-quest.dto';
@@ -7,14 +6,12 @@ import { Locales } from '@/i18n/routing';
 import { DefaultTooltipContainer } from '@/components/pages/almanax-page/almanax-calendar/calendar-day/default-tooltip-container';
 import { ItemDto } from '@/utils/api/dto/item.dto';
 
-export function CalendarDay({
-  characters,
+export function AlmanaxCalendarDay({
   dayIndex,
   quest,
   isDisabled,
   locale,
 }: {
-  characters: CharacterDto[];
   dayIndex: number;
   quest: AlmanaxQuestDto | undefined;
   isDisabled: boolean;

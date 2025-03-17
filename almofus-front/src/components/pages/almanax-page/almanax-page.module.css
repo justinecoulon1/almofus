@@ -1,24 +1,31 @@
 .almanaxPageContainer {
     --almanax-page-vertical-padding: 3rem;
     --character-section-width: 7rem;
+    --almanax-calendar-header-height: 4rem;
 
     display: flex;
 
     height: 100%;
+    width: 100%;
     flex: 1;
 
-    padding: var(--almanax-page-vertical-padding) 8rem;
 
     overflow-y: hidden;
 
     .globalCalendarContainer {
         display: flex;
 
-        height: calc(100vh - 2 * var(--almanax-page-vertical-padding) - var(--header-height));
-        width: 80vw;
+        height: calc(100vh - var(--header-height));
+        width: 100%;
 
-        border: 2px solid var(--primary-darker);
-        border-radius: 10px;
         overflow: hidden;
+
+        .rightPartContainer {
+            display: flex;
+            flex-direction: column;
+
+            height: 100%;
+            width: calc(100% - var(--character-section-width));
+        }
     }
 }
